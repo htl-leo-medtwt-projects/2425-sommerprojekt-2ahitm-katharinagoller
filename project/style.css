@@ -1,0 +1,118 @@
+@font-face {
+    font-family: font;
+    src: url(fonts/SpecialElite-Regular.ttf);
+}
+
+@font-face {
+    font-family: diary1;
+    src: url(fonts/PizzaismyFAVORITE.ttf);
+}
+
+@font-face {
+    font-family: diary2;
+    src: url(fonts/DavysCrappyWrit.ttf);
+}
+
+@font-face {
+    font-family: diary3;
+    src: url(fonts/Snake.ttf);
+}
+
+body,html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: font;
+}
+
+#screen1 {
+    background-image: url(img/startBackground.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    
+}
+
+/*Typewriter Effect*/
+#typewriter {
+    width: 50%;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 14%;
+}
+#typewriter h1 {
+    font-weight: lighter;
+    font-size: 4em;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    overflow: hidden;
+    border-right: 0.15em solid white; 
+    white-space: nowrap;
+    margin: 0 auto; 
+    letter-spacing: 0.15em;
+    animation: 
+      typing 3.5s steps(30, end),
+      blink-caret 0.75s step-end infinite;
+}
+  
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+  
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+}
+
+#screen1 hr {
+    width: 33%;
+    margin-top: 2%;
+}
+#slogan {
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    text-align: center;
+    font-size: 1.5em;
+    width: 33%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#playButton {
+    margin-top: 4%;
+    background-color: rgba(33, 80, 147, 0.7);
+    width: fit-content;
+    padding: 1% 2%;
+    border-radius: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#playButton img {
+    position: absolute;
+    top: 47.5%;
+    left: 48.3%;
+    width: 4%;
+    z-index: 1;
+}
+#playButton span {
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    font-size: 1.7em;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    user-select: none;
+}
