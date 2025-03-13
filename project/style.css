@@ -40,7 +40,7 @@ body,html {
 
 /*Typewriter Effect*/
 #typewriter {
-    width: 50%;
+    width: 51%;
     text-align: center;
     display: block;
     margin-left: auto;
@@ -98,13 +98,18 @@ body,html {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: background-color 1s, box-shadow 1s;
 }
 
+#playButton:hover {
+    background-color: rgba(33, 80, 147, 0.9);
+    box-shadow: 3px 3px 10px black;
+}
 #playButton img {
     position: absolute;
     top: 47.5%;
     left: 48.3%;
-    width: 4%;
+    width: 3.7%;
     z-index: 1;
 }
 #playButton span {
@@ -115,4 +120,47 @@ body,html {
     z-index: 2;
     cursor: pointer;
     user-select: none;
+}
+
+#button {
+    position: absolute;
+    top: 2%;
+    right: 3%;
+    font-size: 2.7em;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+}
+
+#dropdown {
+    display: none;
+    background-color: #0D1C46;
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    width: 15%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 2%;
+    font-size: 1.3em;
+    transition: background-color 1s, transform 1s;
+}
+#dropdown img {
+    width: 80%;
+}
+
+#dropdown:hover {
+    background-color: rgba(13, 28, 70, 0.7);
+    transform: scale(1.01,1.01);
+}
+
+#explain {
+    display: none;
+    background-color: #0D1C46;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
