@@ -16,3 +16,26 @@ function dropdown() {
         DROPDOWN.clickedOnce = false;
     }
 }
+
+
+//Next Site
+let NEXT = {
+    counter: 0,
+    explain: document.getElementById("explain"),
+    difficulty: document.getElementById("difficulty"),
+}
+
+function next() {
+    if(NEXT.counter == 0) {
+        NEXT.explain.style.display = "block";
+        NEXT.counter++;
+    }
+    else if(NEXT.counter == 1) {
+        NEXT.difficulty.style.display = "block";
+        NEXT.explain.style.display = "none";
+        NEXT.counter++;
+        document.getElementById("slogan").innerHTML = "Choose your difficulty";
+        document.getElementById("playButton").style.display = "none";
+    }
+    
+}
