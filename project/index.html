@@ -6,6 +6,7 @@
         <title>Through The Time</title>
         <link rel="stylesheet" href="style.css">
         <script src="basic-script.js"defer></script>
+        <script src="main-script.js"defer></script>
     </head>
     <body>
         <div id="screen1">
@@ -31,19 +32,50 @@
                 <img src="img/line1.png" alt="line">
             </div>
             <div id="difficulty">
-                <div id="easy">
+                <div id="easy" onclick="setDifficulty('Easy')">
+                    <img src="img/line.png" alt="line">
                     <h2>Easy</h2>
                     <p>2 hints per level</p>
+                    <img src="img/line1.png" alt="line">
                 </div>
-                <div id="medium">
+                <div id="medium" onclick="setDifficulty('Medium')">
+                    <img src="img/line.png" alt="line">
                     <h2>Medium</h2>
                     <p>1 hint per level</p>
+                    <img src="img/line1.png" alt="line">
                 </div>
-                <div id="Hard">
+                <div id="hard" onclick="setDifficulty('Hard')">
+                    <img src="img/line.png" alt="line">
                     <h2>Hard</h2>
                     <p>No hints at all</p>
+                    <img src="img/line1.png" alt="line">
                 </div>
             </div>
+        </div>
+        <div id="levelOverview">
+            <div id="levels">
+                <div class="part">
+                    <h2>1900</h2>
+                    <div id="level1"><img src="img/play.png" alt="img"></div>
+                </div>
+                <div class="part">
+                    <h2>1920</h2>
+                    <div id="level2"><img src="img/lock.png" alt="img"></div>
+                </div>
+                <div class="part">
+                    <h2>1940</h2>
+                    <div id="level3"><img src="img/lock.png" alt="img"></div>
+                </div>
+                <div class="part">
+                    <h2>1960</h2>
+                    <div id="level4"><img src="img/lock.png" alt="img"></div>
+                </div>
+                <div class="part">
+                    <h2>1980</h2>
+                    <div id="level5"><img src="img/lock.png" alt="img"></div>
+                </div>
+            </div>
+            <hr id="timeline">
         </div>
     </body>
 </html>

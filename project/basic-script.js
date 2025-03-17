@@ -31,11 +31,15 @@ function next() {
         NEXT.counter++;
     }
     else if(NEXT.counter == 1) {
-        NEXT.difficulty.style.display = "block";
+        NEXT.difficulty.style.display = "flex";
         NEXT.explain.style.display = "none";
         NEXT.counter++;
         document.getElementById("slogan").innerHTML = "Choose your difficulty";
         document.getElementById("playButton").style.display = "none";
+    }
+    else if(NEXT.counter == 2) {
+        document.getElementById("screen1").style.display = "none";
+        document.getElementById("levelOverview").style.display = "block";
     }
     
 }
