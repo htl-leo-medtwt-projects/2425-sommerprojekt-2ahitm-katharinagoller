@@ -294,3 +294,106 @@ h2 {
     border: 2px solid black;
 
 }
+
+/*Loading Screen*/
+#loadingScreen{
+    background-image: url(img/loadingBackground.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+#loadingScreen img {
+    margin: auto;
+    display: block;
+    width: 20%;
+    margin-top: 20%;
+}
+
+/*END SITE*/
+#endpage {
+    background-image: url(img/endBackground.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+}
+#endpage img {
+    width: 39%;
+    position: absolute;
+    top: 8%;
+    left: 19.5%;
+    cursor: pointer;
+    user-select: none;
+}
+
+#textBox {
+    width: 80%;
+    background-color: #0D1C46;
+    padding: 1%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45%;
+}
+
+#textBox img {
+    width: 15%;
+    position: relative;
+    display: block;
+    left: 45%;
+}
+
+#text {
+    padding: 2%;
+    font-size: 1.3em;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#text p {
+    font-weight: lighter;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    overflow: hidden;
+    border-right: 0.15em solid white; 
+    white-space: nowrap;
+    margin: 0 auto; 
+    letter-spacing: 0.15em;
+    animation: 
+      typing 3.5s steps(30, end),
+      blink-caret 0.75s step-end infinite;
+}
+ 
+.delay-1 { animation-delay: 0s; }
+.delay-2 { animation-delay: 3s; }
+.delay-3 { animation-delay: 6s; }
+.delay-4 { animation-delay: 9s; }
+
+/*Notebook*/
+#notebook {
+    background-image: url(img/notebookBackground.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 113%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+}
