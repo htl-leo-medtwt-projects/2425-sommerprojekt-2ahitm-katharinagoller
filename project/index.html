@@ -29,7 +29,7 @@
             <div id="explain">
                 <img src="img/line.png" alt="line">
                 <p>The game you're about to play will test your logic and ability to solve quizzes and uncover hidden mysteries. Pay close attention to every detail—nothing is random, and everything has a purpose. Stay sharp, and trust your instincts. <br><br> Nothing happens by accident.</p>
-                <div onclick="next()">continue</div>
+                <div class="nextButton" onclick="next()">continue</div>
                 <img src="img/line1.png" alt="line">
             </div>
             <div id="difficulty">
@@ -85,9 +85,20 @@
             <img onclick="loadNotebook()" src="img/book.png" alt="book">
             <div id="textBox">
                 <img src="img/line.png" alt="line">
-                <div id="text"></div>
+                <div id="text">
+                    <p class="delay-1">Congratulations! You've solved every puzzle, uncovered every mystery, and proven </p>
+                    <p class="delay-2">your sharp thinking. What once seemed unclear now makes perfect sense. But</p>
+                    <p class="delay-3">remember—every ending is also a new beginning. Keep exploring, and never </p>
+                    <p class="delay-4">stop searching for the next mystery to solve.</p>
+                </div>
+                <div id="textNext" class="nextButton" onclick="nextText()">next</div>
             </div>
         </div>
-        <div id="notebook"></div>
+        <div id="notebook">
+            <div id="textBoxNotebook">
+                <img src="img/line.png" alt="line">
+                <div id="textNotebook"></div>
+            </div>
+        </div>
     </body>
 </html>

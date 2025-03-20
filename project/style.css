@@ -175,13 +175,14 @@ body,html {
 #explain img {
     width: 30%;
 }
-#explain div {
+.nextButton {
     user-select: none;
     cursor: pointer;
+    text-align: center;
     transition: color 500ms, text-shadow 500ms;
 }
 
-#explain div:hover {
+.nextButton:hover {
     color: #215093;
     text-shadow: 2px 2px 5px black;
 }
@@ -338,51 +339,70 @@ h2 {
     user-select: none;
 }
 
-#textBox {
+#textBox, #textBoxNotebook {
     width: 80%;
     background-color: #0D1C46;
-    padding: 1%;
+    padding: 2%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 45%;
 }
 
-#textBox img {
-    width: 15%;
+#textBox img, #textBoxNotebook img {
+    width: 20%;
     position: relative;
     display: block;
-    left: 45%;
+    left: 40%;
 }
-
-#text {
+#text, #textNotebook {
     padding: 2%;
-    font-size: 1.3em;
-    text-align: center;
-    width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-#text p {
+#text p, #textNotebook p {
+    font-size: 1.2em;
+    text-align: center;
     font-weight: lighter;
     color: white;
-    text-shadow: 2px 2px 5px black;
-    overflow: hidden;
-    border-right: 0.15em solid white; 
     white-space: nowrap;
+    text-shadow: 2px 2px 5px black;
+    overflow: hidden; 
+    border-right: .15em solid white; 
     margin: 0 auto; 
     letter-spacing: 0.15em;
-    animation: 
-      typing 3.5s steps(30, end),
-      blink-caret 0.75s step-end infinite;
+    visibility: hidden; 
 }
- 
-.delay-1 { animation-delay: 0s; }
-.delay-2 { animation-delay: 3s; }
-.delay-3 { animation-delay: 6s; }
-.delay-4 { animation-delay: 9s; }
+  
+@keyframes typingText {
+    from { width: 0; visibility: visible; }
+    to { width: 100%; visibility: visible;}
+}
+@keyframes blink-caret2 {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+}
+
+.delay-1 {
+    animation: typingText 3.5s steps(30, end) 0s forwards, 
+            blink-caret2 0.75s step-end infinite;
+}
+.delay-2 {
+    animation: typingText 3.5s steps(30, end) 3s forwards, 
+               blink-caret2 0.75s step-end infinite;
+}
+.delay-3 {
+    animation: typingText 3.5s steps(30, end) 6s forwards, 
+               blink-caret2 0.75s step-end infinite;
+}
+.delay-4 {
+    animation: typingText 3.5s steps(30, end) 9s forwards, 
+               blink-caret2 0.75s step-end infinite;
+}
+
+#textNext {
+    font-family: 1.5em;
+}
+
 
 /*Notebook*/
 #notebook {
