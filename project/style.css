@@ -417,3 +417,15 @@ h2 {
     top: 0;
     display: none;
 }
+
+#leaveNote {
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    transition: color 500ms, text-shadow 500ms;
+}
+
+#leaveNote:hover {
+    color: #215093;
+    text-shadow: 2px 2px 3px black;
+}

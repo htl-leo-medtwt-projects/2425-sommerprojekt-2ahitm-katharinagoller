@@ -47,5 +47,11 @@ function loadNotebook() {
         <p class="delay-1">In this book every person that ever competed these mysteries left a little note.</p>
         <br>
         <p class="delay-2">You should leave a little note too...</p>
+        <br>
+        <p class="delay-3" id="leaveNote" onclick="leaveNote()">leave note</p>
         `;
+}
+
+function leaveNote() {
+    let note = "";
 }
