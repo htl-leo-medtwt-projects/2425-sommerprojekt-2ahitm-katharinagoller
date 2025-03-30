@@ -116,7 +116,7 @@ body,html {
     user-select: none;
 }
 
-#button {
+.button {
     position: absolute;
     top: 2%;
     right: 3%;
@@ -126,7 +126,7 @@ body,html {
     cursor: pointer;
 }
 
-#dropdown {
+.dropdown {
     display: none;
     background-color: #0D1C46;
     position: absolute;
@@ -142,11 +142,11 @@ body,html {
     font-size: 1.3em;
     transition: background-color 1s, transform 1s;
 }
-#dropdown img {
+.dropdown img {
     width: 80%;
 }
 
-#dropdown:hover {
+.dropdown:hover {
     background-color: rgba(13, 28, 70, 0.7);
     transform: scale(1.01,1.01);
 }
@@ -443,7 +443,6 @@ h2 {
 #levelIntro {
     background-color: #0D1C46;
     width: 60%;
-
     font-size: 1.6em;
     padding: 2%;
     text-align: center;
@@ -454,4 +453,48 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     width: 35%;
+}
+
+#level1Map {
+    display: none;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#bridgeChoose {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+    font-size: 1.7em;
+}
+#bridge1, #bridge3 {
+    background-color: #6F93C6;
+}
+#bridge2, #bridge4 {
+    background-color: #215093;
+}
+
+.bridge {
+    margin-top: 3%;
+    padding: 3%;
+    width: fit-content;
+    transition: transform 1s, opacity 1s;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 3px 3px 15px black;
+}
+
+.bridge:hover {
+    transform: scale(1.05,1.05);
+    opacity: 0.8;
+}
+
+#bridgeChoose p {
+    font-size: larger;
+}
+
+#level1Screen h1{
+    opacity: 0;
 }

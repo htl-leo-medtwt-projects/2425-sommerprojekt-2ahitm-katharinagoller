@@ -2,17 +2,28 @@
 
 //Dropdown
 let DROPDOWN = {
-    content: document.getElementById("dropdown"),
-    clickedOnce: false,
+    content: document.getElementsByClassName("dropdown"),
+    clickedOnce: false, 
 }
 
 function dropdown() {
     if(!DROPDOWN.clickedOnce) {
-        DROPDOWN.content.style.display = "flex";
+        DROPDOWN.content[0].style.display = "flex";
         DROPDOWN.clickedOnce = true;
     }
     else {
-        DROPDOWN.content.style.display = "none";
+        DROPDOWN.content[0].style.display = "none";
+        DROPDOWN.clickedOnce = false;
+    }
+    
+}
+function dropDownLevel1() {
+    if(!DROPDOWN.clickedOnce) {
+        DROPDOWN.content[1].style.display = "flex";
+        DROPDOWN.clickedOnce = true;
+    }
+    else {
+        DROPDOWN.content[1].style.display = "none";
         DROPDOWN.clickedOnce = false;
     }
 }

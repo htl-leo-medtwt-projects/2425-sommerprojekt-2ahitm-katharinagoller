@@ -12,8 +12,8 @@
     </head>
     <body>
         <div id="screen1">
-            <h1 id="button" onclick="dropdown()" >?</h1>
-            <div id="dropdown">
+            <h1 class="button" onclick="dropdown()" >?</h1>
+            <div class="dropdown">
                 <img src="img/line.png" alt="line">
                 <p>The mysteries of the past are waiting to be uncovered. Travel through time, explore forgotten cities, and piece together hidden secrets. The power of history is in your hands—use your mind to solve the puzzles that time left behind.</p>
                 <img src="img/line1.png" alt="line">
@@ -83,7 +83,17 @@
         </div>
         <div id="level1Screen">
             <div id="levelIntro"></div>
+            <h1 id="hint" class="button" onclick="dropDownLevel1()" >?</h1>
+            <div class="dropdown"></div>
             <div id="level1Map"></div>
+            <div id="bridgeChoose">
+                <p>Which bridge do you want to cross?</p>
+                <div class="bridge" id="bridge1">Bridge 1</div>
+                <div class="bridge" id="bridge2">Bridge 2</div>
+                <div class="bridge" id="bridge3">Bridge 3</div>
+                <div class="bridge" id="bridge4">Bridge 4</div>
+            </div>
+            <p onclick="swap()">swap to poem</p>
         </div>
         <div id="endpage">
             <img onclick="loadNotebook()" src="img/book.png" alt="book">
