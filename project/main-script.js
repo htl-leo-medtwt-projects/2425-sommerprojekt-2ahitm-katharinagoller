@@ -8,21 +8,29 @@ function setDifficulty(mode) {
     next();
 }
 
+let LEVEL = {
+    levelIntro: document.getElementById("levelIntro")
+}
+
 //LOADING SCREEN 
 let LOAD = {
     timer: 0,
-}
+};
+
 function playLevel(level) {
     document.getElementById("loadingScreen").style.display = "block";
     document.getElementById("levelOverview").style.display = "none";
-    LOAD.timer = setInterval(startLevel, 2500);
-    function startLevel() {
+
+    LOAD.timer = setTimeout(() => {
         document.getElementById("loadingScreen").style.display = "none";
-        if(level == 1) {
+
+        if (level == 1) {
             level1();
-            lastPage();
         }
-    }
+
+        clearInterval(LOAD.timer); // Stoppt das Interval
+
+    }, 2500);
 }
 
 function lastPage() {
