@@ -82,18 +82,21 @@
             <img src="img/loading.gif" alt="clock">
         </div>
         <div id="level1Screen">
-            <div id="levelIntro"></div>
+            <div class="levelIntro"></div>
             <h1 id="hint" class="button" onclick="dropDownLevel1()" >?</h1>
             <div class="dropdown"></div>
             <div id="level1Map"></div>
             <div id="bridgeChoose">
                 <p>Which bridge do you want to cross?</p>
-                <div class="bridge" id="bridge1">Bridge 1</div>
-                <div class="bridge" id="bridge2">Bridge 2</div>
-                <div class="bridge" id="bridge3">Bridge 3</div>
-                <div class="bridge" id="bridge4">Bridge 4</div>
+                <div class="bridge" id="bridge1" onclick="commitBridge(1)">Bridge 1</div>
+                <div class="bridge" id="bridge2" onclick="commitBridge(2)">Bridge 2</div>
+                <div class="bridge" id="bridge3" onclick="commitBridge(3)">Bridge 3</div>
+                <div class="bridge" id="bridge4" onclick="commitBridge(4)">Bridge 4</div>
             </div>
-            <p onclick="swap()">swap to poem</p>
+            <div id="swap" onclick="swapToPoem()">swap to poem</div>
+            <div id="timerLevel1"></div>
+            <div id="poem"></div>
+            <div id="successMessage"></div>
         </div>
         <div id="endpage">
             <img onclick="loadNotebook()" src="img/book.png" alt="book">

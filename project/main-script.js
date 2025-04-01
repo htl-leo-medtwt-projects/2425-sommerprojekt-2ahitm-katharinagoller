@@ -9,7 +9,7 @@ function setDifficulty(mode) {
 }
 
 let LEVEL = {
-    levelIntro: document.getElementById("levelIntro")
+    levelIntro: document.getElementsByClassName("levelIntro")
 }
 
 //LOADING SCREEN 
@@ -28,7 +28,7 @@ function playLevel(level) {
             level1();
         }
 
-        clearInterval(LOAD.timer); // Stoppt das Interval
+        clearInterval(LOAD.timer); 
 
     }, 2500);
 }
