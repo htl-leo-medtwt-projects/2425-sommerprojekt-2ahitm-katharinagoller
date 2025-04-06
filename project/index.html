@@ -114,7 +114,7 @@
                 </div>
                 <div id="soap" onclick="soapRead()"></div>
                 <div class="close">
-                    <img src="img/Level1/soapClose.png" alt="img">
+                    <img id="soapImg" src="img/Level1/soapClose.png" alt="img">
                     <p onclick="bathroom()">X</p>
                 </div>
                 <div id="swapKitchen" onclick="house1()">swap to kitchen</div>
@@ -130,7 +130,7 @@
                 </div>
                 <div id="letter" onclick="letterRead()"></div>
                 <div class="close">
-                    <img src="img/Level1/letterClose.png" alt="img">
+                    <img id="letterImg" src="img/Level1/letterClose.png" alt="img">
                     <p onclick="house2()">X</p>
                 </div>
                 <div id="swapBedroom" onclick="bedroom()">swap to bedroom</div>
@@ -138,11 +138,12 @@
             <div id="bedroom">
                 <div id="portrait" onclick="portraitRead()"></div>
                 <div class="close">
-                    <img src="img/Level1/PortraitClose.png" alt="img">
+                    <img id="portraitImg" src="img/Level1/PortraitClose.png" alt="img">
                     <p onclick="bedroom()">X</p>
                 </div>
                 <div id="swapLivingroom" onclick="house2()">swap to livingroom</div>
             </div>
+            <div id="swapHouse2" onclick="house1()">swap to next house</div>
         </div>
         <div id="endpage">
             <img onclick="loadNotebook()" src="img/book.png" alt="book">

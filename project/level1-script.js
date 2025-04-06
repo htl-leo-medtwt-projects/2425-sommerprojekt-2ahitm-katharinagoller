@@ -21,7 +21,12 @@ let LEVEL1 = {
     books: document.getElementById("books"),
     soap: document.getElementById("soap"),
     swapHouse: document.getElementById("swapHouse"),
-
+    livingroom: document.getElementById("livingroom"),
+    plant: document.getElementById("plant"),
+    bedroom: document.getElementById("bedroom"),
+    letter: document.getElementById("letter"),
+    portrait: document.getElementById("portrait"),
+    swapHouse2: document.getElementById("swapHouse2"),
 }
 
 function level1() {
@@ -173,6 +178,9 @@ function level1Houses() {
 }
 
 function house1() {
+    LEVEL1.swapHouse2.style.display = "none"
+    LEVEL1.bedroom.style.display = "none";
+    LEVEL1.livingroom.style.display = "none"
     LEVEL1.bathroom.style.display = "none";
     LEVEL1.close[0].style.display = "none";
     LEVEL1.question.style.display = "block";
@@ -222,4 +230,58 @@ function booksRead() {
 function soapRead() {
     LEVEL1.close[2].style.display = "flex";
     LEVEL1.books.style.display = "none";
+}
+
+function house2() {
+    LEVEL1.swapHouse.style.display = "none"
+    LEVEL1.bathroom.style.display = "none";
+    LEVEL1.kitchen.style.display = "none"
+    LEVEL1.bedroom.style.display = "none";
+    LEVEL1.close[3].style.display = "none";
+    LEVEL1.close[4].style.display = "none";
+    LEVEL1.question.style.display = "block";
+    LEVEL1.plant.style.display = "block";
+    LEVEL1.letter.style.display = "block";
+    if(DIFFICULTY.mode == "Easy") {
+        LEVEL1.hints = "Hint 1: <br> Explore the houses and study the items with care. <br> <br> Hint 2: The letter could be very important...<br> "
+    }
+    else if(DIFFICULTY.mode == "Medium") {
+        LEVEL1.hints = "Hint: <br> Explore the houses and study the items with care.."
+    }
+    else {
+        LEVEL1.hints = "No hints for you since you selected the difficulty 'Hard'."
+    }
+    DROPDOWN.content[1].innerHTML = `
+            <img src="img/line.png" alt="line">
+            <p>${LEVEL1.hints}</p>
+            <img src="img/line1.png" alt="line">`;
+
+    LEVEL1.houseIntro.style.display = "none";
+    LEVEL1.livingroom.style.display = "block";
+    LEVEL1.levelScreen.style.backgroundImage = "url('img/Level1/livingRoom.jpg')";
+}
+
+function plantRead() {
+    LEVEL1.close[3].style.display = "flex";
+}
+function letterRead() {
+    LEVEL1.close[4].style.display = "flex";
+}
+
+function bedroom() {
+    LEVEL1.swapHouse2.style.display = "block"
+    LEVEL1.close[3].style.display = "none";
+    LEVEL1.plant.style.display = "none";
+    LEVEL1.letter.style.display = "none";
+    LEVEL1.livingroom.style.display = "none";
+    LEVEL1.bedroom.style.display = "block";
+    LEVEL1.portrait.style.display = "block";
+    LEVEL1.close[5].style.display = "none";
+    LEVEL1.levelScreen.style.backgroundImage = "url('img/Level1/bedroomBackground.jpg')";
+
+}
+
+function portraitRead() {
+    LEVEL1.close[5].style.display = "flex";
+    LEVEL1.portrait.style.display = "none";
 }
