@@ -100,14 +100,48 @@
             <div id="houseIntro"></div>
             <div id="kitchen">
                 <div id="newspaper" onclick="newspaperRead()"></div>
-                <div id="newspaperClose">
+                <div class="close">
                     <img src="img/Level1/newspaperClose.png" alt="img">
                     <p onclick="house1()">X</p>
                 </div>
                 <div id="swapBathroom" onclick="bathroom()">swap to bathroom</div>
-                <div id="bathroom">
-                    <div id="books"></div>
+            </div>
+            <div id="bathroom">
+                <div id="books" onclick="booksRead()"></div>
+                <div class="close">
+                    <img src="img/Level1/noteClose.png" alt="img">
+                    <p onclick="bathroom()">X</p>
                 </div>
+                <div id="soap" onclick="soapRead()"></div>
+                <div class="close">
+                    <img src="img/Level1/soapClose.png" alt="img">
+                    <p onclick="bathroom()">X</p>
+                </div>
+                <div id="swapKitchen" onclick="house1()">swap to kitchen</div>
+            </div>
+            <div id="swapHouse" onclick="house2()">swap to next house</div>
+
+
+            <div id="livingroom">
+                <div id="plant" onclick="plantRead()"></div>
+                <div class="close">
+                    <img src="img/Level1/plantClose.png" alt="img">
+                    <p onclick="house2()">X</p>
+                </div>
+                <div id="letter" onclick="letterRead()"></div>
+                <div class="close">
+                    <img src="img/Level1/letterClose.png" alt="img">
+                    <p onclick="house2()">X</p>
+                </div>
+                <div id="swapBedroom" onclick="bedroom()">swap to bedroom</div>
+            </div>
+            <div id="bedroom">
+                <div id="portrait" onclick="portraitRead()"></div>
+                <div class="close">
+                    <img src="img/Level1/PortraitClose.png" alt="img">
+                    <p onclick="bedroom()">X</p>
+                </div>
+                <div id="swapLivingroom" onclick="house2()">swap to livingroom</div>
             </div>
         </div>
         <div id="endpage">

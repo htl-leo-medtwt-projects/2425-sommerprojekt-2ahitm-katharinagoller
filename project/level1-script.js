@@ -16,8 +16,12 @@ let LEVEL1 = {
     houseIntro: document.getElementById("houseIntro"),
     kitchen: document.getElementById("kitchen"),
     newspaper: document.getElementById("newspaper"),
-    newspaperClose: document.getElementById("newspaperClose"),
-    bathroom: document.getElementById("bathroom")
+    close: document.getElementsByClassName("close"),
+    bathroom: document.getElementById("bathroom"),
+    books: document.getElementById("books"),
+    soap: document.getElementById("soap"),
+    swapHouse: document.getElementById("swapHouse"),
+
 }
 
 function level1() {
@@ -75,7 +79,7 @@ function level1() {
         <img src="img/line.png" alt="line">
         <p>The Great Flood" - Paris 1900</p>
         <br>
-        <p>Paris, January 1900 - Catastrophe has struck our beloved city! The Seine, swollen by relentless rains and melting snow, has risen beyond its banks, flooding the streets of Paris. Water pours into homes and businesses, bringing daily life to a standstill. All the citizens of Paris are fighting for their lives and seeking safety. You, however, have one more quest to complete in this city. The infamous landlord, Monsieur Moreau, is just three steps away from prison, as he is suspected of murdering his wife, Carla Moreau. He needs you to find a crucial document to prove his innocence.</p>
+        <p>Paris, January 1900 - Catastrophe has struck our beloved city! The Seine, swollen by relentless rains and melting snow, has risen beyond its banks, flooding the streets of Paris. Water pours into homes and businesses, bringing daily life to a standstill. All the citizens of Paris are fighting for their lives and seeking safety. You, however, have one more quest to complete in this city. The infamous landlord, Monsieur Moreau, is just three steps away from prison, as he is suspected of murdering his wife, Carla Moreau. He needs you to find two crucial documents to prove his innocence.</p>
         <p>At first, you must find his houses safely. You have a map and a poem that should help you choose the right bridge.</p>
         <div class="nextButton" onclick="closeIntroduction(1)">continue</div>
     `;
@@ -149,13 +153,15 @@ function commitBridge(bridge) {
 }
 
 function level1Houses() {
+    LEVEL1.timerBox.style.display = "none";
+    LEVEL1.timer = null;
     LEVEL1.question.style.display = "none";
     LEVEL1.levelScreen.style.backgroundImage = "url('img/Level1/buildingsBackground.jpg')";
     LEVEL1.message.style.display = "none";
     LEVEL1.houseIntro.style.display = "block";
     LEVEL1.houseIntro.innerHTML = `
         <img src="img/line.png" alt="img">
-        <p>You were able to cross the bridge in time which means you're one step closer to the needed document.There are two houses with the same landlord. Monsieur Moreau.</p>
+        <p>You were able to cross the bridge in time which means you're one step closer to the needed documents.There are two houses with the same landlord. Monsieur Moreau.</p>
         <p>Which one do you want to enter first?</p>
         <div>
             <div class="nextButton" onclick="house1()">House 1</div>
@@ -167,14 +173,15 @@ function level1Houses() {
 }
 
 function house1() {
-    LEVEL1.newspaperClose.style.display = "none";
+    LEVEL1.bathroom.style.display = "none";
+    LEVEL1.close[0].style.display = "none";
     LEVEL1.question.style.display = "block";
     LEVEL1.newspaper.style.display = "block";
     if(DIFFICULTY.mode == "Easy") {
-        LEVEL1.hints = "Hint 1: <br> <br> <br> Hint 2: <br> "
+        LEVEL1.hints = "Hint 1: <br> Explore the houses and study the items with care. <br> <br> Hint 2: The soap could be very important...<br> "
     }
     else if(DIFFICULTY.mode == "Medium") {
-        LEVEL1.hints = "Hint: <br> ."
+        LEVEL1.hints = "Hint: <br> Explore the houses and study the items with care.."
     }
     else {
         LEVEL1.hints = "No hints for you since you selected the difficulty 'Hard'."
@@ -190,14 +197,29 @@ function house1() {
 }
 
 function newspaperRead() {
-    LEVEL1.newspaperClose.style.display = "flex";
+    LEVEL1.close[0].style.display = "flex";
     LEVEL1.newspaper.style.display = "none";
 }
 
 function bathroom() {
-    LEVEL1.newspaperClose.style.display = "none";
+    LEVEL1.swapHouse.style.display = "block"
+    LEVEL1.close[0].style.display = "none";
     LEVEL1.newspaper.style.display = "none";
     LEVEL1.kitchen.style.display = "none";
-    LEVEL1.bathroom.style.display = "block"
+    LEVEL1.bathroom.style.display = "block";
+    LEVEL1.soap.style.display = "block";
+    LEVEL1.books.style.display = "block";
+    LEVEL1.close[1].style.display = "none";
+    LEVEL1.close[2].style.display = "none";
     LEVEL1.levelScreen.style.backgroundImage = "url('img/Level1/bathroom.jpg')";
+
+}
+
+function booksRead() {
+    LEVEL1.close[1].style.display = "flex";
+    LEVEL1.books.style.display = "none";
+}
+function soapRead() {
+    LEVEL1.close[2].style.display = "flex";
+    LEVEL1.books.style.display = "none";
 }
