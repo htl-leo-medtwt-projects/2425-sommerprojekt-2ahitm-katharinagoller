@@ -13,6 +13,11 @@ let LEVEL1 = {
     timerBox: document.getElementById("timerLevel1"),
     timer: null,
     message: document.getElementById("successMessage"),
+    houseIntro: document.getElementById("houseIntro"),
+    kitchen: document.getElementById("kitchen"),
+    newspaper: document.getElementById("newspaper"),
+    newspaperClose: document.getElementById("newspaperClose"),
+    bathroom: document.getElementById("bathroom")
 }
 
 function level1() {
@@ -123,7 +128,7 @@ function commitBridge(bridge) {
         LEVEL1.message.innerHTML = `
                 <img src="img/line.png" alt="line">
                 <p>Congratulations</p>
-                <p>You were able to cross the right bridge in time. Now you can get to Monsieur Moreau's houses and correct the final crime. <br> Think smart, work hard to save his live.</p>
+                <p>You were able to cross the right bridge in time. Now you can get to Monsieur Moreau's houses and correct the final crime. <br> Think smart, work hard to save his life.</p>
                 <div class="nextButton" onclick="level1Houses()">continue</div>
             `
     }
@@ -144,5 +149,55 @@ function commitBridge(bridge) {
 }
 
 function level1Houses() {
+    LEVEL1.question.style.display = "none";
+    LEVEL1.levelScreen.style.backgroundImage = "url('img/Level1/buildingsBackground.jpg')";
+    LEVEL1.message.style.display = "none";
+    LEVEL1.houseIntro.style.display = "block";
+    LEVEL1.houseIntro.innerHTML = `
+        <img src="img/line.png" alt="img">
+        <p>You were able to cross the bridge in time which means you're one step closer to the needed document.There are two houses with the same landlord. Monsieur Moreau.</p>
+        <p>Which one do you want to enter first?</p>
+        <div>
+            <div class="nextButton" onclick="house1()">House 1</div>
+            <div class="nextButton" onclick="house2()">House 2</div>
+        </div>
+        `
+    ;
+    
+}
 
+function house1() {
+    LEVEL1.newspaperClose.style.display = "none";
+    LEVEL1.question.style.display = "block";
+    LEVEL1.newspaper.style.display = "block";
+    if(DIFFICULTY.mode == "Easy") {
+        LEVEL1.hints = "Hint 1: <br> <br> <br> Hint 2: <br> "
+    }
+    else if(DIFFICULTY.mode == "Medium") {
+        LEVEL1.hints = "Hint: <br> ."
+    }
+    else {
+        LEVEL1.hints = "No hints for you since you selected the difficulty 'Hard'."
+    }
+    DROPDOWN.content[1].innerHTML = `
+            <img src="img/line.png" alt="line">
+            <p>${LEVEL1.hints}</p>
+            <img src="img/line1.png" alt="line">`;
+
+    LEVEL1.houseIntro.style.display = "none";
+    LEVEL1.kitchen.style.display = "block";
+    LEVEL1.levelScreen.style.backgroundImage = "url('img/Level1/kitchen.jpg')";
+}
+
+function newspaperRead() {
+    LEVEL1.newspaperClose.style.display = "flex";
+    LEVEL1.newspaper.style.display = "none";
+}
+
+function bathroom() {
+    LEVEL1.newspaperClose.style.display = "none";
+    LEVEL1.newspaper.style.display = "none";
+    LEVEL1.kitchen.style.display = "none";
+    LEVEL1.bathroom.style.display = "block"
+    LEVEL1.levelScreen.style.backgroundImage = "url('img/Level1/bathroom.jpg')";
 }

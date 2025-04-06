@@ -537,3 +537,85 @@ h2 {
     margin-right: auto;
     display: block;
 }
+
+#houseIntro {
+    display: none;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 3%;
+    width: 60%;
+    font-size: 1.4em;
+    background-color: #0D1C46;
+    text-align: center;
+}
+
+#houseIntro img {
+    width: 35%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#houseIntro div {
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+    margin-bottom: 1%;
+}
+
+/*ITEMS*/
+#kitchen {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+}
+#newspaper {
+    background-image: url(img/Level1/newspaper.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width:10vw;
+    height: 12vh;
+    position: absolute;
+    right: 7vw;
+    top: 70vh;
+}
+#newspaper:hover {
+    background-image: url(img/Level1/newspaperBorder.png);
+}
+
+#newspaperClose {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: auto;
+    gap: 3%;
+}
+#newspaperClose img {
+    width: 100%;
+}
+#newspaperClose p {
+    user-select: none;
+    cursor: pointer;
+    font-size: 2.5em;
+    margin-top: 0;
+    transition: color 1s;
+    width: fit-content;
+    height: fit-content;
+}
+
+#newspaperClose p:hover {
+    color: #6F93C6;
+}
+
+#swapBathroom {
+    display: block;
+    position: absolute;
+    bottom: 2%;
+    left: 3%;
+    user-select: none;
+    cursor: pointer;
+    font-size: 1.4em;
+}
