@@ -29,7 +29,8 @@ let LEVEL1 = {
     swapHouse2: document.getElementById("swapHouse2"),
     commit: document.getElementById("commit"),
     selection: document.getElementById("selectionBox"),
-    firstItem: true
+    firstItem: true,
+    selectImages: document.getElementById("selection"),
 }
 
 function level1() {
@@ -121,12 +122,28 @@ function swapToPoem() {
 }
 
 function restartLevel1() {
+    LEVEL1.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
+    LEVEL1.commit.style.display = "none";
+    ITEMS.element1 = 0;
+    ITEMS.element2 = 0;
+    LEVEL1.selection.style.display = "none";
     LEVEL1.message.style.display = "none";
     LEVEL1.timeCount = 30;
     LEVEL1.timer = null;
     LEVEL1.readIntro = false;
     LEVEL1.count = 0;
     LEVEL.levelIntro[0].style.display = "block"
+    LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+                    <h2>What is the first item that will save  Monsieur Moreau's life?</h2>
+                <div id="selection">
+                    <img onclick="select(1)" src="img/Level1/newspaper.png" alt="img">
+                    <img onclick="select(2)" src="img/Level1/books.png" alt="img">
+                    <img onclick="select(3)" src="img/Level1/soap.png" alt="img">
+                    <img onclick="select(4)" src="img/Level1/plant.png" alt="img">
+                    <img onclick="select(5)" src="img/Level1/letter.png" alt="img">
+                    <img onclick="select(6)" src="img/Level1/picture.png" alt="img">
+                </div>`
     level1();
 }
 
@@ -297,44 +314,118 @@ function submit() {
     LEVEL1.bedroom.style.display = "none";
     LEVEL1.livingroom.style.display = "none";
     LEVEL1.kitchen.style.display = "none";
+    LEVEL1.swapHouse.style.display = "none";
+    LEVEL1.swapHouse2.style.display = "none";
 }
 let ITEMS = {
     element1: 0,
     element2: 0,
 }
-function select(element, event) {
-    let image = event.currentTarget;
-
-    if(LEVEL1.firstItem) {
-        if(element == 3 || element == 5) {
-            ITEMS.element1 = element;
-            if(element == 3) {
-                image.innerHTML = `<img src="img/Level1/soapBorder.png" alt="img">`
-            }
-            else {
-                image.innerHTML = `<img src="img/Level1/letterBorder.png" alt="img">`
-            }
-        }
-        else {
-            ITEMS.element1 = 0;
-        }
-        LEVEL1.firstItem = false;
-       
+function select(element) {
+    if(element == 3 || element == 5) {
+        ITEMS.element1 = element;
     }
     else {
-        if(element == 3 || element == 5) {
-            ITEMS.element2 = element;
-            if(element == 3) {
-                image.innerHTML = `<img src="img/Level1/soapBorder.png" alt="img">`
-            }
-            else {
-                image.innerHTML = `<img src="img/Level1/letterBorder.png" alt="img">`
-            }
-        }
-        else {
-            ITEMS.element2 = 0;
-        }
+        ITEMS.element1 = 0;
+    }  
+    if(element == 1) {
+        LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+                    <h2>What is the second item that will save  Monsieur Moreau's life?</h2>
+                <div id="selection">
+                    <img onclick="select2(2)" src="img/Level1/books.png" alt="img">
+                    <img onclick="select2(3)" src="img/Level1/soap.png" alt="img">
+                    <img onclick="select2(4)" src="img/Level1/plant.png" alt="img">
+                    <img onclick="select2(5)" src="img/Level1/letter.png" alt="img">
+                    <img onclick="select2(6)" src="img/Level1/picture.png" alt="img">
+                </div>`
+    } 
+    else if(element == 2) {
+        LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+                    <h2>What is the second item that will save  Monsieur Moreau's life?</h2>
+                <div id="selection">
+                    <img onclick="select2(1)" src="img/Level1/newspaper.png" alt="img">
+                    <img onclick="select2(3)" src="img/Level1/soap.png" alt="img">
+                    <img onclick="select2(4)" src="img/Level1/plant.png" alt="img">
+                    <img onclick="select2(5)" src="img/Level1/letter.png" alt="img">
+                    <img onclick="select2(6)" src="img/Level1/picture.png" alt="img">
+                </div>`
+    }
+    else if(element == 3) {
+        LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+                    <h2>What is the second item that will save  Monsieur Moreau's life?</h2>
+                <div id="selection">
+                    <img onclick="select2(1)" src="img/Level1/newspaper.png" alt="img">
+                    <img onclick="select2(2)" src="img/Level1/books.png" alt="img">
+                    <img onclick="select2(4)" src="img/Level1/plant.png" alt="img">
+                    <img onclick="select2(5)" src="img/Level1/letter.png" alt="img">
+                    <img onclick="select2(6)" src="img/Level1/picture.png" alt="img">
+                </div>`
+    }
+    else if(element == 4) {
+        LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+                    <h2>What is the second item that will save  Monsieur Moreau's life?</h2>
+                <div id="selection">
+                    <img onclick="select2(1)" src="img/Level1/newspaper.png" alt="img">
+                    <img onclick="select2(2)" src="img/Level1/books.png" alt="img">
+                    <img onclick="select2(3)" src="img/Level1/soap.png" alt="img">
+                    <img onclick="select2(5)" src="img/Level1/letter.png" alt="img">
+                    <img onclick="select2(6)" src="img/Level1/picture.png" alt="img">
+                </div>`
+    }
+    else if(element == 5) {
+        LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+                    <h2>What is the second item that will save  Monsieur Moreau's life?</h2>
+                <div id="selection">
+                    <img onclick="select2(1)" src="img/Level1/newspaper.png" alt="img">
+                    <img onclick="select2(2)" src="img/Level1/books.png" alt="img">
+                    <img onclick="select2(3)" src="img/Level1/soap.png" alt="img">
+                    <img onclick="select2(4)" src="img/Level1/plant.png" alt="img">
+                    <img onclick="select2(6)" src="img/Level1/picture.png" alt="img">
+                </div>`
+    }
+    else {
+        LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+                    <h2>What is the second item that will save  Monsieur Moreau's life?</h2>
+                <div id="selection">
+                    <img onclick="select2(1)" src="img/Level1/newspaper.png" alt="img">
+                    <img onclick="select2(2)" src="img/Level1/books.png" alt="img">
+                    <img onclick="select2(3)" src="img/Level1/soap.png" alt="img">
+                    <img onclick="select2(4)" src="img/Level1/plant.png" alt="img">
+                    <img onclick="select2(5)" src="img/Level1/letter.png" alt="img">
+                </div>`
+    }
+    
+}
+
+function select2(element) {
+    if(element == 3 || element == 5) {
+        ITEMS.element2 = element;
+    }
+    else {
+        ITEMS.element2 = 0;
     }
 
-
+    if(ITEMS.element1 == 3 || ITEMS.element1 == 5 && ITEMS.element2 == 3 || ITEMS.element2 == 5) {
+        LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+        <h2>Congratulations</h2>
+        <p>Through shadows and whispers, you followed the truth where others turned away. While the city pointed its finger at Monsieur Moreau, you saw what lay beneath. Because of your insight, an innocent man walks free. The true culprit, Ferdinand Ardes, now sits behind iron bars, his secrets at last unearthed. You did not simply solve a crime—you restored justice to a world on the brink of misjudgment. <br> Well done, little detective. Paris owes you more than it knows.</p>
+        <div class="nextButton" onclick="next()">finish</div>
+        `   
+    }
+    else {
+        LEVEL1.selection.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+        <h2>Oh no...</h2>
+        <p>You Were Close... But Not Close Enough. The evidence was there—quiet, hidden, waiting. But your choices led the wrong man to prison. Monsieur Moreau, innocent yet accused, now sits behind cold iron bars. And the true killer, has vanished into the shadows of Paris. Sometimes, justice falters.</p>
+        <div class="nextButton" onclick="restartLevel1()">try again</div>
+        `   
+    }
+    
 }

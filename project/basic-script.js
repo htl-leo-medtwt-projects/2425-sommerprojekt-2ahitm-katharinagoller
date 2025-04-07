@@ -50,6 +50,7 @@ function next() {
     }
     else if(NEXT.counter == 2) {
         document.getElementById("screen1").style.display = "none";
+        document.getElementById("level1Screen").style.display = "none";
         document.getElementById("levelOverview").style.display = "block";
     }
     

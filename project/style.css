@@ -809,3 +809,6 @@ h2 {
     margin-left: auto;
     margin-right: auto;
 }
+#selectionBox p {
+    font-size: 1.5em;
+}

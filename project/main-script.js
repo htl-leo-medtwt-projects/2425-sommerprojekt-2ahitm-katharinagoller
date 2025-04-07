@@ -25,7 +25,7 @@ function playLevel(level) {
         document.getElementById("loadingScreen").style.display = "none";
 
         if (level == 1) {
-            level1();
+            restartLevel1();
         }
 
         clearInterval(LOAD.timer); 
