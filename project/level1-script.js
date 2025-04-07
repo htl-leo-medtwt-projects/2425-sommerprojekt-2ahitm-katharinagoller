@@ -27,6 +27,9 @@ let LEVEL1 = {
     letter: document.getElementById("letter"),
     portrait: document.getElementById("portrait"),
     swapHouse2: document.getElementById("swapHouse2"),
+    commit: document.getElementById("commit"),
+    selection: document.getElementById("selectionBox"),
+    firstItem: true
 }
 
 function level1() {
@@ -178,6 +181,7 @@ function level1Houses() {
 }
 
 function house1() {
+    LEVEL1.commit.style.display = "block";
     LEVEL1.swapHouse2.style.display = "none"
     LEVEL1.bedroom.style.display = "none";
     LEVEL1.livingroom.style.display = "none"
@@ -233,6 +237,7 @@ function soapRead() {
 }
 
 function house2() {
+    LEVEL1.commit.style.display = "block";
     LEVEL1.swapHouse.style.display = "none"
     LEVEL1.bathroom.style.display = "none";
     LEVEL1.kitchen.style.display = "none"
@@ -284,4 +289,52 @@ function bedroom() {
 function portraitRead() {
     LEVEL1.close[5].style.display = "flex";
     LEVEL1.portrait.style.display = "none";
+}
+
+function submit() {
+    LEVEL1.selection.style.display = "block";
+    LEVEL1.bathroom.style.display = "none";
+    LEVEL1.bedroom.style.display = "none";
+    LEVEL1.livingroom.style.display = "none";
+    LEVEL1.kitchen.style.display = "none";
+}
+let ITEMS = {
+    element1: 0,
+    element2: 0,
+}
+function select(element, event) {
+    let image = event.currentTarget;
+
+    if(LEVEL1.firstItem) {
+        if(element == 3 || element == 5) {
+            ITEMS.element1 = element;
+            if(element == 3) {
+                image.innerHTML = `<img src="img/Level1/soapBorder.png" alt="img">`
+            }
+            else {
+                image.innerHTML = `<img src="img/Level1/letterBorder.png" alt="img">`
+            }
+        }
+        else {
+            ITEMS.element1 = 0;
+        }
+        LEVEL1.firstItem = false;
+       
+    }
+    else {
+        if(element == 3 || element == 5) {
+            ITEMS.element2 = element;
+            if(element == 3) {
+                image.innerHTML = `<img src="img/Level1/soapBorder.png" alt="img">`
+            }
+            else {
+                image.innerHTML = `<img src="img/Level1/letterBorder.png" alt="img">`
+            }
+        }
+        else {
+            ITEMS.element2 = 0;
+        }
+    }
+
+
 }

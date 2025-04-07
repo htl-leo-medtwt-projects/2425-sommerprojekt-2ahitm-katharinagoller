@@ -770,3 +770,42 @@ h2 {
 #portraitImg {
     width: 50%;
 }
+
+#commit {
+    display: none;
+    position: absolute;
+    left: 2vw;
+    top: 3vh;
+    user-select: none;
+    font-size: 1.7em;
+    cursor: pointer;
+}
+
+#selection {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    gap: 2%;
+}
+
+#selection img {
+    width: 100%;
+}
+
+#selectionBox {
+    padding: 2%;
+    display: none;
+    background-color: #0D1C46;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 13%;
+    width: 60%;
+    text-align: center;
+}
+
+#lineSelect {
+    width: 35%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
