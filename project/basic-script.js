@@ -8,10 +8,12 @@ let DROPDOWN = {
 
 function dropdown() {
     if(!DROPDOWN.clickedOnce) {
+        SOUNDS.onclick.play();
         DROPDOWN.content[0].style.display = "flex";
         DROPDOWN.clickedOnce = true;
     }
     else {
+        SOUNDS.onclick.play();
         DROPDOWN.content[0].style.display = "none";
         DROPDOWN.clickedOnce = false;
     }
@@ -19,10 +21,12 @@ function dropdown() {
 }
 function dropDownLevel1() {
     if(!DROPDOWN.clickedOnce) {
+        SOUNDS.onclick.play();
         DROPDOWN.content[1].style.display = "flex";
         DROPDOWN.clickedOnce = true;
     }
     else {
+        SOUNDS.onclick.play();
         DROPDOWN.content[1].style.display = "none";
         DROPDOWN.clickedOnce = false;
     }
@@ -37,6 +41,7 @@ let NEXT = {
 }
 
 function next() {
+    SOUNDS.onclick.play();
     if(NEXT.counter == 0) {
         NEXT.explain.style.display = "block";
         NEXT.counter++;
@@ -54,4 +59,10 @@ function next() {
         document.getElementById("levelOverview").style.display = "block";
     }
     
+}
+
+let SOUNDS = {
+    level1: new Audio("sounds/level1Music.mp3"),
+    onclick: new Audio("sounds/onclick.mp3"),
+    newspaper: new Audio("sounds/newspaper.mp3"),
 }

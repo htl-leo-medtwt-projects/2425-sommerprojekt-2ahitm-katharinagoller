@@ -96,6 +96,7 @@ function level1() {
 }
 
 function closeIntroduction(level) {
+    SOUNDS.onclick.play();
     LEVEL.levelIntro[0].style.display = "none";
     if(level == 1) {
         LEVEL1.readIntro = true;
@@ -107,6 +108,7 @@ function closeIntroduction(level) {
 
 
 function swapToPoem() {
+    SOUNDS.onclick.play();
     if(!LEVEL1.clickedOnce) {
         LEVEL1.choose.style.display = "none";
         LEVEL1.map.style.display = "none";
@@ -148,6 +150,7 @@ function restartLevel1() {
 }
 
 function commitBridge(bridge) {
+    SOUNDS.onclick.play();
     if(bridge == 3) {
         clearInterval(LEVEL1.timer);
         LEVEL1.message.style.display = "block";
@@ -178,6 +181,7 @@ function commitBridge(bridge) {
 }
 
 function level1Houses() {
+    SOUNDS.onclick.play();
     LEVEL1.timerBox.style.display = "none";
     LEVEL1.timer = null;
     LEVEL1.question.style.display = "none";
@@ -198,6 +202,7 @@ function level1Houses() {
 }
 
 function house1() {
+    SOUNDS.onclick.play();
     LEVEL1.commit.style.display = "block";
     LEVEL1.swapHouse2.style.display = "none"
     LEVEL1.bedroom.style.display = "none";
@@ -226,11 +231,13 @@ function house1() {
 }
 
 function newspaperRead() {
+    SOUNDS.newspaper.play();
     LEVEL1.close[0].style.display = "flex";
     LEVEL1.newspaper.style.display = "none";
 }
 
 function bathroom() {
+    SOUNDS.onclick.play();
     LEVEL1.swapHouse.style.display = "block"
     LEVEL1.close[0].style.display = "none";
     LEVEL1.newspaper.style.display = "none";
@@ -254,6 +261,7 @@ function soapRead() {
 }
 
 function house2() {
+    SOUNDS.onclick.play();
     LEVEL1.commit.style.display = "block";
     LEVEL1.swapHouse.style.display = "none"
     LEVEL1.bathroom.style.display = "none";
@@ -291,6 +299,7 @@ function letterRead() {
 }
 
 function bedroom() {
+    SOUNDS.onclick.play();
     LEVEL1.swapHouse2.style.display = "block"
     LEVEL1.close[3].style.display = "none";
     LEVEL1.plant.style.display = "none";
@@ -309,6 +318,7 @@ function portraitRead() {
 }
 
 function submit() {
+    SOUNDS.onclick.play();
     LEVEL1.selection.style.display = "block";
     LEVEL1.bathroom.style.display = "none";
     LEVEL1.bedroom.style.display = "none";
@@ -322,6 +332,7 @@ let ITEMS = {
     element2: 0,
 }
 function select(element) {
+    SOUNDS.onclick.play();
     if(element == 3 || element == 5) {
         ITEMS.element1 = element;
     }
@@ -404,6 +415,7 @@ function select(element) {
 }
 
 function select2(element) {
+    SOUNDS.onclick.play();
     if(element == 3 || element == 5) {
         ITEMS.element2 = element;
     }
@@ -416,7 +428,7 @@ function select2(element) {
         <img id="lineSelect" src="img/line.png" alt="line">
         <h2>Congratulations</h2>
         <p>Through shadows and whispers, you followed the truth where others turned away. While the city pointed its finger at Monsieur Moreau, you saw what lay beneath. Because of your insight, an innocent man walks free. The true culprit, Ferdinand Ardes, now sits behind iron bars, his secrets at last unearthed. You did not simply solve a crime—you restored justice to a world on the brink of misjudgment. <br> Well done, little detective. Paris owes you more than it knows.</p>
-        <div class="nextButton" onclick="next()">finish</div>
+        <div class="nextButton" onclick="finishLevel(1)">finish</div>
         `   
     }
     else {
