@@ -43,6 +43,9 @@ let NEXT = {
 function next() {
     SOUNDS.onclick.play();
     if(NEXT.counter == 0) {
+        SOUNDS.theme.play();
+        SOUNDS.level1.volume = 0.3;
+        SOUNDS.theme.duration = Infinity;
         NEXT.explain.style.display = "block";
         NEXT.counter++;
     }
@@ -65,4 +68,22 @@ let SOUNDS = {
     level1: new Audio("sounds/level1Music.mp3"),
     onclick: new Audio("sounds/onclick.mp3"),
     newspaper: new Audio("sounds/newspaper.mp3"),
+    theme: new Audio("sounds/theme.mp3"),
+    grab: new Audio("sounds/grab1.mp3"),
+    plant: new Audio("sounds/plant.mp3"),
+}
+
+function fade() {
+    let fadeInterval = 100;
+    let fadeStep = 0.05;
+
+    let fadeAudio = setInterval(() => {
+        if (SOUNDS.theme.volume > fadeStep) {
+            SOUNDS.theme.volume -= fadeStep;
+        } else {
+            SOUNDS.theme.volume = 0;
+            SOUNDS.theme.pause();
+            clearInterval(fadeAudio);
+        }
+    }, fadeInterval);
 }

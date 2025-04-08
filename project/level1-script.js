@@ -252,10 +252,12 @@ function bathroom() {
 }
 
 function booksRead() {
+    SOUNDS.newspaper.play();
     LEVEL1.close[1].style.display = "flex";
     LEVEL1.books.style.display = "none";
 }
 function soapRead() {
+    SOUNDS.grab.play();
     LEVEL1.close[2].style.display = "flex";
     LEVEL1.books.style.display = "none";
 }
@@ -292,9 +294,11 @@ function house2() {
 }
 
 function plantRead() {
+    SOUNDS.plant.play();
     LEVEL1.close[3].style.display = "flex";
 }
 function letterRead() {
+    SOUNDS.newspaper.play();
     LEVEL1.close[4].style.display = "flex";
 }
 
@@ -313,6 +317,7 @@ function bedroom() {
 }
 
 function portraitRead() {
+    SOUNDS.grab.play();
     LEVEL1.close[5].style.display = "flex";
     LEVEL1.portrait.style.display = "none";
 }

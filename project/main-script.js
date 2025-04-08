@@ -26,7 +26,7 @@ function playLevel(level) {
 
     LOAD.timer = setTimeout(() => {
         document.getElementById("loadingScreen").style.display = "none";
-
+        fade();
         if (level == 1) {
             SOUNDS.level1.play();
             SOUNDS.level1.currentTime = 1;
