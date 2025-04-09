@@ -812,3 +812,20 @@ h2 {
 #selectionBox p {
     font-size: 1.5em;
 }
+
+#bridgeWarning {
+    display: none;
+    position: absolute;
+    background-color: #0D1C46;
+    text-align: center;
+    width: 40%;
+    padding: 1%;
+    font-size: 1.4em;
+}
+
+#bridgeWarning img {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

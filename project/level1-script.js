@@ -31,6 +31,8 @@ let LEVEL1 = {
     selection: document.getElementById("selectionBox"),
     firstItem: true,
     selectImages: document.getElementById("selection"),
+    bridgeWarning: document.getElementById("bridgeWarning"),
+    readPeom: false,
 }
 
 function level1() {
@@ -86,7 +88,7 @@ function level1() {
         LEVEL1.levelScreen.style.display = "flex";
         LEVEL.levelIntro[0].innerHTML = `
         <img src="img/line.png" alt="line">
-        <p>The Great Flood" - Paris 1900</p>
+        <p>"The Great Flood" - Paris 1900</p>
         <br>
         <p>Paris, January 1900 - Catastrophe has struck our beloved city! The Seine, swollen by relentless rains and melting snow, has risen beyond its banks, flooding the streets of Paris. Water pours into homes and businesses, bringing daily life to a standstill. All the citizens of Paris are fighting for their lives and seeking safety. You, however, have one more quest to complete in this city. The infamous landlord, Monsieur Moreau, is just three steps away from prison, as he is suspected of murdering his wife, Carla Moreau. He needs you to find two crucial documents to prove his innocence.</p>
         <p>At first, you must find his houses safely. You have a map and a poem that should help you choose the right bridge.</p>
@@ -108,6 +110,7 @@ function closeIntroduction(level) {
 
 
 function swapToPoem() {
+    LEVEL1.readPeom = true;
     SOUNDS.onclick.play();
     if(!LEVEL1.clickedOnce) {
         LEVEL1.choose.style.display = "none";
@@ -124,6 +127,7 @@ function swapToPoem() {
 }
 
 function restartLevel1() {
+    LEVEL1.readPeom = false;
     LEVEL1.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
     LEVEL1.commit.style.display = "none";
     ITEMS.element1 = 0;
@@ -148,35 +152,45 @@ function restartLevel1() {
                 </div>`
     level1();
 }
+function closeWarning() {
+    LEVEL1.bridgeWarning.style.display = "none";
+    SOUNDS.onclick.play();
+
+}
 
 function commitBridge(bridge) {
-    SOUNDS.onclick.play();
-    if(bridge == 3) {
-        clearInterval(LEVEL1.timer);
-        LEVEL1.message.style.display = "block";
-        LEVEL1.swap.style.display = "none";
-        LEVEL1.map.style.display = "none";
-        LEVEL1.choose.style.display = "none";
-        LEVEL1.message.innerHTML = `
-                <img src="img/line.png" alt="line">
-                <p>Congratulations</p>
-                <p>You were able to cross the right bridge in time. Now you can get to Monsieur Moreau's houses and correct the final crime. <br> Think smart, work hard to save his life.</p>
-                <div class="nextButton" onclick="level1Houses()">continue</div>
-            `
+    if(LEVEL1.readPeom) {
+        SOUNDS.onclick.play();
+        if(bridge == 3) {
+            clearInterval(LEVEL1.timer);
+            LEVEL1.message.style.display = "block";
+            LEVEL1.swap.style.display = "none";
+            LEVEL1.map.style.display = "none";
+            LEVEL1.choose.style.display = "none";
+            LEVEL1.message.innerHTML = `
+                    <img src="img/line.png" alt="line">
+                    <p>Congratulations</p>
+                    <p>You were able to cross the right bridge in time. Now you can get to Monsieur Moreau's houses and correct the final crime. <br> Think smart, work hard to save his life.</p>
+                    <div class="nextButton" onclick="level1Houses()">continue</div>
+                `
+        }
+        else {
+            clearInterval(LEVEL1.timer);
+            LEVEL1.message.style.display = "block";
+            LEVEL1.swap.style.display = "none";
+            LEVEL1.map.style.display = "none";
+            LEVEL1.choose.style.display = "none";
+            LEVEL1.message.innerHTML = `
+                        <img src="img/line.png" alt="line">
+                        <p>Oh No...</p>
+                        <p>You were not able to cross the right bridge in time. The waves take in your body, the water is dragging you down. You couldn't solve the riddle in time, and now it's taken away your last line.</p>
+                        <div class="nextButton" onclick="restartLevel1()">try again</div>
+                        `
+        ;
+        }
     }
     else {
-        clearInterval(LEVEL1.timer);
-        LEVEL1.message.style.display = "block";
-        LEVEL1.swap.style.display = "none";
-        LEVEL1.map.style.display = "none";
-        LEVEL1.choose.style.display = "none";
-        LEVEL1.message.innerHTML = `
-                    <img src="img/line.png" alt="line">
-                    <p>Oh No...</p>
-                    <p>You were not able to cross the right bridge in time. The waves take in your body, the water is dragging you down. You couldn't solve the riddle in time, and now it's taken away your last line.</p>
-                    <div class="nextButton" onclick="restartLevel1()">try again</div>
-                    `
-    ;
+        LEVEL1.bridgeWarning.style.display = "block";
     }
 }
 
