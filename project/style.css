@@ -867,3 +867,60 @@ h2 {
 #paper:hover {
     background-image: url(img/Level2/paperBorder.png);
 }
+
+#floorPart {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#imgFlex {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    top: 25vh;
+}
+
+#divFlex {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 25vh;
+}
+#floorPart img {
+    width: 250px;
+}
+
+#div1, #div2, #div3, #div4 {
+    width: 250px;
+    height: 150px;
+    padding: 10px;
+}
+
+#div1 {
+    background-color: #6f93c6c9;
+}
+#div2 {
+    background-color: #215093c4;
+}
+#div3 {
+    background-color: #1b2c5ec9;
+}
+#div4 {
+    background-color: #0d1c46c1;
+}
+
+#commitBox {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+    text-align: center;
+    position: fixed;
+    bottom: 10vh;
+    text-shadow: 2px 2px 4px black;
+}

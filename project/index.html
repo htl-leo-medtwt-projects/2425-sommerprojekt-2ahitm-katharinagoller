@@ -173,8 +173,19 @@
             <div id="paper" onclick="paperRead()"></div>
 
             <div id="floorPart">
-            <img id="img1" src="img_logo.gif" draggable="true" ondragstart="dragstartHandler(event)">
-            <div id="div1" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                <div id="imgFlex">
+                    <img id="img1" src="img/Level2/img1.png" draggable="true" ondragstart="dragstartHandler(event)">
+                    <img id="img2" src="img/Level2/img2.png" draggable="true" ondragstart="dragstartHandler(event)">
+                    <img id="img3" src="img/Level2/img3.png" draggable="true" ondragstart="dragstartHandler(event)">
+                    <img id="img4" src="img/Level2/img4.png" draggable="true" ondragstart="dragstartHandler(event)">
+                </div>
+                <div id="divFlex">
+                    <div id="div1" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div id="div2" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div id="div3" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div id="div4" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                </div>
+                <div class="nextButton" id="commitBox" onclick="commitLine()">commit</div>
             </div>
         </div>
 

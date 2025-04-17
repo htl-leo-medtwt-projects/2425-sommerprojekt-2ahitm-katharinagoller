@@ -4,6 +4,7 @@ let LEVEL2 = {
     hints: "",
     levelScreen: document.getElementById("level2Screen"),
     paper: document.getElementById("paper"),
+    floorPart: document.getElementById("floorPart"),
 }
 
 function restartLevel2() {
@@ -56,4 +57,40 @@ function paperRead() {
     SOUNDS.newspaper.play();
     LEVEL2.paper.style.display = "none";
     LEVEL2.levelScreen.style.backgroundImage = "url('img/Level2/floor.jpg')";
+    LEVEL2.floorPart.style.display = "block";
 }
+
+let placements = {
+    div1: null,
+    div2: null,
+    div3: null,
+    div4: null
+  };
+
+//with V3School Example
+function dragstartHandler(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+  
+  function dragoverHandler(event) {
+    event.preventDefault();
+  }
+  
+  function dropHandler(event) {
+    event.preventDefault();
+    const imageId = event.dataTransfer.getData("text");
+    const image = document.getElementById(imageId);
+  
+    if (event.target.children.length === 0) {
+        event.target.appendChild(image);
+        placements[event.target.id] = imageId;
+
+        console.log(placements);
+    }
+}
+
+  function commitLine() {
+    if(placements.div1 == "img3" && placements.div2 == "img2" && placements.div3 == "img1" && placements.div4 == "img4") {
+        console.log("hi");
+    }
+  }
