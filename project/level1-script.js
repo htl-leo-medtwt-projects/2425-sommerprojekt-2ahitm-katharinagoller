@@ -97,16 +97,6 @@ function level1() {
     }
 }
 
-function closeIntroduction(level) {
-    SOUNDS.onclick.play();
-    LEVEL.levelIntro[0].style.display = "none";
-    if(level == 1) {
-        LEVEL1.readIntro = true;
-        level1();
-
-    }
-
-}
 
 
 function swapToPoem() {

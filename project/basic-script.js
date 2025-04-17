@@ -32,6 +32,18 @@ function dropDownLevel1() {
     }
 }
 
+function dropDownLevel2() {
+    if(!DROPDOWN.clickedOnce) {
+        SOUNDS.onclick.play();
+        DROPDOWN.content[2].style.display = "flex";
+        DROPDOWN.clickedOnce = true;
+    }
+    else {
+        SOUNDS.onclick.play();
+        DROPDOWN.content[2].style.display = "none";
+        DROPDOWN.clickedOnce = false;
+    }
+}
 
 //Next Site
 let NEXT = {
@@ -86,4 +98,18 @@ function fade() {
             clearInterval(fadeAudio);
         }
     }, fadeInterval);
+}
+
+function closeIntroduction(level) {
+    SOUNDS.onclick.play();
+    LEVEL.levelIntro[0].style.display = "none";
+    if(level == 1) {
+        LEVEL1.readIntro = true;
+        level1();
+
+    }
+    else if(level == 2) {
+        LEVEL2.readIntro = true;
+        level2();
+    }
 }

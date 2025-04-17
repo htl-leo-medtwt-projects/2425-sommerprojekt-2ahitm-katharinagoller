@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="style.css">
         <script src="basic-script.js"defer></script>
         <script src="level1-script.js"defer></script>
+        <script src="level2-script.js"defer></script>
         <script src="main-script.js"defer></script>
         
     </head>
@@ -163,6 +164,20 @@
             </div>
             <div id="swapHouse2" onclick="house1()">swap to next house</div>
         </div>
+
+        <div id="level2Screen">
+            <div class="levelIntro"></div>
+            <h1 id="hint2" class="button" onclick="dropDownLevel2()" >?</h1>
+            <div class="dropdown"></div> 
+
+            <div id="paper" onclick="paperRead()"></div>
+
+            <div id="floorPart">
+            <img id="img1" src="img_logo.gif" draggable="true" ondragstart="dragstartHandler(event)">
+            <div id="div1" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+            </div>
+        </div>
+
         <div id="endpage">
             <img onclick="loadNotebook()" src="img/book.png" alt="book">
             <div id="textBox">

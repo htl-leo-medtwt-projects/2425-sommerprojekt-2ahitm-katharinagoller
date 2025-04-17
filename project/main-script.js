@@ -35,7 +35,7 @@ function playLevel(level) {
             restartLevel1();
         }
         else if (level == 2) {
-            console.log("Ha")
+            restartLevel2();
         }
 
         clearInterval(LOAD.timer); 
