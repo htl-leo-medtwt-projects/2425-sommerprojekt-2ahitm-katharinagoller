@@ -7,6 +7,9 @@ let LEVEL2 = {
     floorPart: document.getElementById("floorPart"),
     message: document.getElementById("messageOrder"),
     stage: document.getElementById("stage"),
+    stageTrue: false,
+    weight: document.getElementById("weight"),
+    startArea: document.getElementById("imgFlex")
 }
 
 function restartLevel2() {
@@ -14,6 +17,19 @@ function restartLevel2() {
     LEVEL2.readIntro = false;
     LEVEL2.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
     LEVEL2.paper.style.display = "none";
+    LEVEL2.message.style.display = "none";
+    let imageIds = ["img1", "img2", "img3", "img4"];
+    imageIds.forEach(id => {
+      let img = document.getElementById(id);
+      LEVEL2.startArea.appendChild(img);
+    });
+  
+    placements = {
+      box1: null,
+      box2: null,
+      box3: null,
+      box4: null
+    };
     level2();
 }
 
@@ -87,6 +103,11 @@ function dropHandler(event) {
         event.target.appendChild(image);
         placements[event.target.id] = imageId;
         console.log(placements);
+        if(LEVEL2.stageTrue) {
+            LEVEL2.weight.style.width = "90%";
+            LEVEL2.weight.style.bottom = "0vh";
+            LEVEL2.weight.style.left = "0vw";
+        }
     }
 }
 
@@ -116,4 +137,21 @@ function stageLevel() {
     LEVEL2.levelScreen.style.backgroundImage = "url('img/Level2/stageBackground.png')";
     LEVEL2.stage.style.display = "block";
     LEVEL2.message.style.display = "none";
+    LEVEL2.stageTrue = true;
+
+    if(DIFFICULTY.mode == "Easy") {
+        LEVEL2.hints = "Hint 1: <br> - Take action and complete the ToDos in the right order. <br> <br> Hint 2: <br> - Drag Items or Click on Items."
+    }
+    else if(DIFFICULTY.mode == "Medium") {
+        LEVEL2.hints = "Hint: <br> - Take action and complete the ToDos in the right order."
+    }
+    else {
+        LEVEL2.hints = "No hints for you since you selected the difficulty 'Hard'."
+    }
+    DROPDOWN.content[2].innerHTML = `
+            <img src="img/line.png" alt="line">
+            <p>${LEVEL2.hints}</p>
+            <img src="img/line1.png" alt="line">`
+
+    
 }

@@ -956,5 +956,8 @@ h2 {
 }
 
 #weight {
-    width: 15%; 
+    width: 10%;
+    position: absolute; 
+    bottom: 20vh;
+    left: 85vw;
 }
