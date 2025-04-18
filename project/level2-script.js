@@ -5,6 +5,8 @@ let LEVEL2 = {
     levelScreen: document.getElementById("level2Screen"),
     paper: document.getElementById("paper"),
     floorPart: document.getElementById("floorPart"),
+    message: document.getElementById("messageOrder"),
+    stage: document.getElementById("stage"),
 }
 
 function restartLevel2() {
@@ -26,7 +28,7 @@ function level2() {
         
 
         if(DIFFICULTY.mode == "Easy") {
-            LEVEL2.hints = "Hint 1: <br> - Inspect the mess on the floor. Put the notes into the right order. <br> <br> Hint 2: <br> - "
+            LEVEL2.hints = "Hint 1: <br> - Inspect the mess on the floor. Put the notes into the right order. <br> <br> Hint 2: <br> - Cleaning the stage is the least important ToDo."
         }
         else if(DIFFICULTY.mode == "Medium") {
             LEVEL2.hints = "Hint: <br> - Inspect the mess on the floor. Put the notes into the right order."
@@ -72,11 +74,11 @@ function dragstartHandler(event) {
     event.dataTransfer.setData("text", event.target.id);
   }
   
-  function dragoverHandler(event) {
+function dragoverHandler(event) {
     event.preventDefault();
-  }
+}
   
-  function dropHandler(event) {
+function dropHandler(event) {
     event.preventDefault();
     const imageId = event.dataTransfer.getData("text");
     const image = document.getElementById(imageId);
@@ -84,13 +86,34 @@ function dragstartHandler(event) {
     if (event.target.children.length === 0) {
         event.target.appendChild(image);
         placements[event.target.id] = imageId;
-
         console.log(placements);
     }
 }
 
-  function commitLine() {
+function commitLine() {
+    LEVEL2.message.style.display = "block";
+    LEVEL2.floorPart.style.display = "none";
+    LEVEL2.levelScreen.style.backgroundImage = "url('img/Level2/garderobeBackground.jpg')";
+
     if(placements.div1 == "img3" && placements.div2 == "img2" && placements.div3 == "img1" && placements.div4 == "img4") {
-        console.log("hi");
+        LEVEL2.message.innerHTML = `
+        <p>Congratulations</p>
+        <p>You managed to put the steps in the right order. But that alone does not save Linda. You must take action.</p>
+        <div class="nextButton" onclick="stageLevel()">continue</div>
+        `
     }
-  }
+    else {
+        LEVEL2.message.innerHTML = `
+        <p>Oh No...</p>
+        <p>You were not able to put the steps in the right order and could not save Linda. You should try again and take action.</p>
+        <div class="nextButton" onclick="restartLevel2()">try again</div>
+        `
+    }
+}
+
+
+function stageLevel() {
+    LEVEL2.levelScreen.style.backgroundImage = "url('img/Level2/stageBackground.png')";
+    LEVEL2.stage.style.display = "block";
+    LEVEL2.message.style.display = "none";
+}

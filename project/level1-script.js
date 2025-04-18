@@ -90,7 +90,7 @@ function level1() {
         <img src="img/line.png" alt="line">
         <p>"The Great Flood" - Paris 1900</p>
         <br>
-        <p>Paris, January 1900 - Catastrophe has struck our beloved city! The Seine, swollen by relentless rains and melting snow, has risen beyond its banks, flooding the streets of Paris. Water pours into homes and businesses, bringing daily life to a standstill. All the citizens of Paris are fighting for their lives and seeking safety. You, however, have one more quest to complete in this city. The infamous landlord, Monsieur Moreau, is just three steps away from prison, as he is suspected of murdering his wife, Carla Moreau. He needs you to find two crucial documents to prove his innocence.</p>
+        <p>Paris, May 1900 - Catastrophe has struck our beloved city! The Seine, swollen by relentless rains and melting snow, has risen beyond its banks, flooding the streets of Paris. Water pours into homes and businesses, bringing daily life to a standstill. All the citizens of Paris are fighting for their lives and seeking safety. You, however, have one more quest to complete in this city. The infamous landlord, Monsieur Moreau, is just three steps away from prison, as he is suspected of murdering his wife, Carla Moreau. He needs you to find two crucial documents to prove his innocence.</p>
         <p>At first, you must find his houses safely. You have a map and a poem that should help you choose the right bridge.</p>
         <div class="nextButton" onclick="closeIntroduction(1)">continue</div>
     `;

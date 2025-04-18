@@ -180,12 +180,17 @@
                     <img id="img4" src="img/Level2/img4.png" draggable="true" ondragstart="dragstartHandler(event)">
                 </div>
                 <div id="divFlex">
-                    <div id="div1" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
-                    <div id="div2" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
-                    <div id="div3" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
-                    <div id="div4" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div id="div1" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">1</div>
+                    <div id="div2" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">2</div>
+                    <div id="div3" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">3</div>
+                    <div id="div4" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">4</div>
                 </div>
                 <div class="nextButton" id="commitBox" onclick="commitLine()">commit</div>
+            </div>
+            <div id="messageOrder"></div>
+            <div id="stage">
+                <div id="dropRope" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                <img id="weight" src="img/Level2/weight.png" alt="img" draggable="true" ondragstart="dragstartHandler(event)">
             </div>
         </div>
 
