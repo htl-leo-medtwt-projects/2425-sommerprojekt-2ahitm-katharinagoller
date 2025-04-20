@@ -9,10 +9,18 @@ let LEVEL2 = {
     stage: document.getElementById("stage"),
     stageTrue: false,
     weight: document.getElementById("weight"),
-    startArea: document.getElementById("imgFlex")
+    startArea: document.getElementById("imgFlex"),
+    errorMessage: document.getElementById("errorMessage"),
+    basket: document.getElementById("basket"),
+    removeBasket: document.getElementById("removeBasket"),
+    stageLight: document.getElementById("stageLight"),
+    lightSwitch: document.getElementById("lightSwitch"),
 }
 
 function restartLevel2() {
+    LEVEL2.stageLight.innerHTML = `<img src="img/Level2/stageLightsOff.png" alt="img">`
+    LEVEL2.errorMessage.style.display = "none";
+    LEVEL2.stage.style.display = "none";
     LEVEL.levelIntro[1].style.display = "block";
     LEVEL2.readIntro = false;
     LEVEL2.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
@@ -102,12 +110,6 @@ function dropHandler(event) {
     if (event.target.children.length === 0) {
         event.target.appendChild(image);
         placements[event.target.id] = imageId;
-        console.log(placements);
-        if(LEVEL2.stageTrue) {
-            LEVEL2.weight.style.width = "90%";
-            LEVEL2.weight.style.bottom = "0vh";
-            LEVEL2.weight.style.left = "0vw";
-        }
     }
 }
 
@@ -118,6 +120,7 @@ function commitLine() {
 
     if(placements.div1 == "img3" && placements.div2 == "img2" && placements.div3 == "img1" && placements.div4 == "img4") {
         LEVEL2.message.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
         <p>Congratulations</p>
         <p>You managed to put the steps in the right order. But that alone does not save Linda. You must take action.</p>
         <div class="nextButton" onclick="stageLevel()">continue</div>
@@ -125,6 +128,7 @@ function commitLine() {
     }
     else {
         LEVEL2.message.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
         <p>Oh No...</p>
         <p>You were not able to put the steps in the right order and could not save Linda. You should try again and take action.</p>
         <div class="nextButton" onclick="restartLevel2()">try again</div>
@@ -134,6 +138,9 @@ function commitLine() {
 
 
 function stageLevel() {
+    LEVEL2.basket.style.display = "block";
+    LEVEL2.removeBasket.style.display = "block";
+    LEVEL2.weight.style.display = "block";
     LEVEL2.levelScreen.style.backgroundImage = "url('img/Level2/stageBackground.png')";
     LEVEL2.stage.style.display = "block";
     LEVEL2.message.style.display = "none";
@@ -154,4 +161,90 @@ function stageLevel() {
             <img src="img/line1.png" alt="line">`
 
     
+}
+
+let DONE = {
+    ropesSecured: false,
+    removedWater: false,
+    lightOn: false,
+    stageClean: false,
+}
+
+function dropHandlerWeight(event) {
+    event.preventDefault();
+    const imageId = event.dataTransfer.getData("text");
+    const image = document.getElementById(imageId);
+  
+    if(imageId == "weight") {
+        LEVEL2.weight.style.width = "90%";
+        LEVEL2.weight.style.bottom = "0vh";
+        LEVEL2.weight.style.left = "0vw";
+        event.target.appendChild(image);
+        console.log(imageId);
+        DONE.ropesSecured = true;
+    }
+}
+
+function dropHandlerBasket(event) {
+    event.preventDefault();
+    const imageId = event.dataTransfer.getData("text");
+    const image = document.getElementById(imageId);
+  
+    if(imageId == "basket") {
+        if(DONE.ropesSecured) {
+            event.target.appendChild(image);
+            DONE.removedWater = true;
+        }
+        else {
+            LEVEL2.errorMessage.style.display = "block";
+            LEVEL2.errorMessage.innerHTML = `
+            <img id="lineSelect" src="img/line.png" alt="line">
+                <p>Oh No...</p>
+                <p>You didn't follow the steps in the right order and now the ropes didn't last...</p>
+                <div class="nextButton" onclick="restartLevel2()">try again</div>`
+            clearStage()
+        }
+    }
+}
+
+function clearStage() {
+    LEVEL2.weight.style.display = "none";
+    LEVEL2.removeBasket.style.display = "none";
+    LEVEL2.basket.style.display = "none";
+}
+
+function lightOn() {
+    LEVEL2.stageLight.innerHTML = `<img src="img/Level2/stageLights.png" alt="img">`
+    if(!DONE.removedWater) {
+        LEVEL2.errorMessage.style.display = "block";
+        LEVEL2.errorMessage.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+                <p>Oh No...</p>
+                <p>You didn't follow the steps in the right order and now the water spilled over the stage light...</p>
+                <div class="nextButton" onclick="restartLevel2()">try again</div>`
+        clearStage();
+    }
+    else {
+        DONE.lightOn = true;
+    }
+}
+
+function clean() {
+    LEVEL2.errorMessage.style.display = "block";
+    if(DONE.lightOn) {
+        LEVEL2.errorMessage.innerHTML = `
+                <img id="lineSelect" src="img/line.png" alt="line">
+                <p>Congratulations</p>
+                <p>You followed all the steps and managed to save the famous actress LInda Rose from a tragic death. Be proud of yourself. You keep on getting smarter and cleverer.</p>
+                <div class="nextButton" onclick="finishLevel(2)">finish</div>`
+        clearStage();
+    }
+    else {
+        LEVEL2.errorMessage.innerHTML = `
+                <img id="lineSelect" src="img/line.png" alt="line">
+                <p>Oh No...</p>
+                <p>You didn't follow the steps in the right order. You can't clean the stage before finishing the other, more important tasks.</p>
+                <div class="nextButton" onclick="restartLevel2()">try again</div>`
+        clearStage();
+    }
 }

@@ -961,3 +961,64 @@ h2 {
     bottom: 20vh;
     left: 85vw;
 }
+
+#basket {
+    width: 6%;
+    position: absolute; 
+    bottom: 15vh;
+    left: 18vw;
+}
+
+#removeBasket {
+    width: 8%;
+}
+
+#removeBasket img {
+    width: 100%;
+}
+
+#errorMessage {
+    display: none;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    font-size: 1.4em;
+    background-color: #0D1C46;
+    text-align: center;
+    padding: 2%;
+}
+
+#stageLight {
+    width: 10%;
+    position: absolute; 
+    bottom: 18vh;
+    left: 18vw;
+    z-index: -10;
+}
+
+#stageLight img {
+    width: 100%;
+}
+
+#lightSwitch {
+    width: 3%;
+    position: absolute;
+    right: 0vw;
+    bottom: 10vh;
+}
+
+#cleanStage {
+    width: fit-content;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50%;
+    font-size: 1.5em;
+    text-align: center;
+    text-shadow: 2px 2px 4px black;
+}
+
+#messageOrder img, #errorMessage img {
+    width: 30%;
+}

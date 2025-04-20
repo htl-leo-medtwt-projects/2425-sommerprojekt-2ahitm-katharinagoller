@@ -189,8 +189,17 @@
             </div>
             <div id="messageOrder"></div>
             <div id="stage">
-                <div id="dropRope" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                <div id="dropRope" ondrop="dropHandlerWeight(event)" ondragover="dragoverHandler(event)"></div>
                 <img id="weight" src="img/Level2/weight.png" alt="img" draggable="true" ondragstart="dragstartHandler(event)">
+
+                <img id="basket" src="img/Level2/basket.png" alt="img" draggable="true" ondragstart="dragstartHandler(event)">
+                <div id="removeBasket" ondrop="dropHandlerBasket(event)" ondragover="dragoverHandler(event)"><img src="img/Level2/trashIcon.png" alt="img"></div>
+            
+                <img id="lightSwitch" onclick="lightOn()" src="img/Level2/lightSwitch.png" alt="img">
+                <div id="stageLight"><img   src="img/Level2/stageLightsOff.png" alt="img"></div>
+
+                <div class="nextButton" id="cleanStage" onclick="clean()">clean stage</div>
+                <div id="errorMessage"></div>
             </div>
         </div>
 
