@@ -1106,3 +1106,20 @@ h2 {
     width: 145px;
     height: 145px;
 }
+
+#puzzleMessage {
+    display: none;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 3%;
+    width: 60%;
+    font-size: 1.4em;
+    background-color: #0D1C46;
+    text-align: center;
+    
+    padding: 2%;
+}
+
+#puzzleMessage img {
+    width: 25%;
+}

@@ -8,6 +8,7 @@ let LEVEL3 = {
     piecesLeft: document.getElementById("piecesLeft"),
     piecesRight: document.getElementById("piecesRight"),
     currentImg: "",
+    puzzleMessage: document.getElementById("puzzleMessage"),
 }
 
 function restartLevel3() {
@@ -98,6 +99,8 @@ let puzzleImgs = [
     "img/Level3/puzzle_pieces/piece_2_3.png",
 ]
 
+const correctPieces = new Array(puzzleImgs.length).fill(0);
+
 function randomOrder() {
     for(let i = 0; i < puzzleImgs.length/2; i++) {
         let randomNumber;
@@ -106,8 +109,9 @@ function randomOrder() {
         } while (puzzleImgs[randomNumber] == "");
 
         let currentImg = puzzleImgs[randomNumber];
+        let imgName = currentImg.split("/").pop().replace(".png", ""); 
         piecesLeft.innerHTML += `
-            <img id="piece${i+1}" src="${currentImg}" alt="img" draggable="true" ondragstart="dragstartHandler(event)">`;
+            <img id="${imgName}" src="${currentImg}" alt="img" draggable="true" ondragstart="dragstartHandler(event)">`;
         
         puzzleImgs[randomNumber] = "";
     }
@@ -118,20 +122,61 @@ function randomOrder() {
         } while (puzzleImgs[randomNumber] == "");
 
         currentImg = puzzleImgs[randomNumber];
+        let imgName = currentImg.split("/").pop().replace(".png", "");
         piecesRight.innerHTML += `
-            <img id="pieceRight${i+1}" src="${currentImg}" alt="img" draggable="true" ondragstart="dragstartHandler(event)">`;
+            <img id="${imgName}" src="${currentImg}" alt="img" draggable="true" ondragstart="dragstartHandler(event)">`;
         
         puzzleImgs[randomNumber] = "";
     }
 }
 
-
 function dropHandlerPuzzle(event) {
     event.preventDefault();
     const imageId = event.dataTransfer.getData("text");
     const image = document.getElementById(imageId);
-    image.style.width = "145px";
-    image.style.height = "145px";
-    event.target.appendChild(image);
-    
+    const dropZone = event.currentTarget; 
+
+    if (dropZone.children.length === 0) {
+        image.style.width = "145px";
+        image.style.height = "145px";
+        dropZone.appendChild(image);
+
+        const correctSlotId = imageId.replace("piece", "slot");
+        const dropZoneId = dropZone.id;
+
+        const index = parseInt(imageId.split("_")[1]) * 4 + parseInt(imageId.split("_")[2]);
+
+        if (dropZoneId === correctSlotId) {
+            correctPieces[index] = 1;
+        } else {
+            correctPieces[index] = 0;
+        }
+
+
+        //mit Hilfe von ChatGPT
+        const allSlots = document.querySelectorAll('[id^="slot_"]');
+        const isFull = Array.from(allSlots).every(slot => slot.children.length === 1);
+
+        if (isFull) {
+            LEVEL3.puzzleMessage.style.display = "block";
+
+            if (correctPieces.every(val => val === 1)) {
+                LEVEL3.puzzleMessage.innerHTML = `
+                <img id="lineSelect" src="img/line.png" alt="line">
+                <p>Congratulations</p>
+                <p>You put the pieces in the right order and managed to unlock the door.</p>
+                <div class="nextButton">finish</div>`; 
+        
+            } 
+            else {
+                LEVEL3.puzzleMessage.innerHTML = `  
+                <img id="lineSelect" src="img/line.png" alt="line">
+                <p>Oh No...</p>
+                <p>You didn't put the pieces in the right place. Try again to unlock the door and find Camila's painting</p>
+                <div class="nextButton" onclick="restartLevel3()">try again</div>`;
+            }
+        }
+    }
 }
+
+

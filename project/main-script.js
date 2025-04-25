@@ -86,6 +86,8 @@ function finishLevel(currentLevel) {
     unlockNextLevel(currentLevel);
     document.getElementById("levelOverview").style.display = "block";
     LEVEL1.levelScreen.style.display = "none";
+    LEVEL2.levelScreen.style.display = "none";
+    LEVEL3.levelScreen.style.display = "none";
 }
 
 updateLevelIcons();
