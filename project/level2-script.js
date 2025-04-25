@@ -15,9 +15,12 @@ let LEVEL2 = {
     removeBasket: document.getElementById("removeBasket"),
     stageLight: document.getElementById("stageLight"),
     lightSwitch: document.getElementById("lightSwitch"),
+    cleanStage: document.getElementById("cleanStage"),
 }
 
 function restartLevel2() {
+    LEVEL2.stageLight.style.display = "block";
+    LEVEL2.cleanStage.style.display = "block";
     LEVEL2.stageLight.innerHTML = `<img src="img/Level2/stageLightsOff.png" alt="img">`
     LEVEL2.errorMessage.style.display = "none";
     LEVEL2.stage.style.display = "none";
@@ -211,6 +214,8 @@ function clearStage() {
     LEVEL2.weight.style.display = "none";
     LEVEL2.removeBasket.style.display = "none";
     LEVEL2.basket.style.display = "none";
+    LEVEL2.stageLight.style.display = "none";
+    LEVEL2.cleanStage.style.display = "none";
 }
 
 function lightOn() {
@@ -235,7 +240,7 @@ function clean() {
         LEVEL2.errorMessage.innerHTML = `
                 <img id="lineSelect" src="img/line.png" alt="line">
                 <p>Congratulations</p>
-                <p>You followed all the steps and managed to save the famous actress LInda Rose from a tragic death. Be proud of yourself. You keep on getting smarter and cleverer.</p>
+                <p>You followed all the steps and managed to save the famous actress Linda Rose from a tragic death. Be proud of yourself. You keep on getting smarter and cleverer.</p>
                 <div class="nextButton" onclick="finishLevel(2)">finish</div>`
         clearStage();
     }

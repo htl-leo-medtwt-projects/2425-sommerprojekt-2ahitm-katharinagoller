@@ -1011,14 +1011,71 @@ h2 {
 #cleanStage {
     width: fit-content;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50%;
+    left: 45vw;
     font-size: 1.5em;
     text-align: center;
+    position: fixed;
+    bottom: 10vh;
     text-shadow: 2px 2px 4px black;
 }
 
 #messageOrder img, #errorMessage img {
     width: 30%;
+}
+
+/************************** Level 3 **************************/
+
+#level3Screen {
+    background-image: url(img/introBackground.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 113%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+#hint3 {
+    opacity: 0;
+}
+
+#galleryMessage {
+    display: none;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 3%;
+    width: 60%;
+    font-size: 1.4em;
+    background-color: #0D1C46;
+    text-align: center;
+    
+    padding: 2%;
+}
+
+#galleryMessage img {
+    width: 25%;
+}
+
+/*PUZZLE*/
+
+#puzzle {
+    width: 40%;
+    display: none;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.puzzleBox {
+    width: 145px;
+    height: 145px;
+    background-color: #ffffffce;
+    border: 1px solid black;
 }

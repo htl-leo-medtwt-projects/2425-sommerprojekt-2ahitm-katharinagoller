@@ -8,6 +8,7 @@
         <script src="basic-script.js"defer></script>
         <script src="level1-script.js"defer></script>
         <script src="level2-script.js"defer></script>
+        <script src="level3-script.js"defer></script>
         <script src="main-script.js"defer></script>
         
     </head>
@@ -200,6 +201,48 @@
 
                 <div class="nextButton" id="cleanStage" onclick="clean()">clean stage</div>
                 <div id="errorMessage"></div>
+            </div>
+        </div>
+
+        <div id="level3Screen">
+            <div class="levelIntro"></div>
+            <h1 id="hint3" class="button" onclick="dropDownLevel3()" >?</h1>
+            <div class="dropdown"></div> 
+
+            <div id="galleryMessage"></div>
+            <div id="puzzleOverall">
+                <div id="piecesLeft">
+                    <div id="piece1" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece2" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece3" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece4" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece5" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece6" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                </div>
+
+                <div id="puzzle">
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                    <div class="puzzleBox" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
+                </div>
+
+                <div id="piecesRight">
+                    <div id="piece7" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece8" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece9" draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece10"draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece11"draggable="true" ondragstart="dragstartHandler(event)"></div>
+                    <div id="piece12"draggable="true" ondragstart="dragstartHandler(event)"></div>
+                </div>
             </div>
         </div>
 

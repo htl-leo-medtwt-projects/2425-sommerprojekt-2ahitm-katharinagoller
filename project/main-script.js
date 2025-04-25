@@ -38,6 +38,10 @@ function playLevel(level) {
             restartLevel2();
         }
 
+        else if (level == 3) {
+            restartLevel3();
+        }
+
         clearInterval(LOAD.timer); 
 
     }, 2500);

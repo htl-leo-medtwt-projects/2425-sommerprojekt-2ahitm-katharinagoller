@@ -45,6 +45,19 @@ function dropDownLevel2() {
     }
 }
 
+function dropDownLevel3() {
+    if(!DROPDOWN.clickedOnce) {
+        SOUNDS.onclick.play();
+        DROPDOWN.content[3].style.display = "flex";
+        DROPDOWN.clickedOnce = true;
+    }
+    else {
+        SOUNDS.onclick.play();
+        DROPDOWN.content[3].style.display = "none";
+        DROPDOWN.clickedOnce = false;
+    }
+}
+
 //Next Site
 let NEXT = {
     counter: 0,
@@ -111,5 +124,9 @@ function closeIntroduction(level) {
     else if(level == 2) {
         LEVEL2.readIntro = true;
         level2();
+    }
+    else if(level == 3) {
+        LEVEL3.readIntro = true;
+        level3();
     }
 }
