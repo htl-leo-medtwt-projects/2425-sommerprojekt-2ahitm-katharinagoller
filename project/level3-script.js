@@ -5,13 +5,29 @@ let LEVEL3 = {
     levelScreen: document.getElementById("level3Screen"),
     message: document.getElementById("galleryMessage"),
     puzzle: document.getElementById("puzzle"),
+    piecesLeft: document.getElementById("piecesLeft"),
+    piecesRight: document.getElementById("piecesRight"),
+    currentImg: "",
 }
 
 function restartLevel3() {
     LEVEL.levelIntro[2].style.display = "block";
     LEVEL3.readIntro = false;
     LEVEL3.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
-    
+    puzzleImgs = [
+        "img/Level3/puzzle_pieces/piece_0_0.png",
+        "img/Level3/puzzle_pieces/piece_0_1.png",
+        "img/Level3/puzzle_pieces/piece_0_2.png",
+        "img/Level3/puzzle_pieces/piece_0_3.png",
+        "img/Level3/puzzle_pieces/piece_1_0.png",
+        "img/Level3/puzzle_pieces/piece_1_1.png",
+        "img/Level3/puzzle_pieces/piece_1_2.png",
+        "img/Level3/puzzle_pieces/piece_1_3.png",
+        "img/Level3/puzzle_pieces/piece_2_0.png",
+        "img/Level3/puzzle_pieces/piece_2_1.png",
+        "img/Level3/puzzle_pieces/piece_2_2.png",
+        "img/Level3/puzzle_pieces/piece_2_3.png",
+    ]
     level3();
 }
 
@@ -65,4 +81,57 @@ function door() {
 function puzzle() {
     LEVEL3.puzzle.style.display = "grid";
     LEVEL3.message.style.display = "none";
+    randomOrder();
+}
+let puzzleImgs = [
+    "img/Level3/puzzle_pieces/piece_0_0.png",
+    "img/Level3/puzzle_pieces/piece_0_1.png",
+    "img/Level3/puzzle_pieces/piece_0_2.png",
+    "img/Level3/puzzle_pieces/piece_0_3.png",
+    "img/Level3/puzzle_pieces/piece_1_0.png",
+    "img/Level3/puzzle_pieces/piece_1_1.png",
+    "img/Level3/puzzle_pieces/piece_1_2.png",
+    "img/Level3/puzzle_pieces/piece_1_3.png",
+    "img/Level3/puzzle_pieces/piece_2_0.png",
+    "img/Level3/puzzle_pieces/piece_2_1.png",
+    "img/Level3/puzzle_pieces/piece_2_2.png",
+    "img/Level3/puzzle_pieces/piece_2_3.png",
+]
+
+function randomOrder() {
+    for(let i = 0; i < puzzleImgs.length/2; i++) {
+        let randomNumber;
+        do {
+            randomNumber = Math.floor(Math.random() * puzzleImgs.length);
+        } while (puzzleImgs[randomNumber] == "");
+
+        let currentImg = puzzleImgs[randomNumber];
+        piecesLeft.innerHTML += `
+            <img id="piece${i+1}" src="${currentImg}" alt="img" draggable="true" ondragstart="dragstartHandler(event)">`;
+        
+        puzzleImgs[randomNumber] = "";
+    }
+    for(let i = 0; i < puzzleImgs.length/2; i++) {
+        let randomNumber;
+        do {
+            randomNumber = Math.floor(Math.random() * puzzleImgs.length);
+        } while (puzzleImgs[randomNumber] == "");
+
+        currentImg = puzzleImgs[randomNumber];
+        piecesRight.innerHTML += `
+            <img id="pieceRight${i+1}" src="${currentImg}" alt="img" draggable="true" ondragstart="dragstartHandler(event)">`;
+        
+        puzzleImgs[randomNumber] = "";
+    }
+}
+
+
+function dropHandlerPuzzle(event) {
+    event.preventDefault();
+    const imageId = event.dataTransfer.getData("text");
+    const image = document.getElementById(imageId);
+    image.style.width = "145px";
+    image.style.height = "145px";
+    event.target.appendChild(image);
+    
 }
