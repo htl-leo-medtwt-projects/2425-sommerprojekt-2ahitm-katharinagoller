@@ -914,7 +914,7 @@ h2 {
     background-color: #0d1c46c1;
 }
 
-#commitBox {
+#commitBox  {
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -1189,4 +1189,25 @@ h2 {
     width: 80%;
 }
 
+#commitColor {
+    display: none;
+    width: 100vw;
+    justify-content: center;
+    font-size: 1.5em;
+    text-align: center;
+    position: fixed;
+    bottom: 5vh;
+    text-shadow: 2px 2px 4px black;
+}
 
+#commitColorMessage {
+    display: none;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 3%;
+    width: 60%;
+    font-size: 1.4em;
+    background-color: #0D1C46;
+    text-align: center;
+    padding-bottom: 2%;
+}

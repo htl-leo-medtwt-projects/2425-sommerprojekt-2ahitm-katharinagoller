@@ -14,6 +14,10 @@ let LEVEL3 = {
     painting: document.getElementById("painting"),
     paintingPart: document.getElementById("paintingPart"),
     paintingUnder: document.getElementById("paintingUnder"),
+    alreadySet: false,
+    drawCommit: document.getElementById("commitColor"),
+    choseRightPainting: false,
+    commitMessage: document.getElementById("commitColorMessage"),
 }
 
 function restartLevel3() {
@@ -212,19 +216,24 @@ function paintingRead() {
 }
 
 function setColor(color) {
-    if(color ==  1) {
-        LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakePurple.png" alt="img" style="width: 100%; height: 100%;">`
+    if(!LEVEL3.alreadySet) {
+        if(color ==  1) {
+            LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakePurple.png" alt="img" style="width: 100%; height: 100%;">`
+        }
+        else if(color == 2) {
+            LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakeBeige.png" alt="img"  style="width: 100%; height: 100%;">`
+        }
+        else if(color == 3) {
+            LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakeBrown.png" alt="img"  style="width: 100%; height: 100%;">`
+        }
+        else {
+            LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/finalPainting.png" alt="img"  style="width: 100%; height: 100%;">`
+            LEVEL3.choseRightPainting = true;
+        }
+        listeners();
+        LEVEL3.alreadySet = true;
+        
     }
-    else if(color == 2) {
-        LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakeBeige.png" alt="img"  style="width: 100%; height: 100%;">`
-    }
-    else if(color == 3) {
-        LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakeBrown.png" alt="img"  style="width: 100%; height: 100%;">`
-    }
-    else {
-        LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/finalPainting.png" alt="img"  style="width: 100%; height: 100%;">`
-    }
-    listeners();
 }
 let painting = false;
 let canvas = document.getElementById('topLayer');
@@ -252,6 +261,7 @@ function finishedPosition() {
 function draw(e) {
     if (!painting) return;
 
+    LEVEL3.drawCommit.style.display = "flex";
     const rect = canvas.getBoundingClientRect();
     const x = (e.clientX || e.touches?.[0].clientX) - rect.left;
     const y = (e.clientY || e.touches?.[0].clientY) - rect.top;
@@ -271,4 +281,25 @@ function listeners() {
     canvas.addEventListener('touchstart', startPosition);
     canvas.addEventListener('touchend', finishedPosition);
     canvas.addEventListener('touchmove', draw);
+}
+
+function commitPainting() {
+    LEVEL3.commitMessage.style.display = "block";
+    LEVEL3.paintingPart.style.display = "none";
+    if(LEVEL3.choseRightPainting) {
+        LEVEL3.commitMessage.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+        <h2>Congratulations</h2>
+        <p>You managed to choose the right color to clean Camila's final painting. The gallery and people are forever thankful for your skills and cleverness.</p>
+        <div class="nextButton" onclick="finishLevel(3)">finish</div>
+        `   
+    }
+    else {
+        LEVEL3.commitMessage.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+        <h2>Oh no...</h2>
+        <p>You didn't pick the right color to safe Camila's painting. Try again, so the world can finally see her last work.</p>
+        <div class="nextButton" onclick="restartLevel3()">try again</div>
+        `   
+    }
 }
