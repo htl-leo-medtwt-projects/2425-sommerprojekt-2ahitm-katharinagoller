@@ -9,9 +9,13 @@ let LEVEL3 = {
     piecesRight: document.getElementById("piecesRight"),
     currentImg: "",
     puzzleMessage: document.getElementById("puzzleMessage"),
+    puzzleOverall: document.getElementById("puzzleOverall"),
+    readBasement: false,
+    painting: document.getElementById("painting"),
 }
 
 function restartLevel3() {
+    LEVEL3.puzzleMessage.style.display = "none";
     LEVEL.levelIntro[2].style.display = "block";
     LEVEL3.readIntro = false;
     LEVEL3.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
@@ -80,6 +84,7 @@ function door() {
 }
 
 function puzzle() {
+    LEVEL3.puzzleOverall.style.display = "flex";
     LEVEL3.puzzle.style.display = "grid";
     LEVEL3.message.style.display = "none";
     randomOrder();
@@ -159,13 +164,14 @@ function dropHandlerPuzzle(event) {
 
         if (isFull) {
             LEVEL3.puzzleMessage.style.display = "block";
+            LEVEL3.puzzleOverall.style.display = "none";
 
             if (correctPieces.every(val => val === 1)) {
                 LEVEL3.puzzleMessage.innerHTML = `
                 <img id="lineSelect" src="img/line.png" alt="line">
                 <p>Congratulations</p>
                 <p>You put the pieces in the right order and managed to unlock the door.</p>
-                <div class="nextButton">finish</div>`; 
+                <div class="nextButton" onclick="basement()">continue</div>`; 
         
             } 
             else {
@@ -180,3 +186,22 @@ function dropHandlerPuzzle(event) {
 }
 
 
+function basement() {
+    LEVEL3.painting.style.display = "block";
+    if(!LEVEL3.readBasement) {
+        LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/basementBackground.jpg')";
+        LEVEL3.puzzleMessage.innerHTML = `  
+                    <img id="lineSelect" src="img/line.png" alt="line">
+                    <p>You lended in a hidden atelier. Camila's atelier to be exact.</p>
+                    <div class="nextButton" onclick="basement()">continue</div>`;
+        LEVEL3.readBasement = true;
+    }
+    else {
+        LEVEL3.puzzleMessage.style.display = "none";
+    }
+}
+
+
+function paintingRead() {
+    LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/canvasBackground.jpg')";
+}
