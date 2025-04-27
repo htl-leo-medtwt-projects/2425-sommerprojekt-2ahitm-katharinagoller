@@ -237,16 +237,21 @@
 
             <div id="paintingPart">
                 <div id="colors">
-                    <img src="img/Level3/purple.png" alt="img">
-                    <img src="img/Level3/beige.png" alt="img">
-                    <img src="img/Level3/brown.png" alt="img">
-                    <img src="img/Level3/green.png" alt="img">
+                    <img src="img/Level3/purple.png" onclick="setColor(1)" alt="img">
+                    <img src="img/Level3/beige.png"  onclick="setColor(2)" alt="img">
+                    <img src="img/Level3/brown.png"  onclick="setColor(3)" alt="img">
+                    <img src="img/Level3/green.png"  onclick="setColor(4)" alt="img">
                 </div>
-                <div id="paintingstack">
-                    <img src="img/Level3/picture.png" alt="img">
-                    <div id="paintingUnder"></div>
+                <div id="paintingstack" style="position: relative; width: 500px; height: 700px;">
+                    <canvas id="topLayer" width="500" height="700" style="position: absolute; top: 0; left: 0; z-index: 2;"></canvas>
+                    <div id="paintingUnder" style="width: 500px; height: 700px; position: absolute; top: 0; left: 0; z-index: 1;">
+                    </div>
                 </div>
-                <div id="colorPoem"></div>
+                <div id="colorPoem">
+                    <img src="img/line.png" alt="line">
+                    <p>Magical paint is locking the painting, making it impossible to see it before someones fainting, <br><br> the picture of nature destroyed by the fire needs to be saved by the mother itself to drive out squire.</p>
+                    <img src="img/line1.png" alt="line">
+                </div>
             </div>
 
         </div>

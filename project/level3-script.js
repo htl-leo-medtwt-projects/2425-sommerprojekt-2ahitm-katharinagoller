@@ -12,6 +12,8 @@ let LEVEL3 = {
     puzzleOverall: document.getElementById("puzzleOverall"),
     readBasement: false,
     painting: document.getElementById("painting"),
+    paintingPart: document.getElementById("paintingPart"),
+    paintingUnder: document.getElementById("paintingUnder"),
 }
 
 function restartLevel3() {
@@ -203,5 +205,70 @@ function basement() {
 
 
 function paintingRead() {
-    LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/canvasBackground.jpg')";
+    LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/canvasBackground.png')";
+    LEVEL3.paintingPart.style.display = "flex";
+    LEVEL3.painting.style.display = "none";
+    loadPainting();
+}
+
+function setColor(color) {
+    if(color ==  1) {
+        LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakePurple.png" alt="img" style="width: 100%; height: 100%;">`
+    }
+    else if(color == 2) {
+        LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakeBeige.png" alt="img"  style="width: 100%; height: 100%;">`
+    }
+    else if(color == 3) {
+        LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakeBrown.png" alt="img"  style="width: 100%; height: 100%;">`
+    }
+    else {
+        LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/finalPainting.png" alt="img"  style="width: 100%; height: 100%;">`
+    }
+    listeners();
+}
+let painting = false;
+let canvas = document.getElementById('topLayer');
+let ctx = canvas.getContext('2d');
+
+function loadPainting() {
+    let fakePainting = new Image();
+    fakePainting.src = 'img/Level3/picture.png';
+
+    fakePainting.onload = () => {
+        ctx.drawImage(fakePainting, 0, 0, canvas.width, canvas.height);
+    }
+}
+
+function startPosition(e) {
+    painting = true;
+    draw(e);
+}
+
+function finishedPosition() {
+    painting = false;
+    ctx.beginPath();
+}
+
+function draw(e) {
+    if (!painting) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX || e.touches?.[0].clientX) - rect.left;
+    const y = (e.clientY || e.touches?.[0].clientY) - rect.top;
+
+    ctx.globalCompositeOperation = 'destination-out'; 
+    ctx.beginPath();
+    ctx.arc(x, y, 30, 0, Math.PI * 2, false); 
+    ctx.fill();
+    ctx.globalCompositeOperation = 'source-over'; 
+}
+
+function listeners() {
+    canvas.addEventListener('mousedown', startPosition);
+    canvas.addEventListener('mouseup', finishedPosition);
+    canvas.addEventListener('mousemove', draw);
+
+    canvas.addEventListener('touchstart', startPosition);
+    canvas.addEventListener('touchend', finishedPosition);
+    canvas.addEventListener('touchmove', draw);
 }
