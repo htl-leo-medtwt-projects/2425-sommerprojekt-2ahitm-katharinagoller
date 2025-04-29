@@ -81,6 +81,7 @@ function level3() {
 }
 
 function door() {
+    SOUNDS.onclick.play();
     LEVEL3.question.style.opacity = 1;
     LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/doorBackground.jpg')";
     LEVEL3.message.innerHTML = `
@@ -90,6 +91,7 @@ function door() {
 }
 
 function puzzle() {
+    SOUNDS.onclick.play();
     LEVEL3.puzzleOverall.style.display = "flex";
     LEVEL3.puzzle.style.display = "grid";
     LEVEL3.message.style.display = "none";
@@ -148,6 +150,7 @@ function dropHandlerPuzzle(event) {
     const dropZone = event.currentTarget; 
 
     if (dropZone.children.length === 0) {
+        SOUNDS.puzzle.play();
         image.style.width = "145px";
         image.style.height = "145px";
         dropZone.appendChild(image);
@@ -193,6 +196,7 @@ function dropHandlerPuzzle(event) {
 
 
 function basement() {
+    SOUNDS.onclick.play();
     LEVEL3.painting.style.display = "block";
     if(!LEVEL3.readBasement) {
         LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/basementBackground.jpg')";
@@ -209,6 +213,7 @@ function basement() {
 
 
 function paintingRead() {
+    SOUNDS.onclick.play();
     LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/canvasBackground.png')";
     LEVEL3.paintingPart.style.display = "flex";
     LEVEL3.painting.style.display = "none";
@@ -216,6 +221,7 @@ function paintingRead() {
 }
 
 function setColor(color) {
+    SOUNDS.onclick.play();
     if(!LEVEL3.alreadySet) {
         if(color ==  1) {
             LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakePurple.png" alt="img" style="width: 100%; height: 100%;">`
@@ -261,6 +267,7 @@ function finishedPosition() {
 function draw(e) {
     if (!painting) return;
 
+    SOUNDS.brush.play();
     LEVEL3.drawCommit.style.display = "flex";
     const rect = canvas.getBoundingClientRect();
     const x = (e.clientX || e.touches?.[0].clientX) - rect.left;
@@ -284,6 +291,7 @@ function listeners() {
 }
 
 function commitPainting() {
+    SOUNDS.onclick.play();
     LEVEL3.commitMessage.style.display = "block";
     LEVEL3.paintingPart.style.display = "none";
     if(LEVEL3.choseRightPainting) {

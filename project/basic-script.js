@@ -96,6 +96,13 @@ let SOUNDS = {
     theme: new Audio("sounds/theme.mp3"),
     grab: new Audio("sounds/grab1.mp3"),
     plant: new Audio("sounds/plant.mp3"),
+    level2: new Audio("sounds/level2Music.mp3"),
+    level3: new Audio("sounds/level3Music.mp3"),
+    weight: new Audio("sounds/weight.mp3"),
+    trash: new Audio("sounds/trash.mp3"),
+    lightswitch: new Audio("sounds/lightswitch.mp3"),
+    puzzle: new Audio("sounds/puzzle.mp3"),
+    brush: new Audio("sounds/brush.mp3"),
 }
 
 function fade() {
@@ -113,6 +120,51 @@ function fade() {
     }, fadeInterval);
 }
 
+function fade1() {
+    let fadeInterval = 100;
+    let fadeStep = 0.05;
+
+    let fadeAudio = setInterval(() => {
+        if (SOUNDS.level1.volume > fadeStep) {
+            SOUNDS.level1.volume -= fadeStep;
+        } else {
+            SOUNDS.level1.volume = 0;
+            SOUNDS.level1.pause();
+            clearInterval(fadeAudio);
+        }
+    }, fadeInterval);
+}
+
+function fade2() {
+    let fadeInterval = 100;
+    let fadeStep = 0.05;
+
+    let fadeAudio = setInterval(() => {
+        if (SOUNDS.level2.volume > fadeStep) {
+            SOUNDS.level2.volume -= fadeStep;
+        } else {
+            SOUNDS.level2.volume = 0;
+            SOUNDS.level2.pause();
+            clearInterval(fadeAudio);
+        }
+    }, fadeInterval);
+}
+
+
+function fade3() {
+    let fadeInterval = 100;
+    let fadeStep = 0.05;
+
+    let fadeAudio = setInterval(() => {
+        if (SOUNDS.level3.volume > fadeStep) {
+            SOUNDS.level3.volume -= fadeStep;
+        } else {
+            SOUNDS.level3.volume = 0;
+            SOUNDS.level3.pause();
+            clearInterval(fadeAudio);
+        }
+    }, fadeInterval);
+}
 function closeIntroduction(level) {
     SOUNDS.onclick.play();
     LEVEL.levelIntro[0].style.display = "none";

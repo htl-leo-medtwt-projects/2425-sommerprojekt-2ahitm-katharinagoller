@@ -35,10 +35,18 @@ function playLevel(level) {
             restartLevel1();
         }
         else if (level == 2) {
+            SOUNDS.level2.play();
+            SOUNDS.level2.currentTime = 0;
+            SOUNDS.level2.duration = Infinity;
+            SOUNDS.level2.volume = 0.3;
             restartLevel2();
         }
 
         else if (level == 3) {
+            SOUNDS.level3.play();
+            SOUNDS.level3.currentTime = 0;
+            SOUNDS.level3.duration = Infinity;
+            SOUNDS.level3.volume = 0.3;
             restartLevel3();
         }
 
@@ -88,6 +96,13 @@ function finishLevel(currentLevel) {
     LEVEL1.levelScreen.style.display = "none";
     LEVEL2.levelScreen.style.display = "none";
     LEVEL3.levelScreen.style.display = "none";
+    fade1();
+    fade2();
+    fade3();
+    SOUNDS.theme.duration = Infinity;
+    SOUNDS.theme.volume = 0.6;
+    SOUNDS.theme.currentTime = 0;
+    SOUNDS.theme.play();
 }
 
 updateLevelIcons();

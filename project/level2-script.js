@@ -113,6 +113,7 @@ function dropHandler(event) {
     if (event.target.children.length === 0) {
         event.target.appendChild(image);
         placements[event.target.id] = imageId;
+        SOUNDS.puzzle.play();
     }
 }
 
