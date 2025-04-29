@@ -26,7 +26,7 @@ function playLevel(level) {
 
     LOAD.timer = setTimeout(() => {
         document.getElementById("loadingScreen").style.display = "none";
-        fade();
+        fade(SOUNDS.theme);
         if (level == 1) {
             SOUNDS.level1.play();
             SOUNDS.level1.currentTime = 1;
@@ -96,9 +96,9 @@ function finishLevel(currentLevel) {
     LEVEL1.levelScreen.style.display = "none";
     LEVEL2.levelScreen.style.display = "none";
     LEVEL3.levelScreen.style.display = "none";
-    fade1();
-    fade2();
-    fade3();
+    fade(SOUNDS.level1);
+    fade(SOUNDS.level2);
+    fade(SOUNDS.level3);
     SOUNDS.theme.duration = Infinity;
     SOUNDS.theme.volume = 0.6;
     SOUNDS.theme.currentTime = 0;

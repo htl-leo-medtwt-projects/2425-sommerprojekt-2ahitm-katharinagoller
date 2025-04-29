@@ -105,66 +105,22 @@ let SOUNDS = {
     brush: new Audio("sounds/brush.mp3"),
 }
 
-function fade() {
+function fade(music) {
     let fadeInterval = 100;
     let fadeStep = 0.05;
 
     let fadeAudio = setInterval(() => {
-        if (SOUNDS.theme.volume > fadeStep) {
-            SOUNDS.theme.volume -= fadeStep;
+        if (music.volume > fadeStep) {
+            music.volume -= fadeStep;
         } else {
-            SOUNDS.theme.volume = 0;
-            SOUNDS.theme.pause();
-            clearInterval(fadeAudio);
-        }
-    }, fadeInterval);
-}
-
-function fade1() {
-    let fadeInterval = 100;
-    let fadeStep = 0.05;
-
-    let fadeAudio = setInterval(() => {
-        if (SOUNDS.level1.volume > fadeStep) {
-            SOUNDS.level1.volume -= fadeStep;
-        } else {
-            SOUNDS.level1.volume = 0;
-            SOUNDS.level1.pause();
-            clearInterval(fadeAudio);
-        }
-    }, fadeInterval);
-}
-
-function fade2() {
-    let fadeInterval = 100;
-    let fadeStep = 0.05;
-
-    let fadeAudio = setInterval(() => {
-        if (SOUNDS.level2.volume > fadeStep) {
-            SOUNDS.level2.volume -= fadeStep;
-        } else {
-            SOUNDS.level2.volume = 0;
-            SOUNDS.level2.pause();
+            music.volume = 0;
+            music.pause();
             clearInterval(fadeAudio);
         }
     }, fadeInterval);
 }
 
 
-function fade3() {
-    let fadeInterval = 100;
-    let fadeStep = 0.05;
-
-    let fadeAudio = setInterval(() => {
-        if (SOUNDS.level3.volume > fadeStep) {
-            SOUNDS.level3.volume -= fadeStep;
-        } else {
-            SOUNDS.level3.volume = 0;
-            SOUNDS.level3.pause();
-            clearInterval(fadeAudio);
-        }
-    }, fadeInterval);
-}
 function closeIntroduction(level) {
     SOUNDS.onclick.play();
     LEVEL.levelIntro[0].style.display = "none";

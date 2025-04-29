@@ -43,7 +43,7 @@ function restartLevel3() {
 }
 
 function level3() {
-    if(LEVEL3.readIntro) {
+    if (LEVEL3.readIntro) {
         LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/galleryBackground.jpg')";
         LEVEL.levelIntro[2].style.display = "none";
         LEVEL3.message.style.display = "block";
@@ -52,11 +52,11 @@ function level3() {
             <p>You entered the gallery. Down the hall there is a door...</p>
             <div class="nextButton" onclick="door()">go to door</div>`
 
-        if(DIFFICULTY.mode == "Easy") {
-            LEVEL3.hints = "Hint 1: <br> - Inspect the mess on the floor. Put the notes into the right order. <br> <br> Hint 2: <br> - Cleaning the stage is the least important ToDo."
+        if (DIFFICULTY.mode == "Easy") {
+            LEVEL3.hints = "Hint 1: <br> - Solve the puzzle - the sun is in the right corner. <br> <br> Hint 2: <br> - All the flowers are on the left side."
         }
-        else if(DIFFICULTY.mode == "Medium") {
-            LEVEL3.hints = "Hint: <br> - Inspect the mess on the floor. Put the notes into the right order."
+        else if (DIFFICULTY.mode == "Medium") {
+            LEVEL3.hints = "Hint: <br> - Solve the puzzle - the sun is in the right corner."
         }
         else {
             LEVEL3.hints = "No hints for you since you selected the difficulty 'Hard'."
@@ -68,15 +68,25 @@ function level3() {
     }
     else {
         LEVEL3.levelScreen.style.display = "flex";
+
         LEVEL.levelIntro[2].innerHTML = `
-        <img src="img/line.png" alt="line">
-        <p>“Her Timeless Art” - Mexico City 1940</p>
-        <br>
-        <p>A small avant-garde art gallery in Mexico City, tucked between murals and cobblestone alleys. The gallery is preparing for a posthumous exhibition of Camila Rivera, a brilliant young artist who vanished under mysterious circumstances. One of her paintings — rumored to be her final and most radical work — is missing or was intentionally destroyed.</p>
-        <p>Tonight, the gallery is unveiling her remaining work. If Camila's final painting isn't found and shown tonight, the truth will be lost — and her final message will remain hidden.</p>
-        <p>Do Camila a favor and find her final work and reveal it to the people.</p>
-        <div class="nextButton" onclick="closeIntroduction(3)">continue</div>
-    `;
+            <img src="img/line.png" alt="line">
+            <p class="introText">“Her Timeless Art” - Mexico City 1940</p>
+            <br>
+            <p class="introText">A small avant-garde art gallery in Mexico City, tucked between murals and cobblestone alleys. The gallery is preparing for a posthumous exhibition of Camila Rivera, a brilliant young artist who vanished under mysterious circumstances. One of her paintings — rumored to be her final and most radical work — is missing or was intentionally destroyed.</p>
+            <p class="introText">Tonight, the gallery is unveiling her remaining work. If Camila's final painting isn't found and shown tonight, the truth will be lost — and her final message will remain hidden.</p>
+            <p class="introText">Do Camila a favor and find her final work and reveal it to the people.</p>
+            <div class="nextButton" onclick="closeIntroduction(3)">continue</div>`;
+
+
+        gsap.from(".introText", {
+            duration: 1.2,
+            opacity: 0,
+            y: 40,
+            stagger: 0.5,
+            ease: "power2.out"
+        });
+
     }
 }
 
@@ -115,20 +125,20 @@ let puzzleImgs = [
 const correctPieces = new Array(puzzleImgs.length).fill(0);
 
 function randomOrder() {
-    for(let i = 0; i < puzzleImgs.length/2; i++) {
+    for (let i = 0; i < puzzleImgs.length / 2; i++) {
         let randomNumber;
         do {
             randomNumber = Math.floor(Math.random() * puzzleImgs.length);
         } while (puzzleImgs[randomNumber] == "");
 
         let currentImg = puzzleImgs[randomNumber];
-        let imgName = currentImg.split("/").pop().replace(".png", ""); 
+        let imgName = currentImg.split("/").pop().replace(".png", "");
         piecesLeft.innerHTML += `
             <img id="${imgName}" src="${currentImg}" alt="img" draggable="true" ondragstart="dragstartHandler(event)">`;
-        
+
         puzzleImgs[randomNumber] = "";
     }
-    for(let i = 0; i < puzzleImgs.length/2; i++) {
+    for (let i = 0; i < puzzleImgs.length / 2; i++) {
         let randomNumber;
         do {
             randomNumber = Math.floor(Math.random() * puzzleImgs.length);
@@ -138,7 +148,7 @@ function randomOrder() {
         let imgName = currentImg.split("/").pop().replace(".png", "");
         piecesRight.innerHTML += `
             <img id="${imgName}" src="${currentImg}" alt="img" draggable="true" ondragstart="dragstartHandler(event)">`;
-        
+
         puzzleImgs[randomNumber] = "";
     }
 }
@@ -147,9 +157,10 @@ function dropHandlerPuzzle(event) {
     event.preventDefault();
     const imageId = event.dataTransfer.getData("text");
     const image = document.getElementById(imageId);
-    const dropZone = event.currentTarget; 
+    const dropZone = event.currentTarget;
 
     if (dropZone.children.length === 0) {
+        SOUNDS.puzzle.volume = 0.3;
         SOUNDS.puzzle.play();
         image.style.width = "145px";
         image.style.height = "145px";
@@ -180,9 +191,9 @@ function dropHandlerPuzzle(event) {
                 <img id="lineSelect" src="img/line.png" alt="line">
                 <p>Congratulations</p>
                 <p>You put the pieces in the right order and managed to unlock the door.</p>
-                <div class="nextButton" onclick="basement()">continue</div>`; 
-        
-            } 
+                <div class="nextButton" onclick="basement()">continue</div>`;
+
+            }
             else {
                 LEVEL3.puzzleMessage.innerHTML = `  
                 <img id="lineSelect" src="img/line.png" alt="line">
@@ -196,13 +207,26 @@ function dropHandlerPuzzle(event) {
 
 
 function basement() {
+    if (DIFFICULTY.mode == "Easy") {
+        LEVEL3.hints = "Hint 1: <br> - When you choose a color you can paint over the painting. <br> <br> Hint 2: <br> - The poem refers to the color green."
+    }
+    else if (DIFFICULTY.mode == "Medium") {
+        LEVEL3.hints = "Hint: <br> - When you choose a color you can paint over the painting."
+    }
+    else {
+        LEVEL3.hints = "No hints for you since you selected the difficulty 'Hard'."
+    }
+    DROPDOWN.content[3].innerHTML = `
+            <img src="img/line.png" alt="line">
+            <p>${LEVEL3.hints}</p>
+            <img src="img/line1.png" alt="line">`
     SOUNDS.onclick.play();
     LEVEL3.painting.style.display = "block";
-    if(!LEVEL3.readBasement) {
+    if (!LEVEL3.readBasement) {
         LEVEL3.levelScreen.style.backgroundImage = "url('img/Level3/basementBackground.jpg')";
         LEVEL3.puzzleMessage.innerHTML = `  
                     <img id="lineSelect" src="img/line.png" alt="line">
-                    <p>You lended in a hidden atelier. Camila's atelier to be exact.</p>
+                    <p>You landed in a hidden atelier. Camila's atelier to be exact.</p>
                     <div class="nextButton" onclick="basement()">continue</div>`;
         LEVEL3.readBasement = true;
     }
@@ -222,14 +246,14 @@ function paintingRead() {
 
 function setColor(color) {
     SOUNDS.onclick.play();
-    if(!LEVEL3.alreadySet) {
-        if(color ==  1) {
+    if (!LEVEL3.alreadySet) {
+        if (color == 1) {
             LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakePurple.png" alt="img" style="width: 100%; height: 100%;">`
         }
-        else if(color == 2) {
+        else if (color == 2) {
             LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakeBeige.png" alt="img"  style="width: 100%; height: 100%;">`
         }
-        else if(color == 3) {
+        else if (color == 3) {
             LEVEL3.paintingUnder.innerHTML = `<img src="img/Level3/mistakeBrown.png" alt="img"  style="width: 100%; height: 100%;">`
         }
         else {
@@ -238,7 +262,7 @@ function setColor(color) {
         }
         listeners();
         LEVEL3.alreadySet = true;
-        
+
     }
 }
 let painting = false;
@@ -273,11 +297,11 @@ function draw(e) {
     const x = (e.clientX || e.touches?.[0].clientX) - rect.left;
     const y = (e.clientY || e.touches?.[0].clientY) - rect.top;
 
-    ctx.globalCompositeOperation = 'destination-out'; 
+    ctx.globalCompositeOperation = 'destination-out';
     ctx.beginPath();
-    ctx.arc(x, y, 30, 0, Math.PI * 2, false); 
+    ctx.arc(x, y, 30, 0, Math.PI * 2, false);
     ctx.fill();
-    ctx.globalCompositeOperation = 'source-over'; 
+    ctx.globalCompositeOperation = 'source-over';
 }
 
 function listeners() {
@@ -294,13 +318,13 @@ function commitPainting() {
     SOUNDS.onclick.play();
     LEVEL3.commitMessage.style.display = "block";
     LEVEL3.paintingPart.style.display = "none";
-    if(LEVEL3.choseRightPainting) {
+    if (LEVEL3.choseRightPainting) {
         LEVEL3.commitMessage.innerHTML = `
         <img id="lineSelect" src="img/line.png" alt="line">
         <h2>Congratulations</h2>
         <p>You managed to choose the right color to clean Camila's final painting. The gallery and people are forever thankful for your skills and cleverness.</p>
         <div class="nextButton" onclick="finishLevel(3)">finish</div>
-        `   
+        `
     }
     else {
         LEVEL3.commitMessage.innerHTML = `
@@ -308,6 +332,6 @@ function commitPainting() {
         <h2>Oh no...</h2>
         <p>You didn't pick the right color to safe Camila's painting. Try again, so the world can finally see her last work.</p>
         <div class="nextButton" onclick="restartLevel3()">try again</div>
-        `   
+        `
     }
 }
