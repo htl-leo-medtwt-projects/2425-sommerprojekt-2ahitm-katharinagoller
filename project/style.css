@@ -1249,3 +1249,23 @@ h2 {
 #level4Message img {
     width: 35%;
 }
+
+#powerbox {
+    background-image: url(img/Level4/electric.png);
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 8vw;
+    height: 18vh;
+    position: absolute;
+    left: 22vw;
+    top: 42vh;
+}
+
+#powerbox:hover {
+    background-image: url(img/Level4/electricBorder.png);
+}
+
+#gameCanvas {
+    display: none;
+}
