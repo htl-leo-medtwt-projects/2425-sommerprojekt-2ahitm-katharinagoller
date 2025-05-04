@@ -9,6 +9,8 @@ let LEVEL4 = {
     count: 0,
     messageCable: document.getElementById("messageCable"),
     code: document.getElementById("code"),
+    poster: document.getElementById("poster"),
+    posterOpen: document.getElementById("posterOpen"),
 }
 
 function restartLevel4() {
@@ -67,6 +69,7 @@ function level4() {
 }
 
 function tracks() {
+    LEVEL4.poster.style.display = "block";
     LEVEL4.powerbox.style.display = "block";
     LEVEL4.question.style.opacity = 1;
     LEVEL4.levelScreen.style.backgroundImage = "url('img/Level4/stationBackground.jpg')";
@@ -78,6 +81,8 @@ function tracks() {
 
 function closeMessage4() {
     LEVEL4.message.style.display = "none";
+    LEVEL4.posterOpen.style.display = "none";
+    LEVEL4.poster.style.display = "block";
 }
 
 function readPower() {
@@ -220,4 +225,9 @@ function code() {
 
 function enterNumber(number) {
     document.getElementById("display").innerHTML += number;
+}
+
+function posterRead() {
+  LEVEL4.posterOpen.style.display = "flex";
+  LEVEL4.poster.style.display = "none";
 }

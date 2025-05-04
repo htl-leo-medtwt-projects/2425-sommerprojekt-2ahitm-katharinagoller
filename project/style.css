@@ -1324,12 +1324,13 @@ h2 {
     display: block;
     background-color: #000;
     width: 80%;
-    height: 20vh;
+    height: 15vh;
     margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
-    padding: 5%;
+    padding-top: 25%;
     text-align: center;
+    font-size: 1.7em;
 }
 
 #commitCode {
@@ -1345,4 +1346,48 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     margin-top: 10%;
+}
+
+#poster {
+    background-image: url(img/Level4/poster.png);
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 4vw;
+    height: 10vh;
+    position: absolute;
+    right: 36vw;
+    top: 35vh;
+}
+
+#poster:hover {
+    background-image: url(img/Level4/posterBorder.png);
+}
+
+#posterOpen {
+    display: none;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7em;
+    user-select: none;
+    gap: 5%;
+    cursor: pointer;
+    margin-top: 15%;
+}
+
+#posterWrite {
+    background-image: url(img/Level4/poster.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 90vh;
+    height: 90vh;
+}
+
+#posterOpen p {
+    position: absolute;
+    top: 15vh;
+    right: 30vw;
 }
