@@ -270,12 +270,16 @@
             <canvas id="gameCanvas" width="1000" height="600"></canvas>
             <div id="messageCable"></div>
 
-            <div id="code"></div>
+            <div id="code">
+                <p onclick="closeMessage4()">X</p>
+            </div>
             <div id="poster" onclick="posterRead()"></div>
             <div id="posterOpen">
                 <div id="posterWrite"></div>
-                <p onclick="closeMessage4()">X</p>
+                <p id="posterX" onclick="closeMessage4()">X</p>
             </div>
+
+            <div id="codeMessage"></div>
         </div>
 
         <div id="endpage">

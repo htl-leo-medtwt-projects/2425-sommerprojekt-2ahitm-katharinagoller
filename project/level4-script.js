@@ -11,6 +11,10 @@ let LEVEL4 = {
     code: document.getElementById("code"),
     poster: document.getElementById("poster"),
     posterOpen: document.getElementById("posterOpen"),
+    posterWrite: document.getElementById("posterWrite"),
+    cablesConnected: false,
+    readOnce: false,
+    codeMessage: document.getElementById("codeMessage"),
 }
 
 function restartLevel4() {
@@ -83,12 +87,20 @@ function closeMessage4() {
     LEVEL4.message.style.display = "none";
     LEVEL4.posterOpen.style.display = "none";
     LEVEL4.poster.style.display = "block";
+    LEVEL4.code.style.display = "none";
+    LEVEL4.powerbox.style.display = "block"
 }
 
 function readPower() {
     LEVEL4.powerbox.style.display = "none";
-    LEVEL4.canvas.style.display = "block";
-    draw2();
+    LEVEL4.poster.style.display = "none";
+    if(!LEVEL4.cablesConnected) {
+      LEVEL4.canvas.style.display = "block";
+      draw2();
+    }
+    else {
+      LEVEL4.code.style.display = "block";
+    }
 }
 
 let canvas2 = document.getElementById("gameCanvas");
@@ -149,6 +161,7 @@ background.src = "img/Level4/powerbox.png";
               p.connectedTo = startPoint;
               LEVEL4.count++;
                 if(LEVEL4.count == 4) {
+                    LEVEL4.cablesConnected = true;
                     LEVEL4.messageCable.style.display = "block";
                     LEVEL4.messageCable.innerHTML = `
                     <img src="img/line.png" alt="line">
@@ -201,14 +214,13 @@ function draw2() {
 }
 
 let display = "";
-let enter = "";
 
 function code() {
     LEVEL4.code.style.display = "block";
     LEVEL4.messageCable.style.display = "none";
     LEVEL4.canvas.style.display = "none";
 
-    LEVEL4.code.innerHTML = `
+    LEVEL4.code.innerHTML += `
         <div id="display"></div>
         <div id="codeNumbers"></div>`;
     display = document.getElementById("display");
@@ -218,8 +230,8 @@ function code() {
       codeNumbers.innerHTML += `
       <div class="number" onclick="enterNumber(${i+1})">${i+1}</div>`;
     }
-    LEVEL4.code.innerHTML += `<div id="commitCode">enter</div>`;
-    enter = document.getElementById("commitCode");
+    LEVEL4.code.innerHTML += `<div id="commitCode" onclick="enter()">enter</div>`;
+    
 
 }
 
@@ -227,7 +239,51 @@ function enterNumber(number) {
     document.getElementById("display").innerHTML += number;
 }
 
+
+let firstNum = 0;
+let secondNum = 0;
+let thirdNum = 0;
+let fourthNum = 0;
+
+let correctCode = "";
+
 function posterRead() {
   LEVEL4.posterOpen.style.display = "flex";
   LEVEL4.poster.style.display = "none";
+    if(!LEVEL4.readOnce) {
+        LEVEL4.readOnce = true;
+        firstNum = Math.floor(Math.random() * 9) + 1;
+        secondNum = Math.floor(Math.random() * 9) + 1;
+        thirdNum = Math.floor(Math.random() * 9) + 1;
+        fourthNum = Math.floor(Math.random() * 9) + 1;
+
+        correctCode = `${firstNum}${secondNum}${thirdNum}${fourthNum}`;
+        console.log(correctCode);
+        LEVEL4.posterWrite.innerHTML = `
+        <p>1: flip ${firstNum} switche(s)</p>
+        <p>2: clean ${secondNum} pipe(s)</p> 
+        <p>3: turn ${thirdNum} light(s) on </p> 
+        <p>4: close ${fourthNum} door(s)</p> `
+    }
+}
+
+function enter() {
+  let enteredCode = document.getElementById("display").innerText.replace(/\D/g, "");
+  console.log(enteredCode)
+  LEVEL4.codeMessage.style.display = "block";
+    if(correctCode == enteredCode) {
+        LEVEL4.codeMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <h2>Congratulations</h2>
+        <p>You were able to enter the right code, started the test run and helped Eleanor get out of the dark tunnels. You are a real life saver.</p>
+        <div class="nextButton" onclick="finishLevel(4)">finish</div>`;
+    }
+    else {
+        LEVEL4.codeMessage.innerHTML = `
+        <img id="lineSelect" src="img/line.png" alt="line">
+        <h2>Oh no...</h2>
+        <p>You were not able to find out the right code to start the test run and help Eleanor.</p>
+        <div class="nextButton" onclick="restartLevel4()">try again</div>
+          `;
+    }
 }

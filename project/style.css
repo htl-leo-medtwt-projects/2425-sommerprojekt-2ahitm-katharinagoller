@@ -1270,7 +1270,7 @@ h2 {
     display: none;
 }
 
-#messageCable {
+#messageCable, #codeMessage {
     display: none;
     justify-content: center;
     margin-top: auto;
@@ -1283,7 +1283,7 @@ h2 {
     bottom: 3vh;
 }
 
-#messageCable img {
+#messageCable img, #codeMessage img {
     width: 35%;
 }
 
@@ -1298,6 +1298,15 @@ h2 {
     align-items: center;
     margin-right: auto;
     margin-left: auto;
+}
+
+#code p {
+    font-size: 1.7em;
+    position: absolute;
+    top: 12vh;
+    right: 35vw;
+    user-select: none;
+    cursor: pointer;
 }
 
 #codeNumbers {
@@ -1384,9 +1393,19 @@ h2 {
     background-size: 100%;
     width: 90vh;
     height: 90vh;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+
 }
 
-#posterOpen p {
+#posterWrite p {
+    margin-bottom: 5%;
+}
+
+#posterX {
     position: absolute;
     top: 15vh;
     right: 30vw;
