@@ -1269,3 +1269,80 @@ h2 {
 #gameCanvas {
     display: none;
 }
+
+#messageCable {
+    display: none;
+    justify-content: center;
+    margin-top: auto;
+    width: 60%;
+    font-size: 1.4em;
+    background-color: #0D1C46;
+    text-align: center;
+    padding-bottom: 2%;
+    position: absolute;
+    bottom: 3vh;
+}
+
+#messageCable img {
+    width: 35%;
+}
+
+#code {
+    width: 40vh;
+    height: 80vh;
+    background-image: url(img/Level4/codePlate.png);
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#codeNumbers {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    margin-top: 10%;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 5%
+}
+.number {
+    background-color: #343434;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    width: 60px;
+    padding-top: 25%;
+    padding-bottom: 25%;
+    font-size: larger;
+}
+
+#display {
+    display: block;
+    background-color: #000;
+    width: 80%;
+    height: 20vh;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+    text-align: center;
+}
+
+#commitCode {
+    background-color: #343434;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    width: fit-content;
+    padding: 2%;
+    gap: 2%;
+    margin-bottom: 8%;
+    font-size: larger;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}

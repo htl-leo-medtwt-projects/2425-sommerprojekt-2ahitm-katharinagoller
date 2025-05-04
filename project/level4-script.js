@@ -6,7 +6,9 @@ let LEVEL4 = {
     message: document.getElementById("level4Message"),
     powerbox: document.getElementById("powerbox"),
     canvas: document.getElementById("gameCanvas"),
-    count: 0
+    count: 0,
+    messageCable: document.getElementById("messageCable"),
+    code: document.getElementById("code"),
 }
 
 function restartLevel4() {
@@ -27,7 +29,7 @@ function level4() {
             <div class="nextButton" onclick="tracks()">go downstairs</div>`
 
         if (DIFFICULTY.mode == "Easy") {
-            LEVEL3.hints = "Hint 1: <br> - <br> <br> Hint 2: <br> - "
+             LEVEL3.hints = "Hint 1: <br> - <br> <br> Hint 2: <br> - "
         }
         else if (DIFFICULTY.mode == "Medium") {
             LEVEL3.hints = "Hint: <br> -"
@@ -142,11 +144,11 @@ background.src = "img/Level4/powerbox.png";
               p.connectedTo = startPoint;
               LEVEL4.count++;
                 if(LEVEL4.count == 4) {
-                    LEVEL4.message.style.display = "block";
-                    LEVEL4.message.innerHTML = `
+                    LEVEL4.messageCable.style.display = "block";
+                    LEVEL4.messageCable.innerHTML = `
                     <img src="img/line.png" alt="line">
                     <p>You managed to connect all the right cables. But your work is not done. You need to enter a code now to start the test run.</p>
-                    <div class="nextButton" onclick="closeMessage4()">close</div>`
+                    <div class="nextButton" onclick="code()">close</div>`
                 }
             }
           }
@@ -175,20 +177,47 @@ background.src = "img/Level4/powerbox.png";
       ctx2.stroke();
     }
 
-    function draw2() {
-      ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-      ctx2.drawImage(background, 0, 0, canvas2.width, canvas2.height);
+function draw2() {
+    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    ctx2.drawImage(background, 0, 0, canvas2.width, canvas2.height);
 
-      for (const p of pointsLeft) drawPoint(p);
-      for (const p of pointsRight) drawPoint(p);
+    for (const p of pointsLeft) drawPoint(p);
+    for (const p of pointsRight) drawPoint(p);
 
-      for (const p of pointsLeft) {
+    for (const p of pointsLeft) {
         if (p.connectedTo) {
           drawLine(p, p.connectedTo);
         }
-      }
-
-      if (dragging && startPoint) {
-        drawLine(startPoint, currentPos);
-      }
     }
+
+    if (dragging && startPoint) {
+        drawLine(startPoint, currentPos);
+    }
+}
+
+let display = "";
+let enter = "";
+
+function code() {
+    LEVEL4.code.style.display = "block";
+    LEVEL4.messageCable.style.display = "none";
+    LEVEL4.canvas.style.display = "none";
+
+    LEVEL4.code.innerHTML = `
+        <div id="display"></div>
+        <div id="codeNumbers"></div>`;
+    display = document.getElementById("display");
+    codeNumbers = document.getElementById("codeNumbers");
+
+    for(let i = 0; i < 9; i++) {
+      codeNumbers.innerHTML += `
+      <div class="number" onclick="enterNumber(${i+1})">${i+1}</div>`;
+    }
+    LEVEL4.code.innerHTML += `<div id="commitCode">enter</div>`;
+    enter = document.getElementById("commitCode");
+
+}
+
+function enterNumber(number) {
+    document.getElementById("display").innerHTML += number;
+}
