@@ -50,6 +50,10 @@ function playLevel(level) {
             restartLevel3();
         }
         else if (level == 4) {
+            SOUNDS.level4.play();
+            SOUNDS.level4.currentTime = 7;
+            SOUNDS.level4.duration = Infinity;
+            SOUNDS.level4.volume = 0.3;
             restartLevel4();
         }
 
@@ -103,6 +107,7 @@ function finishLevel(currentLevel) {
     fade(SOUNDS.level1);
     fade(SOUNDS.level2);
     fade(SOUNDS.level3);
+    fade(SOUNDS.level4);
     SOUNDS.theme.duration = Infinity;
     SOUNDS.theme.volume = 0.6;
     SOUNDS.theme.currentTime = 0;

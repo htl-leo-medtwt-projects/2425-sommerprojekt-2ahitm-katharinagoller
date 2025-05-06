@@ -18,9 +18,28 @@ let LEVEL4 = {
 }
 
 function restartLevel4() {
+    LEVEL4.readOnce = false;
+    LEVEL4.cablesConnected = false,
+    LEVEL4.codeMessage.style.display = "none";
+    LEVEL4.code.style.display = "none";
+    LEVEL4.count = 0;
     LEVEL.levelIntro[3].style.display = "block";
     LEVEL4.readIntro = false;
     LEVEL4.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
+    LEVEL4.code.innerHTML = "";
+    pointsLeft = [
+      { x: 320, y: 150, color: "#6F93C6", connectedTo: null },
+      { x: 320, y: 250, color: "#215093", connectedTo: null },
+      { x: 320, y: 350, color: "#1B2C5E", connectedTo: null },
+      { x: 320, y: 450, color: "#061235", connectedTo: null },
+    ];
+  
+    pointsRight = [
+      { x: 650, y: 150, color: "#1B2C5E", connectedTo: null },
+      { x: 650, y: 250, color: "#061235", connectedTo: null },
+      { x: 650, y: 350, color: "#215093", connectedTo: null },
+      { x: 650, y: 450, color: "#6F93C6", connectedTo: null },
+    ];
     level4();
 }
 
@@ -35,13 +54,13 @@ function level4() {
             <div class="nextButton" onclick="tracks()">go downstairs</div>`
 
         if (DIFFICULTY.mode == "Easy") {
-             LEVEL3.hints = "Hint 1: <br> - <br> <br> Hint 2: <br> - "
+             LEVEL4.hints = "Hint 1: <br> - Connect the cables with the matching color. <br> <br> Hint 2: The numbers on the poster put together is the code.<br> - "
         }
         else if (DIFFICULTY.mode == "Medium") {
-            LEVEL3.hints = "Hint: <br> -"
+            LEVEL4.hints = "Hint: <br> - Connect the cables with the matching color."
         }
         else {
-            LEVEL3.hints = "No hints for you since you selected the difficulty 'Hard'."
+            LEVEL4.hints = "No hints for you since you selected the difficulty 'Hard'."
         }
         DROPDOWN.content[4].innerHTML = `
                 <img src="img/line.png" alt="line">
@@ -73,6 +92,7 @@ function level4() {
 }
 
 function tracks() {
+    SOUNDS.onclick.play();
     LEVEL4.poster.style.display = "block";
     LEVEL4.powerbox.style.display = "block";
     LEVEL4.question.style.opacity = 1;
@@ -84,6 +104,7 @@ function tracks() {
 }
 
 function closeMessage4() {
+    SOUNDS.onclick.play();
     LEVEL4.message.style.display = "none";
     LEVEL4.posterOpen.style.display = "none";
     LEVEL4.poster.style.display = "block";
@@ -92,6 +113,7 @@ function closeMessage4() {
 }
 
 function readPower() {
+  SOUNDS.onclick.play();
     LEVEL4.powerbox.style.display = "none";
     LEVEL4.poster.style.display = "none";
     if(!LEVEL4.cablesConnected) {
@@ -157,6 +179,7 @@ background.src = "img/Level4/powerbox.png";
             p.connectedTo === null
           ) {
             if (p.color === startPoint.color) {
+              SOUNDS.cable.play();
               startPoint.connectedTo = p;
               p.connectedTo = startPoint;
               LEVEL4.count++;
@@ -216,6 +239,7 @@ function draw2() {
 let display = "";
 
 function code() {
+    SOUNDS.onclick.play();
     LEVEL4.code.style.display = "block";
     LEVEL4.messageCable.style.display = "none";
     LEVEL4.canvas.style.display = "none";
@@ -237,6 +261,7 @@ function code() {
 
 function enterNumber(number) {
     document.getElementById("display").innerHTML += number;
+    SOUNDS.code.play();
 }
 
 
@@ -248,6 +273,7 @@ let fourthNum = 0;
 let correctCode = "";
 
 function posterRead() {
+  SOUNDS.onclick.play();
   LEVEL4.posterOpen.style.display = "flex";
   LEVEL4.poster.style.display = "none";
     if(!LEVEL4.readOnce) {
@@ -272,6 +298,7 @@ function enter() {
   console.log(enteredCode)
   LEVEL4.codeMessage.style.display = "block";
     if(correctCode == enteredCode) {
+        SOUNDS.correct.play();
         LEVEL4.codeMessage.innerHTML = `
         <img src="img/line.png" alt="line">
         <h2>Congratulations</h2>
@@ -279,6 +306,7 @@ function enter() {
         <div class="nextButton" onclick="finishLevel(4)">finish</div>`;
     }
     else {
+      SOUNDS.wrong.play();
         LEVEL4.codeMessage.innerHTML = `
         <img id="lineSelect" src="img/line.png" alt="line">
         <h2>Oh no...</h2>

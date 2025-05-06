@@ -116,6 +116,11 @@ let SOUNDS = {
     lightswitch: new Audio("sounds/lightswitch.mp3"),
     puzzle: new Audio("sounds/puzzle.mp3"),
     brush: new Audio("sounds/brush.mp3"),
+    level4: new Audio("sounds/level4Music.mp3"),
+    cable: new Audio("sounds/cable.mp3"),
+    code: new Audio("sounds/code1.mp3"),
+    correct: new Audio("sounds/correct.mp3"),
+    wrong: new Audio("sounds/wrong.mp3"),
 }
 
 function fade(music) {
