@@ -1438,11 +1438,11 @@ h2 {
     display: none;
     background-repeat: no-repeat;
     background-size: 100%;
-    width: 3vw;
-    height: 8vh;
+    width: 6vw;
+    height: 10vh;
     position: absolute;
-    right: 10vw;
-    top: 85vh;
+    right: 3vw;
+    top: 76vh;
 }
 
 #camera:hover {
@@ -1454,11 +1454,11 @@ h2 {
     display: none;
     background-repeat: no-repeat;
     background-size: 100%;
-    width: 4vw;
-    height: 10vh;
+    width: 6vw;
+    height: 12vh;
     position: absolute;
-    left: 16vw;
-    top: 80vh;
+    left: 38vw;
+    top: 81vh;
 }
 
 #letter5:hover {
@@ -1467,4 +1467,40 @@ h2 {
 
 .close5 {
     display: none;
+    font-size: 2.4em;
+    user-select: none;
+    cursor: pointer;
+    justify-content: center;
+    width: 90%;
+}
+
+#letter5Img {
+    width: 40%;
+}
+
+
+#slideshow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow {
+    width: auto;
+    padding: 5px 10px;
+    font-size: 1.7em;
+    cursor: pointer;
+    user-select: none;
+}
+
+#imgSlide img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+#imgSlide {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }

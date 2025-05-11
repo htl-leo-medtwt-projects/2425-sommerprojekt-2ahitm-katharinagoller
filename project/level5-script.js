@@ -5,6 +5,9 @@ let LEVEL5 = {
     levelScreen: document.getElementById("level5Screen"),
     camera: document.getElementById("camera"),
     letter: document.getElementById("letter5"),
+    close: document.getElementsByClassName("close5"),
+    imgSlide: document.getElementById("imgSlide"),
+    count: 1,
 }
 
 function restartLevel5() {
@@ -19,7 +22,9 @@ function level5() {
         LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/livingRoomBackground.jpg')";
         LEVEL.levelIntro[4].style.display = "none";
         LEVEL5.camera.style.display = "block"
-         LEVEL5.letter.style.display = "block"
+        LEVEL5.letter.style.display = "block"
+        LEVEL5.close[0].style.display = "none";
+        LEVEL5.close[1].style.display = "none";
 
         if (DIFFICULTY.mode == "Easy") {
              LEVEL5.hints = "Hint 1: <br> -  <br> <br> Hint 2: <br> - "
@@ -57,4 +62,34 @@ function level5() {
         });
 
     }
+}
+
+function cameraRead() {
+    LEVEL5.camera.style.display = "none";
+    LEVEL5.letter.style.display = "none";
+    LEVEL5.close[0].style.display = "flex";
+    LEVEL5.imgSlide.innerHTML = `<img src="img/Level5/1.png" alt="img">`
+}
+
+function letter5Read() {
+    LEVEL5.camera.style.display = "none";
+    LEVEL5.letter.style.display = "none";
+    LEVEL5.close[1].style.display = "flex";
+}
+
+function right() {
+    LEVEL5.count++;
+    if(LEVEL5.count == 7) {
+        LEVEL5.count = 1;
+    }
+    LEVEL5.imgSlide.innerHTML = `<img src="img/Level5/${LEVEL5.count}.png" alt="img">`
+    
+}
+
+function left() {
+    LEVEL5.count--;
+    if(LEVEL5.count == 0) {
+        LEVEL5.count = 6;
+    }
+    LEVEL5.imgSlide.innerHTML = `<img src="img/Level5/${LEVEL5.count}.png" alt="img">`
 }

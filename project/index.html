@@ -287,7 +287,11 @@
 
             <div id="camera" onclick="cameraRead()"></div>
                 <div class="close5">
-                    <img src="img/Level5/cameraBack.png" alt="img">
+                    <div id="slideshow">
+                        <div class="arrow" onclick="left()">&lt;</div>
+                        <div id="imgSlide"></div>
+                        <div class="arrow" onclick="right()">></div>
+                    </div>
                     <p onclick="level5()">X</p>
                 </div>
                 <div id="letter5" onclick="letter5Read()"></div>
