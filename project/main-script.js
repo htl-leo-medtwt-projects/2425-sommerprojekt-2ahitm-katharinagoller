@@ -56,6 +56,9 @@ function playLevel(level) {
             SOUNDS.level4.volume = 0.3;
             restartLevel4();
         }
+        else {
+            restartLevel5();
+        }
 
         clearInterval(LOAD.timer); 
 

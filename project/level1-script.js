@@ -89,13 +89,13 @@ function level1() {
 
         LEVEL.levelIntro[0].innerHTML = `
             <img src="img/line.png" alt="line">
-            <p class="introText">"The Great Flood" - Paris 1900</p>
+            <p class="introText1">"The Great Flood" - Paris 1900</p>
             <br>
-            <p class="introText">Paris, May 1900 - Catastrophe has struck our beloved city! The Seine, swollen by relentless rains and melting snow, has risen beyond its banks...</p>
-            <p class="introText">At first, you must find his houses safely. You have a map and a poem that should help you choose the right bridge.</p>
+            <p class="introText1">Paris, May 1900 - Catastrophe has struck our beloved city! The Seine, swollen by relentless rains and melting snow, has risen beyond its banks...</p>
+            <p class="introText1">At first, you must find his houses safely. You have a map and a poem that should help you choose the right bridge.</p>
             <div class="nextButton" onclick="closeIntroduction(1)">continue</div>`;
 
-        gsap.from(".introText", {
+        gsap.from(".introText1", {
             duration: 1.2,
             opacity: 0,
             y: 40,

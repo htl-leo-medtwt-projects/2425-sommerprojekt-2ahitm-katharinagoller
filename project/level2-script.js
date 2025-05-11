@@ -73,14 +73,14 @@ function level2() {
 
         LEVEL.levelIntro[1].innerHTML = `
             <img src="img/line.png" alt="line">
-            <p class="introText">“Treacherous Theater” - Hollywood 1920</p>
+            <p class="introText2">“Treacherous Theater” - Hollywood 1920</p>
             <br>
-            <p class="introText">Hollywood, June 1920. This is a voice carried through time. The theater Fallen Angel stands on the edge of glory, its velvet curtains ready to rise on a new legend.</p>
-            <p class="introText">Linda Rose — young, radiant, destined for stardom — is about to take the stage that could change her life. But shadows move behind the scenes. Someone has laced the spotlight with danger, woven traps into the wings, and scripted a final act meant to end in tragedy. Unless you can change the story.</p>
-            <p class="introText">Unravel the riddles. Rewrite fate. <br> And save Linda before the curtain falls.</p>
+            <p class="introText2">Hollywood, June 1920. This is a voice carried through time. The theater Fallen Angel stands on the edge of glory, its velvet curtains ready to rise on a new legend.</p>
+            <p class="introText2">Linda Rose — young, radiant, destined for stardom — is about to take the stage that could change her life. But shadows move behind the scenes. Someone has laced the spotlight with danger, woven traps into the wings, and scripted a final act meant to end in tragedy. Unless you can change the story.</p>
+            <p class="introText2">Unravel the riddles. Rewrite fate. <br> And save Linda before the curtain falls.</p>
             <div class="nextButton" onclick="closeIntroduction(2)">continue</div>`;
 
-        gsap.from(".introText", {
+        gsap.from(".introText2", {
             duration: 1.2,
             opacity: 0,
             y: 40,

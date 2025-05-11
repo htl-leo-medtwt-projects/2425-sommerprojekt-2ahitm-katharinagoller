@@ -71,15 +71,15 @@ function level3() {
 
         LEVEL.levelIntro[2].innerHTML = `
             <img src="img/line.png" alt="line">
-            <p class="introText">“Her Timeless Art” - Mexico City 1940</p>
+            <p class="introText3">“Her Timeless Art” - Mexico City 1940</p>
             <br>
-            <p class="introText">A small avant-garde art gallery in Mexico City, tucked between murals and cobblestone alleys. The gallery is preparing for a posthumous exhibition of Camila Rivera, a brilliant young artist who vanished under mysterious circumstances. One of her paintings — rumored to be her final and most radical work — is missing or was intentionally destroyed.</p>
-            <p class="introText">Tonight, the gallery is unveiling her remaining work. If Camila's final painting isn't found and shown tonight, the truth will be lost — and her final message will remain hidden.</p>
-            <p class="introText">Do Camila a favor and find her final work and reveal it to the people.</p>
+            <p class="introText3">A small avant-garde art gallery in Mexico City, tucked between murals and cobblestone alleys. The gallery is preparing for a posthumous exhibition of Camila Rivera, a brilliant young artist who vanished under mysterious circumstances. One of her paintings — rumored to be her final and most radical work — is missing or was intentionally destroyed.</p>
+            <p class="introText3">Tonight, the gallery is unveiling her remaining work. If Camila's final painting isn't found and shown tonight, the truth will be lost — and her final message will remain hidden.</p>
+            <p class="introText3">Do Camila a favor and find her final work and reveal it to the people.</p>
             <div class="nextButton" onclick="closeIntroduction(3)">continue</div>`;
 
 
-        gsap.from(".introText", {
+        gsap.from(".introText3", {
             duration: 1.2,
             opacity: 0,
             y: 40,

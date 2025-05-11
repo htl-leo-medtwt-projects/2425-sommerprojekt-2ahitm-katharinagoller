@@ -11,6 +11,7 @@
         <script src="level2-script.js"defer></script>
         <script src="level3-script.js"defer></script>
         <script src="level4-script.js"defer></script>
+        <script src="level5-script.js"defer></script>
         <script src="main-script.js"defer></script>
         
     </head>
@@ -270,16 +271,30 @@
             <canvas id="gameCanvas" width="1000" height="600"></canvas>
             <div id="messageCable"></div>
 
-            <div id="code">
-                <p onclick="closeMessage4()">X</p>
-            </div>
+            <div id="code"></div>
             <div id="poster" onclick="posterRead()"></div>
             <div id="posterOpen">
                 <div id="posterWrite"></div>
                 <p id="posterX" onclick="closeMessage4()">X</p>
             </div>
-
             <div id="codeMessage"></div>
+        </div>
+
+         <div id="level5Screen">
+            <div class="levelIntro"></div>
+            <h1 id="hint5" class="button" onclick="dropDownLevel5()" >?</h1>
+            <div class="dropdown"></div> 
+
+            <div id="camera" onclick="cameraRead()"></div>
+                <div class="close5">
+                    <img src="img/Level5/cameraBack.png" alt="img">
+                    <p onclick="level5()">X</p>
+                </div>
+                <div id="letter5" onclick="letter5Read()"></div>
+                <div class="close5">
+                    <img id="letter5Img" src="img/Level5/letterOpen.png" alt="img">
+                    <p onclick="level5()">X</p>
+                </div>
         </div>
 
         <div id="endpage">

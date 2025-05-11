@@ -1410,3 +1410,61 @@ h2 {
     top: 15vh;
     right: 30vw;
 }
+
+/************************** Level 5 **************************/
+
+#level5Screen {
+    background-image: url(img/introBackground.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 113%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+#hint5 {
+    opacity: 0;
+}
+
+#camera {
+    background-image: url(img/Level5/camera.png);
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 3vw;
+    height: 8vh;
+    position: absolute;
+    right: 10vw;
+    top: 85vh;
+}
+
+#camera:hover {
+    background-image: url(img/Level5/cameraBorder.png);
+}
+
+#letter5 {
+    background-image: url(img/Level5/letter.png);
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 4vw;
+    height: 10vh;
+    position: absolute;
+    left: 16vw;
+    top: 80vh;
+}
+
+#letter5:hover {
+    background-image: url(img/Level5/letterBorder.png);
+}
+
+.close5 {
+    display: none;
+}

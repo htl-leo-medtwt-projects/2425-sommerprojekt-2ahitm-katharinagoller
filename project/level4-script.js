@@ -72,15 +72,15 @@ function level4() {
 
         LEVEL.levelIntro[3].innerHTML = `
             <img src="img/line.png" alt="line">
-            <p class="introText">“Drastic Change” - London 1960</p>
+            <p class="introText4">“Drastic Change” - London 1960</p>
             <br>
-            <p class="introText">The age of steam is fading. Deep beneath the streets, the Underground is being reborn — tunnels rewired, trains reimagined, electricity pulsing where smoke once lingered. The future is no longer an idea. It's moving fast.</p>
-            <p class="introText">But not everything is running smoothly. One fault in the system could stop the progress cold — or worse. Eleanor Smith, a young technician, is trapped below during a test run. A single spark could decide what happens next.</p>
-            <p class="introText">Step in. Take hold. Connect the wires and get Eleanor out of there safely.</p>
+            <p class="introText4">The age of steam is fading. Deep beneath the streets, the Underground is being reborn — tunnels rewired, trains reimagined, electricity pulsing where smoke once lingered. The future is no longer an idea. It's moving fast.</p>
+            <p class="introText4">But not everything is running smoothly. One fault in the system could stop the progress cold — or worse. Eleanor Smith, a young technician, is trapped below during a test run. A single spark could decide what happens next.</p>
+            <p class="introText4">Step in. Take hold. Connect the wires and get Eleanor out of there safely.</p>
             <div class="nextButton" onclick="closeIntroduction(4)">continue</div>`;
 
 
-        gsap.from(".introText", {
+        gsap.from(".introText4", {
             duration: 1.2,
             opacity: 0,
             y: 40,
@@ -245,6 +245,7 @@ function code() {
     LEVEL4.canvas.style.display = "none";
 
     LEVEL4.code.innerHTML += `
+        <p id="codeX" onclick="closeMessage4()">X</p>
         <div id="display"></div>
         <div id="codeNumbers"></div>`;
     display = document.getElementById("display");
