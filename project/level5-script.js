@@ -8,12 +8,19 @@ let LEVEL5 = {
     close: document.getElementsByClassName("close5"),
     imgSlide: document.getElementById("imgSlide"),
     count: 1,
+    kitchen: document.getElementById("swapKitchen5"),
+    package: document.getElementById("package"),
+    livingRoom: document.getElementById("swapLivingRoom5"),
+    noteBook: document.getElementById("notebook5"),
+    cutOpen: false,
 }
 
 function restartLevel5() {
     LEVEL.levelIntro[4].style.display = "block";
     LEVEL5.readIntro = false;
     LEVEL5.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
+    leftDot = { x: 265, y: 305, color: "#7a818a", connected: false };
+    rightDot = { x: 810, y: 305, color: "#7a818a", connected: false };
     level5();
 }
 
@@ -25,6 +32,9 @@ function level5() {
         LEVEL5.letter.style.display = "block"
         LEVEL5.close[0].style.display = "none";
         LEVEL5.close[1].style.display = "none";
+        LEVEL5.kitchen.style.display = "block";
+        LEVEL5.livingRoom.style.display = "none";
+        LEVEL5.package.style.display = "none";
 
         if (DIFFICULTY.mode == "Easy") {
              LEVEL5.hints = "Hint 1: <br> -  <br> <br> Hint 2: <br> - "
@@ -93,3 +103,110 @@ function left() {
     }
     LEVEL5.imgSlide.innerHTML = `<img src="img/Level5/${LEVEL5.count}.png" alt="img">`
 }
+
+function kitchen5() {
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/kitchenBackground.jpg')";
+    LEVEL5.camera.style.display = "none";
+    LEVEL5.letter.style.display = "none";
+    LEVEL5.close[0].style.display = "none";
+    LEVEL5.close[1].style.display = "none";
+    LEVEL5.package.style.display = "block";
+    LEVEL5.livingRoom.style.display = "block"
+    LEVEL5.kitchen.style.display = "none";
+    LEVEL5.close[3].style.display = "none";
+
+}
+
+function packageRead() {
+    if(!LEVEL5.cutOpen) {
+        LEVEL5.package.style.display = "none";
+        LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/tileBackground.png')";
+        LEVEL5.close[2].style.display = "block";
+        draw3();
+    }
+    else {
+        opened();
+    }
+}
+
+
+let canvas3 = document.getElementById("cutCanvas");
+let ctx3 = canvas3.getContext("2d");
+
+let leftDot = { x: 265, y: 305, color: "#7a818a", connected: false };
+let rightDot = { x: 810, y: 305, color: "#7a818a", connected: false };
+
+let dragging2 = false;
+let startDot = null;
+let currentPos2 = { x: 0, y: 0 };
+
+canvas3.addEventListener("mousedown", (e) => {
+  let { offsetX, offsetY } = e;
+  if (Math.hypot(offsetX - leftDot.x, offsetY - leftDot.y) < 15 && !leftDot.connected) {
+    dragging2 = true;
+    startDot = leftDot;
+    currentPos2 = { x: offsetX, y: offsetY };
+  }
+});
+
+canvas3.addEventListener("mousemove", (e) => {
+  if (dragging2) {
+    currentPos2 = { x: e.offsetX, y: e.offsetY };
+    draw3();
+  }
+});
+
+canvas3.addEventListener("mouseup", (e) => {
+  if (dragging2) {
+    if (Math.hypot(e.offsetX - rightDot.x, e.offsetY - rightDot.y) < 15 && !rightDot.connected) {
+      leftDot.connected = true;
+      rightDot.connected = true;
+      opened();
+    }
+  }
+  dragging2 = false;
+  startDot = null;
+  draw3();
+});
+
+function drawDot(dot) {
+  ctx3.beginPath();
+  ctx3.arc(dot.x, dot.y, 8, 0, Math.PI * 2);
+  ctx3.fillStyle = dot.color;
+  ctx3.fill();
+  ctx3.strokeStyle = "#7a818a";
+  ctx3.stroke();
+}
+
+function drawLine2(p1, p2, color = "#7a818a") {
+  ctx3.beginPath();
+  ctx3.moveTo(p1.x, p1.y);
+  ctx3.lineTo(p2.x, p2.y);
+  ctx3.strokeStyle = color;
+  ctx3.lineWidth = 4;
+  ctx3.stroke();
+}
+
+function draw3() {
+  ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
+  drawDot(leftDot);
+  drawDot(rightDot);
+
+  if (leftDot.connected && rightDot.connected) {
+    drawLine2(leftDot, rightDot, "#7a818a");
+  }
+
+  if (dragging2 && startDot) {
+    drawLine2(startDot, currentPos2, "#7a818a");
+  }
+}
+
+
+function opened() {
+    LEVEL5.close[2].style.display = "none";
+    LEVEL5.close[3].style.display = "flex";
+    LEVEL5.noteBook.style.display = "block";
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/packageBackground.png')";
+    LEVEL5.cutOpen = true;
+}
+
