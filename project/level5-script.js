@@ -14,7 +14,8 @@ let LEVEL5 = {
     noteBook: document.getElementById("notebook5"),
     cutOpen: false,
     keyMessage: document.getElementById("keyMessage"),
-    keys: document.getElementById("keys")
+    keys: document.getElementById("keys"),
+    door: document.getElementById("door5"),
 }
 
 function restartLevel5() {
@@ -109,6 +110,7 @@ function left() {
 }
 
 function kitchen5() {
+    LEVEL5.door.style.display = "block";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/kitchenBackground.jpg')";
     LEVEL5.camera.style.display = "none";
     LEVEL5.letter.style.display = "none";
@@ -124,7 +126,14 @@ function kitchen5() {
 }
 
 function packageRead() {
+    LEVEL5.door.style.display = "none";
+    leftDot = { x: 265, y: 305, color: "#7a818a", connected: false };
+    rightDot = { x: 810, y: 305, color: "#7a818a", connected: false };
+    dragging2 = false;
+    startDot = null;
+    currentPos2 = { x: 0, y: 0 };
     LEVEL5.keys.style.display = "none";
+    LEVEL5.livingRoom.style.display = "none";
     if(!LEVEL5.cutOpen) {
         LEVEL5.package.style.display = "none";
         LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/tileBackground.png')";
@@ -168,7 +177,12 @@ canvas3.addEventListener("mouseup", (e) => {
     if (Math.hypot(e.offsetX - rightDot.x, e.offsetY - rightDot.y) < 15 && !rightDot.connected) {
       leftDot.connected = true;
       rightDot.connected = true;
-      opened();
+      LEVEL5.package.style.display = "none";
+      LEVEL5.close[2].style.display = "none";
+      LEVEL5.close[3].style.display = "flex";
+      LEVEL5.noteBook.style.display = "block";
+      LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/packageBackground.png')";
+      LEVEL5.cutOpen = true;
     }
   }
   dragging2 = false;
@@ -215,7 +229,6 @@ function opened() {
     LEVEL5.close[3].style.display = "flex";
     LEVEL5.noteBook.style.display = "block";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/packageBackground.png')";
-    LEVEL5.cutOpen = true;
 }
 
 function keysRead() {
@@ -230,28 +243,45 @@ function keysRead() {
 
 function dropHandlerDoor(event) {
     event.preventDefault();
-    const imageId = event.dataTransfer.getData("text");
-    const image = document.getElementById(imageId);
-
-    event.target.appendChild(image);
     LEVEL5.keys.style.display = "none";
     LEVEL5.keyMessage.style.display = "block";
     LEVEL5.package.style.display = "none";
     LEVEL5.keyMessage.innerHTML = `
         <img src="img/line.png" alt="line">
-        <p>Open the door by dragging the keys to the door.</p>
-        <div class="nextButton" onclick="kitchen5()">close</div>`;
+        <p>You opened the door.Did you look at all items closely Who is the suspect you are trying to find?</p>
+        <div id="button5Flex">
+            <div class="nextButton" onclick="pickImg()">show pictures</div>
+            <div class="nextButton" onclick="kitchen5()">close</div>
+        </div>`;
 }
 
-
-function dragstartHandlerKeys(ev) {
-  ev.dataTransfer.setData("text/plain", "key");
-
-  const img = new Image();
-  img.src = "img/Level5/keys.png";
-  img.width = 5;
-  img.height = 5;
-
-  ev.dataTransfer.setDragImage(img, 32, 32);
+function pickImg() {
+    LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>Pick the picture with the murderer on it.</p>
+        <div id="picSelect">
+          <img src="img/Level5/1Img.png" onclick="selectPic(1)" alt="img">
+          <img src="img/Level5/2Img.png" onclick="selectPic(2)" alt="img">
+          <img src="img/Level5/3Img.png" onclick="selectPic(3)" alt="img">
+          <img src="img/Level5/4Img.png" onclick="selectPic(4)" alt="img">
+          <img src="img/Level5/5Img.png" onclick="selectPic(5)" alt="img">
+          <img src="img/Level5/6Img.png" onclick="selectPic(6)" alt="img">
+        </div>`;
 }
 
+function selectPic(number) {
+  if(number == 3) {
+       LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>Congratulations</p>
+        <p>You managed to pick the right suspect. Find him and save Frank!</p>
+        <div class="nextButton" onclick="gasstation()">go outside</div>`;
+  }
+  else {
+       LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>Oh no...</p>
+        <p>You didn't choose the right suspect.</p>
+        <div class="nextButton" onclick="restartLevel5()">try again</div>`;
+  }
+}

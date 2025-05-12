@@ -1551,19 +1551,12 @@ h2 {
 }
 
 #keys {
-    background-image: url(img/Level5/keys.png);
     display: none;
-    background-repeat: no-repeat;
-    background-size: 100%;
     width: 6vw;
     height: 8vh;
     position: absolute;
     right: 22vw;
     top: 60vh;
-}
-
-#keys:hover {
-    background-image: url(img/Level5/keysBorder.png);
 }
 
 #keyMessage {
@@ -1588,4 +1581,30 @@ h2 {
     position: absolute;
     top: 20vh;
     left: 23vw;
+}
+
+#picSelect {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+    padding: 2%;
+}
+
+#picSelect img {
+    width: 100%;
+    opacity: 0.6;
+    transition: opacity 400ms;
+}
+
+#picSelect img:hover {
+    opacity: 1;
+}
+
+#button5Flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
