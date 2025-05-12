@@ -309,6 +309,10 @@
                     <p onclick="kitchen5()">X</p>
                 </div>
                 <div id="swapLivingRoom5" onclick="level5()"> go to living room</div>
+
+                <div id="keys"  draggable="true" ondragstart="dragstartHandlerKeys(event)" onclick="keysRead()"></div>
+                <div id="keyMessage"></div>
+                <div id="door5" ondrop="dropHandlerDoor(event)" ondragover="dragoverHandler(event)"></div>
         </div>
 
         <div id="endpage">

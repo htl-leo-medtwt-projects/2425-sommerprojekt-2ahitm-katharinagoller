@@ -13,6 +13,8 @@ let LEVEL5 = {
     livingRoom: document.getElementById("swapLivingRoom5"),
     noteBook: document.getElementById("notebook5"),
     cutOpen: false,
+    keyMessage: document.getElementById("keyMessage"),
+    keys: document.getElementById("keys")
 }
 
 function restartLevel5() {
@@ -26,6 +28,8 @@ function restartLevel5() {
 
 function level5() {
     if (LEVEL5.readIntro) {
+        LEVEL5.keyMessage.style.display = "none";
+        LEVEL5.keys.style.display = "none";
         LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/livingRoomBackground.jpg')";
         LEVEL.levelIntro[4].style.display = "none";
         LEVEL5.camera.style.display = "block"
@@ -114,10 +118,13 @@ function kitchen5() {
     LEVEL5.livingRoom.style.display = "block"
     LEVEL5.kitchen.style.display = "none";
     LEVEL5.close[3].style.display = "none";
-
+    LEVEL5.close[3].style.display = "none";
+    LEVEL5.keys.style.display = "block";
+    LEVEL5.keyMessage.style.display = "none";
 }
 
 function packageRead() {
+    LEVEL5.keys.style.display = "none";
     if(!LEVEL5.cutOpen) {
         LEVEL5.package.style.display = "none";
         LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/tileBackground.png')";
@@ -203,10 +210,48 @@ function draw3() {
 
 
 function opened() {
+    LEVEL5.package.style.display = "none";
     LEVEL5.close[2].style.display = "none";
     LEVEL5.close[3].style.display = "flex";
     LEVEL5.noteBook.style.display = "block";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/packageBackground.png')";
     LEVEL5.cutOpen = true;
+}
+
+function keysRead() {
+    LEVEL5.keyMessage.style.display = "block";
+    LEVEL5.package.style.display = "none";
+    LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>Open the door by dragging the keys to the door.</p>
+        <div class="nextButton" onclick="kitchen5()">close</div>`;
+}
+
+
+function dropHandlerDoor(event) {
+    event.preventDefault();
+    const imageId = event.dataTransfer.getData("text");
+    const image = document.getElementById(imageId);
+
+    event.target.appendChild(image);
+    LEVEL5.keys.style.display = "none";
+    LEVEL5.keyMessage.style.display = "block";
+    LEVEL5.package.style.display = "none";
+    LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>Open the door by dragging the keys to the door.</p>
+        <div class="nextButton" onclick="kitchen5()">close</div>`;
+}
+
+
+function dragstartHandlerKeys(ev) {
+  ev.dataTransfer.setData("text/plain", "key");
+
+  const img = new Image();
+  img.src = "img/Level5/keys.png";
+  img.width = 5;
+  img.height = 5;
+
+  ev.dataTransfer.setDragImage(img, 32, 32);
 }
 
