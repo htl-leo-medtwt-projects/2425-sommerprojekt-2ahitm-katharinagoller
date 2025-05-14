@@ -285,3 +285,35 @@ function selectPic(number) {
         <div class="nextButton" onclick="restartLevel5()">try again</div>`;
   }
 }
+
+function gasstation() {
+    LEVEL5.livingRoom.style.display = "none";
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/gasstation.png')";
+    LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>After a short walk through New York you found the gas station Frank wrote about. Seems abandoned.</p>
+        <div class="nextButton" onclick="warehouse()">continue</div>`;
+    LEVEL5.package.style.display = "none";
+    LEVEL5.keys.style.display = "none";
+}
+
+function warehouse() {
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/alleyBackground.png')";
+    LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>As you walk behind the gas station you land in an dark and dirty warehouse full with cars and broken stuff. Down the hall there is a big metal door.</p>
+        <div class="nextButton" onclick="toDoor()">walk to door</div>`;
+}
+
+function toDoor() {
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/doorBackground.png')";
+    LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>The door is locked. Find a way to open it.</p>
+        <div class="nextButton" onclick="gears()">close</div>`;
+}
+
+function gears() {
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/gearBackground.png')";
+    LEVEL5.keyMessage.style.display = "none";
+}
