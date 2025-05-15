@@ -20,6 +20,8 @@ let LEVEL5 = {
     gearBox: document.getElementById("gearBox"),
     gearOptions: document.getElementById("gearOptions"),
     gearOverall: document.getElementById("gearOverall"),
+    gearCount: 0,
+    gearMessage: document.getElementById("gearMessage"),
 }
 
 function restartLevel5() {
@@ -333,9 +335,38 @@ function dropHandlerGear(event) {
     event.preventDefault();
     const imageId = event.dataTransfer.getData("text");
     const image = document.getElementById(imageId);
+    const dropZoneGear = event.currentTarget;
 
-    if (event.target.children.length === 0) {
-        event.target.appendChild(image);
+    if (dropZoneGear.children.length === 0) {
+        dropZoneGear.appendChild(image);
+        gearPlacements[event.target.id] = imageId;
         image.style.width = "100%"
+        LEVEL5.gearCount++;
+        if(LEVEL5.gearCount == 4) {
+          console.log(gearPlacements)
+            LEVEL5.gearMessage.style.display = "block";
+            LEVEL5.gearOptions.style.display = "none";
+            if(gearPlacements.gearDiv1 == "gear6" && gearPlacements.gearDiv2 == "gear3" && gearPlacements.gearDiv3 == "gear1" && gearPlacements.gearDiv4 == "gear4") {
+                LEVEL5.gearMessage.innerHTML = `
+                    <img src="img/line.png" alt="line">
+                    <p>Congratulations</p>
+                    <p>You managed to put all the gears in the right order, figured out the code word "LOST" and finally could open the door.</p>
+                    <div class="nextButton" onclick="hall()">go inside</div>`;
+            }
+            else {
+                LEVEL5.gearMessage.innerHTML = `
+                    <img src="img/line.png" alt="line">
+                    <p>Oh no...</p>
+                    <p>You did not manage to put all the gears in the right order, neither figured out the code word to open the door.</p>
+                    <div class="nextButton" onclick="restartLevel5()">try again</div>`;
+            }
+        }
     }
 }
+
+let gearPlacements = {
+    gearDiv1: null,
+    gearDiv2: null,
+    gearDiv3: null,
+    gearDiv4: null
+};

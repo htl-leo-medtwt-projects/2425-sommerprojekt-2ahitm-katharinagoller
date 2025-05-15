@@ -1559,7 +1559,7 @@ h2 {
     top: 60vh;
 }
 
-#keyMessage {
+#keyMessage, #gearMessage {
     display: none;
     justify-content: center;
     margin-top: auto;
@@ -1569,9 +1569,11 @@ h2 {
     background-color: #0D1C46;
     text-align: center;
     padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#keyMessage img {
+#keyMessage img, #gearMessage img {
     width: 35%;
 }
 
@@ -1714,4 +1716,9 @@ h2 {
 @keyframes gear6 {
     0% {transform: rotate(0deg);}
     100% {transform: rotate(-360deg);}
+}
+
+
+#gearMessage {
+    margin-top: 12%;
 }
