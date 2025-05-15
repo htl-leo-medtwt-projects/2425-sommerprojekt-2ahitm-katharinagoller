@@ -1722,3 +1722,81 @@ h2 {
 #gearMessage {
     margin-top: 12%;
 }
+
+#gearMessageIntro {
+    display: none;
+    justify-content: center;
+    position: absolute;
+    bottom: 5vh;
+    margin-top: auto;
+    width: 60%;
+    font-size: 1.4em;
+    background-color: #0D1C46;
+    text-align: center;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;   
+    z-index: 100;
+}
+
+#gearMessageIntro img {
+    width: 35%;
+}
+
+#axe {
+    background-image: url(img/Level5/axe.png);
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 12vw;
+    height: 9vh;
+    position: absolute;
+    right: 18vw;
+    top: 70vh;
+    z-index: -1;
+}
+
+#axe:hover {
+    background-image: url(img/Level5/axeBorder.png);
+}
+
+#powerBar {
+    width: 30%;
+    height: 30px;
+    background-color: #000;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-left: auto;
+    display: none;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#hitZone {
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    background: linear-gradient(90deg, #1B2C5E, #215093);
+    border-radius: 15px;
+    left: 60%;
+}
+
+#movingBar {
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    background: linear-gradient(90deg, #6F93C6, #215093);
+    border-radius: 15px;
+    left: 0;
+}
+
+#hitButton {
+    background-color: #0D1C46;
+    font-size: 2em;
+    text-shadow: 2px 2px 3px black;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 1%;
+    display: none;
+}

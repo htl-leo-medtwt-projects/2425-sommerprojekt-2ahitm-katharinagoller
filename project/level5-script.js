@@ -22,6 +22,14 @@ let LEVEL5 = {
     gearOverall: document.getElementById("gearOverall"),
     gearCount: 0,
     gearMessage: document.getElementById("gearMessage"),
+    gearMessageIntro: document.getElementById("gearMessageIntro"),
+    axe: document.getElementById("axe"),
+    powerBar: document.getElementById("powerBar"),
+    hitButton: document.getElementById("hitButton"),
+    movingBar: document.getElementById("movingBar"),
+    hitZone: document.getElementById("hitZone"),
+    hits: 0,
+    running: true,
 }
 
 function restartLevel5() {
@@ -326,9 +334,18 @@ function closeGasIntro() {
 }
 
 function gears() {
+    LEVEL5.gearMessageIntro.style.display = "block";
     LEVEL5.powerbox.style.display = "none";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/gearBackground.png')";
     LEVEL5.gearOverall.style.display = "block";
+    LEVEL5.gearMessageIntro.innerHTML = `
+          <img src="img/line.png" alt="line">
+          <p>There is a gear mechanism but all the gears are out of place. Put them in the right order, the chosen gears should be a word.</p>
+          <div class="nextButton" onclick="closeGearIntro()">close</div>`;
+}
+
+function closeGearIntro() {
+    LEVEL5.gearMessageIntro.style.display = "none";
 }
 
 function dropHandlerGear(event) {
@@ -351,7 +368,7 @@ function dropHandlerGear(event) {
                     <img src="img/line.png" alt="line">
                     <p>Congratulations</p>
                     <p>You managed to put all the gears in the right order, figured out the code word "LOST" and finally could open the door.</p>
-                    <div class="nextButton" onclick="hall()">go inside</div>`;
+                    <div class="nextButton" onclick="storage()">go inside</div>`;
             }
             else {
                 LEVEL5.gearMessage.innerHTML = `
@@ -370,3 +387,82 @@ let gearPlacements = {
     gearDiv3: null,
     gearDiv4: null
 };
+
+function storage() {
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/storageBackground.png')";
+    LEVEL5.axe.style.display = "block";
+    LEVEL5.gearOverall.style.display = "none";
+    LEVEL5.keyMessage.style.display = "block";
+    LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>You enter the room and see two huge glass tanks in it. One looks.. strange... like.. someone is in it...</p>
+        <div class="nextButton" onclick="storageIntro()">continue</div>`;
+}
+
+
+function storageIntro() {
+    LEVEL5.keyMessage.innerHTML = `
+        <img src="img/line.png" alt="line">
+        <p>Like Frank is in it....</p>
+        <p>Find a way to get him out of the tank. FAST.</p>
+        <div class="nextButton" onclick="closeStorageIntro()">close</div>`;
+}
+
+function closeStorageIntro() {
+    LEVEL5.keyMessage.style.display = "none";
+
+}
+
+function waterPart() {
+    LEVEL5.powerBar.style.display = "block";
+    LEVEL5.hitButton.style.display = "block";
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/noCracks.png')";
+    LEVEL5.axe.style.display = "none";
+    animate();
+}
+
+
+let barWidth = 400; 
+let movingBarWidth = barWidth * 0.2;
+let targetLeft = barWidth * 0.6;
+let targetWidth = barWidth * 0.25;
+let position = 0;
+let direction = 1; 
+let speed = 5;
+
+function animate() {
+    if (LEVEL5.running) {
+        position += speed * direction;
+        if (position <= 0) {
+          direction = 1;
+          position = 0;
+        }
+        if (position + movingBarWidth >= barWidth) {
+          direction = -1;
+          position = barWidth - movingBarWidth;
+        }
+
+        LEVEL5.movingBar.style.left = position + 'px';
+
+        requestAnimationFrame(animate);
+    } 
+}
+
+ function hit() {
+    if (LEVEL5.running) {
+        let barStart = position;
+        let barEnd = position + movingBarWidth;
+        let targetStart = targetLeft;
+        let targetEnd = targetLeft + targetWidth;
+        if (barEnd > targetStart && barStart < targetEnd) {
+          LEVEL5.hits++;
+          LEVEL5.levelScreen.style.backgroundImage = `url('img/Level5/Crack${LEVEL5.hits}.png')`;
+          if (LEVEL5.hits == 4) {
+            LEVEL5.running = false;
+            LEVEL5.hitButton.disabled = true;
+            console.log("yay")
+          }
+        }
+    }
+}
+
