@@ -16,6 +16,10 @@ let LEVEL5 = {
     keyMessage: document.getElementById("keyMessage"),
     keys: document.getElementById("keys"),
     door: document.getElementById("door5"),
+    powerbox: document.getElementById("powerbox5"),
+    gearBox: document.getElementById("gearBox"),
+    gearOptions: document.getElementById("gearOptions"),
+    gearOverall: document.getElementById("gearOverall"),
 }
 
 function restartLevel5() {
@@ -287,6 +291,7 @@ function selectPic(number) {
 }
 
 function gasstation() {
+    LEVEL5.door.style.display = "none";
     LEVEL5.livingRoom.style.display = "none";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/gasstation.png')";
     LEVEL5.keyMessage.innerHTML = `
@@ -306,14 +311,31 @@ function warehouse() {
 }
 
 function toDoor() {
-    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/doorBackground.png')";
+    LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/doorBackground.jpg')";
+    LEVEL5.powerbox.style.display = "block";
     LEVEL5.keyMessage.innerHTML = `
         <img src="img/line.png" alt="line">
         <p>The door is locked. Find a way to open it.</p>
-        <div class="nextButton" onclick="gears()">close</div>`;
+        <div class="nextButton" onclick="closeGasIntro()">close</div>`;
+}
+
+function closeGasIntro() {
+    LEVEL5.keyMessage.style.display = "none";
 }
 
 function gears() {
+    LEVEL5.powerbox.style.display = "none";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/gearBackground.png')";
-    LEVEL5.keyMessage.style.display = "none";
+    LEVEL5.gearOverall.style.display = "block";
+}
+
+function dropHandlerGear(event) {
+    event.preventDefault();
+    const imageId = event.dataTransfer.getData("text");
+    const image = document.getElementById(imageId);
+
+    if (event.target.children.length === 0) {
+        event.target.appendChild(image);
+        image.style.width = "100%"
+    }
 }

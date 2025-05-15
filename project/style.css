@@ -1608,3 +1608,110 @@ h2 {
     justify-content: space-around;
     align-items: center;
 }
+
+#powerbox5 {
+    background-image: url(img/Level5/powerbox.png);
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 10vw;
+    height: 12vh;
+    position: absolute;
+    left: 18vw;
+    top: 42vh;
+}
+
+#powerbox5:hover {
+    background-image: url(img/Level5/powerboxBrder.png);
+}
+
+#gearOverall {
+    display: none;
+    width: 100%;
+    justify-content: center;
+    height: 100vh;
+}
+#gearBox {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    margin-top: 14%;
+    width: 70%;
+    gap: 5%;
+}
+
+#gearBox div {
+    width: 150px;
+    height: 150px;
+    background-color: #6f93c6a2;
+}
+
+#gearOptions {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: end;
+    margin-top: 18%;
+    gap: 5%;
+    width: 70%;
+}
+
+#gearOptions img {
+    width: 15%;
+}
+
+#gear1 {
+    animation: gear1 4s infinite linear;
+}
+
+@keyframes gear1 {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+#gear2 {
+    animation: gear2 6s infinite linear;
+}
+
+@keyframes gear2 {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
+
+#gear3 {
+    animation: gear3 3s infinite linear;
+}
+
+@keyframes gear3 {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+#gear4 {
+    animation: gear4 8s infinite linear;
+}
+
+@keyframes gear4 {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
+
+#gear5 {
+    animation: gear5 6s infinite linear;
+}
+
+@keyframes gear5 {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+#gear6 {
+    animation: gear6 3s infinite linear;
+}
+
+@keyframes gear6 {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
