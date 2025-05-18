@@ -29,7 +29,10 @@ let LEVEL5 = {
     movingBar: document.getElementById("movingBar"),
     hitZone: document.getElementById("hitZone"),
     hits: 0,
-    running: true,
+    running: false,
+    timeCount: 30,
+    timerBox: document.getElementById("timerLevel5"),
+    timer: null,
 }
 
 function restartLevel5() {
@@ -38,6 +41,26 @@ function restartLevel5() {
     LEVEL5.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
     leftDot = { x: 265, y: 305, color: "#7a818a", connected: false };
     rightDot = { x: 810, y: 305, color: "#7a818a", connected: false };
+    LEVEL5.timerBox.style.display = "none";
+    LEVEL5.keyMessage.style.display = "none";
+    LEVEL5.cutOpen = false;
+    LEVEL5.gearCount = 0;
+    gearPlacements.gearDiv1 = null;
+    gearPlacements.gearDiv2 = null;
+    gearPlacements.gearDiv3 = null;
+    gearPlacements.gearDiv4 = null;
+    const dropZoneIds = ["gearDiv1", "gearDiv2", "gearDiv3", "gearDiv4"];
+    dropZoneIds.forEach(id => {
+        const dropZone = document.getElementById(id);
+        if (dropZone && dropZone.children.length > 0) {
+            const gear = dropZone.children[0];
+            LEVEL5.gearOptions.appendChild(gear);
+            gear.style.width = "60px";
+        }
+        dropZone.innerHTML = "";
+    });
+
+    LEVEL5.gearMessage.style.display = "none";
     level5();
 }
 
@@ -338,6 +361,7 @@ function gears() {
     LEVEL5.powerbox.style.display = "none";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/gearBackground.png')";
     LEVEL5.gearOverall.style.display = "block";
+    LEVEL5.gearOptions.style.display = "flex";
     LEVEL5.gearMessageIntro.innerHTML = `
           <img src="img/line.png" alt="line">
           <p>There is a gear mechanism but all the gears are out of place. Put them in the right order, the chosen gears should be a word.</p>
@@ -418,51 +442,96 @@ function waterPart() {
     LEVEL5.hitButton.style.display = "block";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/noCracks.png')";
     LEVEL5.axe.style.display = "none";
-    animate();
-}
+    LEVEL5.timerBox.style.display = "block";
 
+    LEVEL5.running = true;
+    LEVEL5.hits = 0;
+    LEVEL5.timeCount = 30;
 
-let barWidth = 400; 
-let movingBarWidth = barWidth * 0.2;
-let targetLeft = barWidth * 0.6;
-let targetWidth = barWidth * 0.25;
-let position = 0;
-let direction = 1; 
-let speed = 5;
+    const powerBarEl = LEVEL5.powerBar;
+    const movingBarEl = LEVEL5.movingBar;
 
-function animate() {
-    if (LEVEL5.running) {
-        position += speed * direction;
+    let barWidth = powerBarEl.offsetWidth;
+    let movingBarWidth = barWidth * 0.15;
+    let targetLeft = barWidth * 0.6;
+    let targetWidth = barWidth * 0.15;
+
+    let position = 0;
+    let direction = 1;
+    let lastTimestamp = null;
+
+    const pixelsPerSecond = 400;
+
+    function animate(timestamp) {
+        if (!LEVEL5.running) return;
+
+        if (!lastTimestamp) lastTimestamp = timestamp;
+        const delta = timestamp - lastTimestamp;
+        lastTimestamp = timestamp;
+
+        position += (delta / 1000) * pixelsPerSecond * direction;
+
         if (position <= 0) {
-          direction = 1;
-          position = 0;
+            direction = 1;
+            position = 0;
         }
         if (position + movingBarWidth >= barWidth) {
-          direction = -1;
-          position = barWidth - movingBarWidth;
+            direction = -1;
+            position = barWidth - movingBarWidth;
         }
 
-        LEVEL5.movingBar.style.left = position + 'px';
+        movingBarEl.style.left = `${position}px`;
 
         requestAnimationFrame(animate);
-    } 
-}
+    }
 
- function hit() {
-    if (LEVEL5.running) {
+    requestAnimationFrame(animate);
+
+    LEVEL5.timer = setInterval(() => {
+        LEVEL5.timerBox.innerHTML = `${LEVEL5.timeCount}s left`;
+        LEVEL5.timeCount--;
+
+        if (LEVEL5.timeCount < 0) {
+            clearInterval(LEVEL5.timer);
+            LEVEL5.running = false;
+            LEVEL5.hitButton.style.display = "none";
+            LEVEL5.powerBar.style.display = "none";
+            LEVEL5.keyMessage.style.display = "block";
+            LEVEL5.keyMessage.innerHTML = `
+                <img src="img/line.png" alt="line">
+                <p>Oh No...</p>
+                <p>You were not able to shatter the glass tank in time. You could not save Frank, his soul has left his cold body, silent pleas flash by. Maybe.. maybe next time will be your time to shine and keep everyone alive.</p>
+                <div class="nextButton" onclick="restartLevel5()">try again</div>
+            `;
+        }
+    }, 1000);
+
+    LEVEL5.hitButton.onclick = () => {
+        if (!LEVEL5.running) return;
+
         let barStart = position;
         let barEnd = position + movingBarWidth;
         let targetStart = targetLeft;
         let targetEnd = targetLeft + targetWidth;
-        if (barEnd > targetStart && barStart < targetEnd) {
-          LEVEL5.hits++;
-          LEVEL5.levelScreen.style.backgroundImage = `url('img/Level5/Crack${LEVEL5.hits}.png')`;
-          if (LEVEL5.hits == 4) {
-            LEVEL5.running = false;
-            LEVEL5.hitButton.disabled = true;
-            console.log("yay")
-          }
-        }
-    }
-}
 
+        if (barEnd > targetStart && barStart < targetEnd) {
+            LEVEL5.hits++;
+            LEVEL5.levelScreen.style.backgroundImage = `url('img/Level5/Crack${LEVEL5.hits}.png')`;
+
+            if (LEVEL5.hits >= 4) {
+                clearInterval(LEVEL5.timer);
+                LEVEL5.running = false;
+                LEVEL5.hitButton.disabled = true;
+                LEVEL5.hitButton.style.display = "none";
+                LEVEL5.powerBar.style.display = "none";
+                LEVEL5.keyMessage.style.display = "block";
+                LEVEL5.keyMessage.innerHTML = `
+                    <img src="img/line.png" alt="line">
+                    <p>Congratulations</p>
+                    <p>You could save Frank just in time. Look at you! You saved so many people in these 100 years. Be proud of yourself!!!</p>
+                    <div class="nextButton" onclick="finishLevel(5)">finish</div>
+                `;
+            }
+        }
+    };
+}

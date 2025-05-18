@@ -107,6 +107,7 @@ function finishLevel(currentLevel) {
     LEVEL2.levelScreen.style.display = "none";
     LEVEL3.levelScreen.style.display = "none";
     LEVEL4.levelScreen.style.display = "none";
+    LEVEL5.levelScreen.style.display = "none";
     fade(SOUNDS.level1);
     fade(SOUNDS.level2);
     fade(SOUNDS.level3);
