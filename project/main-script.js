@@ -57,6 +57,10 @@ function playLevel(level) {
             restartLevel4();
         }
         else {
+            SOUNDS.level5.play();
+            SOUNDS.level5.currentTime = 3;
+            SOUNDS.level5.duration = Infinity;
+            SOUNDS.level5.volume = 0.3;
             restartLevel5();
         }
 
@@ -112,6 +116,8 @@ function finishLevel(currentLevel) {
     fade(SOUNDS.level2);
     fade(SOUNDS.level3);
     fade(SOUNDS.level4);
+    fade(SOUNDS.level5);
+    SOUNDS.water.pause();
     SOUNDS.theme.duration = Infinity;
     SOUNDS.theme.volume = 0.6;
     SOUNDS.theme.currentTime = 0;

@@ -36,6 +36,7 @@ let LEVEL5 = {
 }
 
 function restartLevel5() {
+    SOUNDS.water.pause();
     LEVEL.levelIntro[4].style.display = "block";
     LEVEL5.readIntro = false;
     LEVEL5.levelScreen.style.backgroundImage = "url('img/introBackground.jpg')";
@@ -55,17 +56,19 @@ function restartLevel5() {
         if (dropZone && dropZone.children.length > 0) {
             const gear = dropZone.children[0];
             LEVEL5.gearOptions.appendChild(gear);
-            gear.style.width = "60px";
+            gear.style.width = "15%"
         }
         dropZone.innerHTML = "";
     });
-
+    LEVEL5.gearBox.style.display = "none";
     LEVEL5.gearMessage.style.display = "none";
+    LEVEL5.gearOverall.style.display = "none";
     level5();
 }
 
 function level5() {
     if (LEVEL5.readIntro) {
+        SOUNDS.onclick.play();
         LEVEL5.keyMessage.style.display = "none";
         LEVEL5.keys.style.display = "none";
         LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/livingRoomBackground.jpg')";
@@ -78,11 +81,12 @@ function level5() {
         LEVEL5.livingRoom.style.display = "none";
         LEVEL5.package.style.display = "none";
 
+        LEVEL5.question.style.display = "block";
         if (DIFFICULTY.mode == "Easy") {
-             LEVEL5.hints = "Hint 1: <br> -  <br> <br> Hint 2: <br> - "
+             LEVEL5.hints = "Hint 1: <br> -  Investigate the items in the flat and try to find out who Frank's suspect is.<br> <br> Hint 2: A man with a hat.<br> - "
         }
         else if (DIFFICULTY.mode == "Medium") {
-            LEVEL5.hints = "Hint: <br> - "
+            LEVEL5.hints = "Hint: <br> - Investigate the items in the flat and try to find out who Frank's suspect is."
         }
         else {
             LEVEL5.hints = "No hints for you since you selected the difficulty 'Hard'."
@@ -117,6 +121,7 @@ function level5() {
 }
 
 function cameraRead() {
+    SOUNDS.onclick.play();
     LEVEL5.camera.style.display = "none";
     LEVEL5.letter.style.display = "none";
     LEVEL5.close[0].style.display = "flex";
@@ -124,12 +129,14 @@ function cameraRead() {
 }
 
 function letter5Read() {
+    SOUNDS.newspaper.play();
     LEVEL5.camera.style.display = "none";
     LEVEL5.letter.style.display = "none";
     LEVEL5.close[1].style.display = "flex";
 }
 
 function right() {
+    SOUNDS.camera.play();
     LEVEL5.count++;
     if(LEVEL5.count == 7) {
         LEVEL5.count = 1;
@@ -139,6 +146,7 @@ function right() {
 }
 
 function left() {
+    SOUNDS.camera.play();
     LEVEL5.count--;
     if(LEVEL5.count == 0) {
         LEVEL5.count = 6;
@@ -147,6 +155,7 @@ function left() {
 }
 
 function kitchen5() {
+    SOUNDS.onclick.play();
     LEVEL5.door.style.display = "block";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/kitchenBackground.jpg')";
     LEVEL5.camera.style.display = "none";
@@ -163,6 +172,7 @@ function kitchen5() {
 }
 
 function packageRead() {
+    SOUNDS.onclick.play();
     LEVEL5.door.style.display = "none";
     leftDot = { x: 265, y: 305, color: "#7a818a", connected: false };
     rightDot = { x: 810, y: 305, color: "#7a818a", connected: false };
@@ -249,7 +259,7 @@ function draw3() {
   ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
   drawDot(leftDot);
   drawDot(rightDot);
-
+  SOUNDS.cutOpen.play();
   if (leftDot.connected && rightDot.connected) {
     drawLine2(leftDot, rightDot, "#7a818a");
   }
@@ -269,6 +279,7 @@ function opened() {
 }
 
 function keysRead() {
+    SOUNDS.keys.play();
     LEVEL5.keyMessage.style.display = "block";
     LEVEL5.package.style.display = "none";
     LEVEL5.keyMessage.innerHTML = `
@@ -279,6 +290,7 @@ function keysRead() {
 
 
 function dropHandlerDoor(event) {
+    SOUNDS.keys.play();
     event.preventDefault();
     LEVEL5.keys.style.display = "none";
     LEVEL5.keyMessage.style.display = "block";
@@ -293,6 +305,7 @@ function dropHandlerDoor(event) {
 }
 
 function pickImg() {
+    SOUNDS.onclick.play();
     LEVEL5.keyMessage.innerHTML = `
         <img src="img/line.png" alt="line">
         <p>Pick the picture with the murderer on it.</p>
@@ -307,6 +320,7 @@ function pickImg() {
 }
 
 function selectPic(number) {
+     SOUNDS.onclick.play();
   if(number == 3) {
        LEVEL5.keyMessage.innerHTML = `
         <img src="img/line.png" alt="line">
@@ -324,6 +338,8 @@ function selectPic(number) {
 }
 
 function gasstation() {
+    SOUNDS.onclick.play();
+    LEVEL5.question.style.display = "none";
     LEVEL5.door.style.display = "none";
     LEVEL5.livingRoom.style.display = "none";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/gasstation.png')";
@@ -336,6 +352,7 @@ function gasstation() {
 }
 
 function warehouse() {
+    SOUNDS.onclick.play();
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/alleyBackground.png')";
     LEVEL5.keyMessage.innerHTML = `
         <img src="img/line.png" alt="line">
@@ -344,6 +361,7 @@ function warehouse() {
 }
 
 function toDoor() {
+    SOUNDS.onclick.play();
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/doorBackground.jpg')";
     LEVEL5.powerbox.style.display = "block";
     LEVEL5.keyMessage.innerHTML = `
@@ -353,14 +371,32 @@ function toDoor() {
 }
 
 function closeGasIntro() {
+    SOUNDS.onclick.play();
     LEVEL5.keyMessage.style.display = "none";
 }
 
 function gears() {
+    SOUNDS.onclick.play();
+    LEVEL5.question.style.display = "block";
+    if (DIFFICULTY.mode == "Easy") {
+        LEVEL5.hints = "Hint 1: <br> -  The word from the gears is about being confused and alone. <br> <br> Hint 2: LOST <br> - "
+    }
+    else if (DIFFICULTY.mode == "Medium") {
+        LEVEL5.hints = "Hint: <br> - The word from the gears is about being confused and alone."
+    }
+    else {
+        LEVEL5.hints = "No hints for you since you selected the difficulty 'Hard'."
+    }
+    DROPDOWN.content[5].innerHTML = `
+                <img src="img/line.png" alt="line">
+                <p>${LEVEL5.hints}</p>
+                <img src="img/line1.png" alt="line">`;
+
     LEVEL5.gearMessageIntro.style.display = "block";
     LEVEL5.powerbox.style.display = "none";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/gearBackground.png')";
     LEVEL5.gearOverall.style.display = "block";
+    LEVEL5.gearBox.style.display = "flex";
     LEVEL5.gearOptions.style.display = "flex";
     LEVEL5.gearMessageIntro.innerHTML = `
           <img src="img/line.png" alt="line">
@@ -369,6 +405,7 @@ function gears() {
 }
 
 function closeGearIntro() {
+    SOUNDS.onclick.play();
     LEVEL5.gearMessageIntro.style.display = "none";
 }
 
@@ -379,6 +416,7 @@ function dropHandlerGear(event) {
     const dropZoneGear = event.currentTarget;
 
     if (dropZoneGear.children.length === 0) {
+        SOUNDS.gears.play();
         dropZoneGear.appendChild(image);
         gearPlacements[event.target.id] = imageId;
         image.style.width = "100%"
@@ -413,6 +451,7 @@ let gearPlacements = {
 };
 
 function storage() {
+    SOUNDS.onclick.play();
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/storageBackground.png')";
     LEVEL5.axe.style.display = "block";
     LEVEL5.gearOverall.style.display = "none";
@@ -425,6 +464,7 @@ function storage() {
 
 
 function storageIntro() {
+    SOUNDS.onclick.play();
     LEVEL5.keyMessage.innerHTML = `
         <img src="img/line.png" alt="line">
         <p>Like Frank is in it....</p>
@@ -433,11 +473,13 @@ function storageIntro() {
 }
 
 function closeStorageIntro() {
+    SOUNDS.onclick.play();
     LEVEL5.keyMessage.style.display = "none";
 
 }
 
 function waterPart() {
+    SOUNDS.axe.play();
     LEVEL5.powerBar.style.display = "block";
     LEVEL5.hitButton.style.display = "block";
     LEVEL5.levelScreen.style.backgroundImage = "url('img/Level5/noCracks.png')";
@@ -447,6 +489,7 @@ function waterPart() {
     LEVEL5.running = true;
     LEVEL5.hits = 0;
     LEVEL5.timeCount = 30;
+    SOUNDS.timer.play();
 
     const powerBarEl = LEVEL5.powerBar;
     const movingBarEl = LEVEL5.movingBar;
@@ -493,6 +536,7 @@ function waterPart() {
 
         if (LEVEL5.timeCount < 0) {
             clearInterval(LEVEL5.timer);
+            SOUNDS.timer.pause();
             LEVEL5.running = false;
             LEVEL5.hitButton.style.display = "none";
             LEVEL5.powerBar.style.display = "none";
@@ -517,20 +561,25 @@ function waterPart() {
         if (barEnd > targetStart && barStart < targetEnd) {
             LEVEL5.hits++;
             LEVEL5.levelScreen.style.backgroundImage = `url('img/Level5/Crack${LEVEL5.hits}.png')`;
+            SOUNDS.glass.play();
 
             if (LEVEL5.hits >= 4) {
                 clearInterval(LEVEL5.timer);
                 LEVEL5.running = false;
+                
+                SOUNDS.glass.play();
                 LEVEL5.hitButton.disabled = true;
                 LEVEL5.hitButton.style.display = "none";
                 LEVEL5.powerBar.style.display = "none";
                 LEVEL5.keyMessage.style.display = "block";
+                SOUNDS.water.play();
                 LEVEL5.keyMessage.innerHTML = `
                     <img src="img/line.png" alt="line">
                     <p>Congratulations</p>
                     <p>You could save Frank just in time. Look at you! You saved so many people in these 100 years. Be proud of yourself!!!</p>
                     <div class="nextButton" onclick="finishLevel(5)">finish</div>
                 `;
+                SOUNDS.timer.pause();
             }
         }
     };

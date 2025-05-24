@@ -134,6 +134,16 @@ let SOUNDS = {
     code: new Audio("sounds/code1.mp3"),
     correct: new Audio("sounds/correct.mp3"),
     wrong: new Audio("sounds/wrong.mp3"),
+    level5: new Audio("sounds/level5Music.mp3"),
+    camera: new Audio("sounds/camera.mp3"),
+    gears: new Audio("sounds/gears.mp3"),
+    cutOpen: new Audio("sounds/cutOpen.mp3"),
+    water: new Audio("sounds/water.mp3"),
+    keys: new Audio("sounds/keys.mp3"),
+    glass: new Audio("sounds/glassBreak.mp3"),
+    axe: new Audio("sounds/axe.mp3"),
+    timer: new Audio("sounds/timer.mp3"),
+
 }
 
 function fade(music) {

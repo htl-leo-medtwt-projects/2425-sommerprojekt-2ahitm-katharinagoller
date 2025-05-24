@@ -1429,9 +1429,7 @@ h2 {
     align-items: center; 
 }
 
-#hint5 {
-    opacity: 0;
-}
+
 
 #camera {
     background-image: url(img/Level5/camera.png);
@@ -1801,4 +1799,6 @@ h2 {
     position: absolute;
     bottom: 18vh;
     text-align: center;
+    user-select: none;
+    cursor: pointer;
 }
