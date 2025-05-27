@@ -212,6 +212,7 @@ function dropHandlerBasket(event) {
 
     if (imageId == "basket") {
         if (DONE.ropesSecured) {
+            LEVEL2.basket.style.width = "90%";
             event.target.appendChild(image);
             DONE.removedWater = true;
         }

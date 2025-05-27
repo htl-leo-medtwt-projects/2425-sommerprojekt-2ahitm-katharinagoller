@@ -131,11 +131,19 @@ function finishLevel(currentLevel) {
     SOUNDS.theme.play();
     if(currentLevel == 5) {
         document.getElementById("notebookMessage").style.display = "block";
-        document.getElementById("notebookMessage").innerHTML = `
+        if(entryAlready) {
+            document.getElementById("notebookMessage").innerHTML = `
+            <img src="img/line.png" alt="line">
+            <div class="nextButton" onclick="leaderBoard()">show diary</div>`
+            ;
+        }
+        else {
+            document.getElementById("notebookMessage").innerHTML = `
             <img src="img/line.png" alt="line">
             <p>You managed to solve every level right. To remind those who come after you how brilliant you were you should write an entry in the leaderboard.</p>
             <div class="nextButton" onclick="lastPage(5)">continue</div>`
             ;
+        }
     }
 }
 
@@ -177,9 +185,9 @@ function leaveNote() {
     let text = document.getElementById("textNotebook");
     document.getElementById("textBoxNotebook").style.display = "block";
     text.innerHTML = `
-        <p>Please enter your name:</p>
+        <p class="delay-1">Please enter your name:</p>
         <input type="text" id="characterName">
-        <div onclick="saveName()">continue</div>
+        <div class="buttonAsk" onclick="saveName()">continue</div>
     `;
 }
 let characterName = document.getElementById("characterName");
@@ -196,7 +204,7 @@ function saveToLeaderBoard(name, mode, number) {
         let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
         leaderboard.push({ name: name, mode: mode, number: number });
         leaderboard.sort((a, b) => b.number - a.number); 
-        if (leaderboard.length > 20) leaderboard = leaderboard.slice(0, 20); 
+        if (leaderboard.length > 10) leaderboard = leaderboard.slice(0, 10); 
         localStorage.setItem("leaderboard", JSON.stringify(leaderboard)); 
         entryAlready = true;
     }
@@ -206,12 +214,14 @@ function saveToLeaderBoard(name, mode, number) {
 function displayLeaderBoard() {
     document.getElementById("textBoxNotebook").style.display = "none";
     document.getElementById("leaderBoard").style.display = "block";
+    document.getElementById("levelOverview").style.display = "none";
+    document.getElementById("endpage").style.display = "block";
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     let list = document.getElementById("leaderBoardList");
     list.innerHTML = ""; 
     leaderboard.forEach((entry, index) => {
         let randomFont = Math.floor(Math.random()*3)+1;
-        let li = document.createElement("li");
+        let li = document.createElement("p");
         if(randomFont == 1) {
             li.style.fontFamily = "diary1";
         }
@@ -220,7 +230,7 @@ function displayLeaderBoard() {
         }
         else {
             li.style.fontFamily = "diary3";
-            li.style.fontSize = "40px";
+            li.style.fontSize = "60px";
         }
         li.textContent = `${index + 1}. ${entry.name} - Mode: ${entry.mode}`;
         list.appendChild(li);
@@ -229,7 +239,12 @@ function displayLeaderBoard() {
 
 function returnFromLead() {
     document.getElementById("notebook").style.display = "none";
+    document.getElementById("endpage").style.display = "none";
     document.getElementById("levelOverview").style.display = "block";
+    document.getElementById("notebookMessage").innerHTML = `
+            <img src="img/line.png" alt="line">
+            <div class="nextButton" onclick="leaderBoard()">show diary</div>`
+            ;
 }
 
 function leaderBoard() {

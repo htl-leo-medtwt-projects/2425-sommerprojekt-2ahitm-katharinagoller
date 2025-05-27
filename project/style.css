@@ -427,15 +427,46 @@ h2 {
 }
 
 #leaderBoardList {
-    font-size: 20px;
+    font-size: 40px;
     font-family: diary1;
     color: #000;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     display: block;
+    margin-top: 8%;
+    text-align: center;
 }
 
+#leaderBoardList p {
+    margin-top: 0;
+    margin-bottom: -1%;
+}
+
+#characterName {
+    padding: 1%;
+    background-color: #215093;
+    color: white;
+    border: 2px solid white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+.buttonAsk {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    transition: color 1s;
+    margin-top: 2%;
+}
+
+.buttonAsk:hover {
+    color: #1B2C5E;
+}
 /************************** Level 1 **************************/
 
 #level1Screen {
