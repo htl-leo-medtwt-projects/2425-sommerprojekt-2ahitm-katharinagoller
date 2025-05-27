@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: diary2;
-    src: url(fonts/DavysCrappyWrit.ttf);
+    src: url(fonts/Quentin.otf);
 }
 
 @font-face {
@@ -420,6 +420,20 @@ h2 {
 #leaveNote:hover {
     color: #215093;
     text-shadow: 2px 2px 3px black;
+}
+
+#leaderBoard {
+    display: none;
+}
+
+#leaderBoardList {
+    font-size: 20px;
+    font-family: diary1;
+    color: #000;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 /************************** Level 1 **************************/
@@ -1721,7 +1735,7 @@ h2 {
     margin-top: 12%;
 }
 
-#gearMessageIntro {
+#gearMessageIntro, #notebookMessage {
     display: none;
     justify-content: center;
     position: absolute;
@@ -1737,7 +1751,7 @@ h2 {
     z-index: 100;
 }
 
-#gearMessageIntro img {
+#gearMessageIntro img, #notebookMessage img {
     width: 35%;
 }
 
